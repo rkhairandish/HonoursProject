@@ -1,0 +1,90 @@
+<!doctype html>
+  <body>
+    <div id="chart">
+        <canvas id="canvas"></canvas>
+    </div>
+  </body>
+</html>
+
+<script src="https://cdn.jsdelivr.net/npm/flexio-sdk-js@1.14.1"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script>
+<script>
+
+(function(window, document, Flexio, undefined) {
+
+    Flexio.setup('bbphhkgvrfkgdskssrcb');
+    Flexio.pipe()
+        .request('https://raw.githubusercontent.com/rkhairandish/HonoursProject/master/GeneActiv%20Data.csv')
+        .convert('csv','json')
+        .run(function(err, response) {
+            var data = JSON.parse(response.text);
+            render(data);
+        });
+
+})(window, document, Flexio)
+
+function render(data)
+{
+    var chart_data = formatDataForChart(data);
+    var ctx = document.getElementById("canvas").getContext("2d");
+
+    window.my_chart = new Chart(ctx, {
+      type: 'bar',
+      data: chart_data,
+      options: {
+        responsive: true,
+        legend: {
+          position: 'top'
+        },
+        title: {
+          display: true,
+          text: 'Use Flex.io to Create a Chart With Chart.js Directly From a CSV File'
+        }
+      }
+    });
+}
+
+function formatDataForChart(content)
+{
+    var first_item = _.get(content, '[0]', {})
+    var column_labels = _.map(_.omit(first_item, ['os']), function(val, key) {
+      if (key != 'os')
+        return key;
+    })
+
+    // use Lodash to reformat the JSON for use with Chart.js
+    var datasets = _.map(content, function(item) {
+      // use the 'os' column as our label
+      var item_label = _.get(item, 'os', 'Not Found')
+
+      // create an array of number values from each item's JSON object
+      var item_values = _.map(_.omit(item, ['os']), function(val) {
+        return parseFloat(val)
+      })
+
+      return {
+        label: item_label,
+        data: item_values,
+        backgroundColor: getRandomColor()
+      }
+    })
+
+    var chart_data = {
+      labels: column_labels,
+      datasets: datasets
+    };
+
+    return chart_data;
+}
+
+function getRandomColor() {
+  var letters = '0123456789ABCDEF'.split('');
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
+</script>
