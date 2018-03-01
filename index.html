@@ -18,7 +18,31 @@
 <html lang="en">
   <head>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.1.2/papaparse.js"></script>
+<script>
+    function arrayToTable(tableData) {
+        var table = $('<table></table>');
+        $(tableData).each(function (i, rowData) {
+            var row = $('<tr></tr>');
+            $(rowData).each(function (j, cellData) {
+                row.append($('<td>'+cellData+'</td>'));
+            });
+            table.append(row);
+        });
+        return table;
+    }
+
+    $.ajax({
+        type: "GET",
+        url: "C:\Users/ramesh/Documents/GitHub/HonoursProject/HonoursProject/GeneActiv Data.csv",
+        success: function (data) {
+            $('body').append(arrayToTable(Papa.parse(data).data));
+        }
+    });
+</script>
+
+   <!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js"></script>
     <script type="text/javascript">  
     $(document).ready(function() {
@@ -60,7 +84,7 @@
         }
     });
 
-
+-->
 
 </script>
     </head>
