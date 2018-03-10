@@ -45,5 +45,4 @@ function createGraph(data) {
 		}
 	});
 }
-
 parseData(createGraph);
