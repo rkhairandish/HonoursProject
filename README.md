@@ -14,14 +14,18 @@ Instructions:
   - ETC
  
  Languages used:
- - JavaScript
+ - JavaScript (Using C3 JS)
  - JSON
- - CSS
+ - CSS (Using Materialize CSS)
  - HTML
+ - Pyhton ( to deploy locally - at location: http://localhost:8000/)
+ - CSV for Accelerometer data 
  
 Content from;
+   
+Front-end Framework -  http://materializecss.com/
  
- Graph created using -  plot.ly/create/?fid=rameshk1345:1
-  
-  Front-end Framework -  http://materializecss.com/
+PapaParse - to parse in the CSV files
+ 
+c3js.org - to create interactive visually pleasing graphs
  
