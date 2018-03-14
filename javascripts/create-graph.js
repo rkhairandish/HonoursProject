@@ -1,8 +1,8 @@
+
 /*
  * Parse the data and create a graph with the data.
  */
-
- function parseData(createGraph) {
+function parseData(createGraph) {
 	Papa.parse("../data/test.csv", {
 		download: true,
 		complete: function(results) {
@@ -12,23 +12,28 @@
 }
 
 function createGraph(data) {
-	var years = [];
-	var y = ["Y Coordinate"];
+	var date = [];
+	var y = ["Y Acceleration Coordinate  "];
 
 	for (var i = 1; i < data.length; i++) {
-		years.push(data[i][0]);
+		date.push(data[i][0]);
 		y.push(data[i][2]);
 	}
 
-	console.log(years);
+	console.log(date);
 	console.log(y);
 
 	var chart = c3.generate({
 		bindto: '#chart',
-	    data: { columns: [y]},
+	    data: {
+	        columns: [
+	        	y
+	        ]
+	    },
 	    axis: {
-	        x: {type: 'category',
-	            categories: years,
+	        x: {
+	            type: 'category',
+	            categories: date,
 	            tick: {
 	            	multiline: false,
                 	culling: {
@@ -42,7 +47,8 @@ function createGraph(data) {
     	},
 	    legend: {
 	        position: 'right'
-		}
+	    }
 	});
 }
+
 parseData(createGraph);
