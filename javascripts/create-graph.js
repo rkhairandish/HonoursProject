@@ -1,7 +1,6 @@
 
-/*
- * Parse the data and create a graph with the data.
- */
+/* Parse the data and create a graph with the data.*/
+
 function parseData(createGraph) {
 	Papa.parse("../data/test.csv", {
 		download: true,
@@ -11,6 +10,7 @@ function parseData(createGraph) {
 	});
 }
 
+/* Create the Graph */
 function createGraph(data) {
 	var date = [];
 	var y = ["Y Acceleration Coordinate  "];
@@ -51,4 +51,16 @@ function createGraph(data) {
 	});
 }
 
+
+
+
 parseData(createGraph);
+
+
+
+
+
+
+
+
+
