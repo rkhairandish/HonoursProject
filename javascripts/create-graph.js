@@ -5,6 +5,7 @@ function parseData(createGraph) {
 	Papa.parse("../data/test.csv", {
 		download: true,
 		complete: function(results) {
+			findPeaks(results.data);
 			createGraph(results.data);
 		}
 	});
@@ -37,7 +38,7 @@ function createGraph(data) {
 	            tick: {
 	              	multiline: false,
                 	culling: {
-                     	max: 4
+                     	max: 6
                  	}
             	 }
 	        }
@@ -46,15 +47,38 @@ function createGraph(data) {
         	enabled: true
     	},
 	    legend: {
-	        position: 'right'
-	    }
+	        position: 'bottom'
+		}
 	});
 }
 
+function findPeaks(data) {
+	var peak;
+	var counter = 0;
 
+  return data.reduce(function(peaks, val, i) {
+    if (data[i+1] > data[i]) {
+      peak = data[i+1];
+    } else if ((data[i+1] < data[i]) && (typeof peak === 'number')) {
+      peaks.push(peak);
+      peak = undefined;
+		}
+		console.log("this is peak" + peak);
+    return peaks;
+	}, []);
+
+}
+
+
+//when peak found add 1 to counter ie ++Counter
 
 
 parseData(createGraph);
+
+
+
+
+
 
 
 
