@@ -11,6 +11,7 @@ function parseData(createGraph) {
 	});
 }
 
+// 
 /* Function to Create the Graph */
 function createGraph(data) {
 	var date = [];
