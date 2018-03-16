@@ -5,7 +5,7 @@ function parseData(createGraph) {
 	Papa.parse("../data/test.csv", {
 		download: true,
 		complete: function(results) {
-			findPeaks(results.data);
+//			findPeaks(results.data);
 			createGraph(results.data);
 		}
 	});
@@ -50,24 +50,33 @@ function createGraph(data) {
 	        position: 'bottom'
 		}
 	});
-}
 
-function findPeaks(data) {
-	var peak;
-	var counter = 0;
+	var slayer = require('slayer');
+	var arrayData = y;
 
-  return data.reduce(function(peaks, val, i) {
-    if (data[i+1] > data[i]) {
-      peak = data[i+1];
-    } else if ((data[i+1] < data[i]) && (typeof peak === 'number')) {
-      peaks.push(peak);
-      peak = undefined;
-		}
-		console.log("this is peak" + peak);
-    return peaks;
-	}, []);
+	slayer().fromArray(arrayData).then(spikes => {
+		console.log(spikes);      // [ { x: 4, y: 12 }, { x: 12, y: 25 } ] 
+	});
 
 }
+
+//Function to find peaks (need to make a counter that add 1 to Counter each time peak is hit)
+						// function findPeaks(data) {
+						// 	var peak;
+						// 	var counter = 0;
+
+						//   return data.reduce(function(peaks, val, i) {
+						//     if (data[i+1] > data[i]) {
+						//       peak = data[i+1];
+						//     } else if ((data[i+1] < data[i]) && (typeof peak === 'number')) {
+						//       peaks.push(peak);
+						//       peak = undefined;
+						// 		}
+						// 		console.log("this is peak" + peak);
+						//     return peaks;
+						// 	}, []);
+
+						// }
 
 
 //when peak found add 1 to counter ie ++Counter
