@@ -10,7 +10,7 @@ function parseData(createGraph) {
 	});
 }
 
-/* Create the Graph */
+/* Function to Create the Graph */
 function createGraph(data) {
 	var date = [];
 	var y = ["Y Acceleration Coordinate  "];
@@ -31,15 +31,15 @@ function createGraph(data) {
 	        ]
 	    },
 	    axis: {
-	        x: {
-	            type: 'category',
-	            categories: date,
+        x: {
+            type: 'category',
+	            categories: date,       
 	            tick: {
-	            	multiline: false,
+	              	multiline: false,
                 	culling: {
-                    	max: 15
-                	}
-            	}
+                     	max: 4
+                 	}
+            	 }
 	        }
 	    },
 	    zoom: {
