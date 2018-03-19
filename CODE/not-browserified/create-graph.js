@@ -61,25 +61,6 @@ function createGraph(data) {
 
 }
 
-//Function to find peaks (need to make a counter that add 1 to Counter each time peak is hit)
-						// function findPeaks(data) {
-						// 	var peak;
-						// 	var counter = 0;
-
-						//   return data.reduce(function(peaks, val, i) {
-						//     if (data[i+1] > data[i]) {
-						//       peak = data[i+1];
-						//     } else if ((data[i+1] < data[i]) && (typeof peak === 'number')) {
-						//       peaks.push(peak);
-						//       peak = undefined;
-						// 		}
-						// 		console.log("this is peak" + peak);
-						//     return peaks;
-						// 	}, []);
-
-						// }
-
-
 //when peak found add 1 to counter ie ++Counter
 
 
