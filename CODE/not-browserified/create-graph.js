@@ -61,8 +61,6 @@ function createGraph(data) {
 
 }
 
-//when peak found add 1 to counter ie ++Counter
-
 parseData(createGraph);
 
 
