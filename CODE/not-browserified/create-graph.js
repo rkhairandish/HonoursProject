@@ -11,7 +11,6 @@ function parseData(createGraph) {
 	});
 }
 
-// 
 /* Function to Create the Graph */
 function createGraph(data) {
 	var date = [];
@@ -56,13 +55,13 @@ function createGraph(data) {
 	var arrayData = y;
 
 	slayer().fromArray(arrayData).then(spikes => {
-		console.log(spikes);      // [ { x: 4, y: 12 }, { x: 12, y: 25 } ] 
+		console.log(spikes);
+		document.getElementById("spikes").innerText = total.toString();      // [ { x: 4, y: 12 }, { x: 12, y: 25 } ] 
 	});
 
 }
 
 //when peak found add 1 to counter ie ++Counter
-
 
 parseData(createGraph);
 
