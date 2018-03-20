@@ -56,7 +56,7 @@ function createGraph(data) {
 
 	slayer().fromArray(arrayData).then(spikes => {
 		console.log(spikes);
-		document.getElementById("spikes").innerText = total.toString();      // [ { x: 4, y: 12 }, { x: 12, y: 25 } ] 
+		document.getElementById("spikes").innerHTML = spikes[];     // [ { x: 4, y: 12 }, { x: 12, y: 25 } ] 
 	});
 
 }
