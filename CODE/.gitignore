@@ -1,3 +1,5 @@
 javascripts/create-graph.js
-node_modules 
+node_modules/
+./node_modules 
 data/GeneActiv Data.csv
+.vscode/
