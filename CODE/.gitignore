@@ -1,5 +1,5 @@
-javascripts/create-graph.js
+javascripts/
 node_modules/
 ./node_modules 
-data/GeneActiv Data.csv
+data/
 .vscode/
