@@ -2,7 +2,7 @@
 /* Parse the data and create a graph with the data.*/
 
 function parseData(createGraph) {
-	Papa.parse("../data/test.csv", {
+	Papa.parse("../data/GeneActiv Data.csv", {
 		download: true,
 		complete: function(results) {
 //			findPeaks(results.data);
