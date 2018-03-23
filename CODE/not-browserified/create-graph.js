@@ -1,8 +1,8 @@
 
 /* Parse the data and create a graph with the data.*/
 
-function parseData(createGraph) {
-	Papa.parse("../data/GeneActiv Data.csv", {
+function parseData(createGraph, filename) {
+	Papa.parse(filename, {
 		download: true,
 		complete: function(results) {
 			createGraph(results.data);
@@ -10,10 +10,14 @@ function parseData(createGraph) {
 	});
 }
 
+
+
+
+
 /* Function to Create the Graph */
 function createGraph(data) {
-	var date = [];
-	var y = ["Y Acceleration Coordinate  "];
+	var date = [ "Date + Time"];
+	var y = ["Acceleration Amount "];
 
 	for (var i = 1; i < data.length; i++) {
 		date.push(data[i][0]);
@@ -55,12 +59,15 @@ function createGraph(data) {
 
 	slayer().fromArray(arrayData).then(spikes => {
 		console.log(spikes);
-		document.getElementById("spikes").innerHTML = "Number of Punches thrown: " + spikes.length;     // [ { x: 4, y: 12 }, { x: 12, y: 25 } ] 
+		document.getElementById("spikes").innerHTML = "Number of Punches thrown: " + spikes.length;     
+		// Example Output[ { x: 4, y: 12 }, { x: 12, y: 25 } ] 
 	});
 
 }
 
-parseData(createGraph);
+parseData(createGraph, "../data/GeneActiv Data.csv");
+
+parseData(createGraph, "../data/BTT.csv");
 
 
 
