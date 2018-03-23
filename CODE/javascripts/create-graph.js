@@ -1,7 +1,6 @@
 (function(){function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s}return e})()({1:[function(require,module,exports){
 
-/* Parse the data and create a graph with the data.*/
-
+//Parse the data to create a graph with the data
 function parseData(createGraph, filename, chartDivName) {
 	Papa.parse(filename, {
 		download: true,
@@ -11,14 +10,10 @@ function parseData(createGraph, filename, chartDivName) {
 	});
 }
 
-
-
-
-
-/* Function to Create the Graph */
+// Function to Create the Graph 
 function createGraph(data, chartDivName) {
-	var date = [ "Acceleration Amount"];
-	var y = ["Acceleration Amount "];
+	var date = [ "Date + Time --> "];
+	var y = ["Acceleration"];
 
 	for (var i = 1; i < data.length; i++) {
 		date.push(data[i][0]);
@@ -31,43 +26,35 @@ function createGraph(data, chartDivName) {
 	var chart = c3.generate({
 		bindto: "#chart" + chartDivName,
 	    data: {
-	        columns: [
-	        	y
-	        ]
-	    },
-	    axis: {
-        x: {
-            type: 'category',
-	            categories: date,       
-	            tick: {
-	              	multiline: false,
-                	culling: {
-                     	max: 6
-                 	}
-            	 }
-	        }
-	    },
-	    zoom: {
-        	enabled: true
-    	},
-	    legend: {
-	        position: 'bottom'
-		}
+	        columns: [ y ] },
+	    axis: { x: {  type: 'category', categories: date,       
+	    tick: {	multiline: false, culling: { max: 6 } } } },
+	    zoom: { enabled: true },
+	    legend: { position: 'bottom' }
 	});
 
+	//Find Peaks in the Graph
 	var slayer = require('slayer');
 	var arrayData = y;
 
 	slayer().fromArray(arrayData).then(spikes => {
-		console.log(spikes);
-		document.getElementById("spikes" + chartDivName).innerHTML = "Number of Punches thrown: " + spikes.length;     
-		// Example Output[ { x: 4, y: 12 }, { x: 12, y: 25 } ] 
+		console.log(spikes);		
+		// Example Output = { x: 4, y: 12 }, { x: 12, y: 25 } 
+		var realPunches = 0;
+		for (var i = 0; i < spikes.length; i++) {
+			if (spikes[i].y > 2) {
+				realPunches++;
+			}
+		}
+		document.getElementById("spikes" + chartDivName).innerHTML = "Number of Punches: " + realPunches;
+
+		// Example Output = Number of Punches: 25
 	});
 
 }
 
+//Call the Functions
 parseData(createGraph, "../data/GeneActiv Data.csv", "");
-
 parseData(createGraph, "../data/BTT.csv", "2");
 
 
