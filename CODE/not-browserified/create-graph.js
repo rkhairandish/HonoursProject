@@ -5,7 +5,6 @@ function parseData(createGraph) {
 	Papa.parse("../data/GeneActiv Data.csv", {
 		download: true,
 		complete: function(results) {
-//			findPeaks(results.data);
 			createGraph(results.data);
 		}
 	});
