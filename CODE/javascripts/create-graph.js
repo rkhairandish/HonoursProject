@@ -9,7 +9,7 @@ function parseData(createGraph, filename, chartDivName) {
 		}
 	});
 }
-
+ 
 // Function to Create the Graph 
 function createGraph(data, chartDivName) {
 	var date = [ "Date + Time --> "];
@@ -22,6 +22,7 @@ function createGraph(data, chartDivName) {
 
 	console.log(date);
 	console.log(y);
+
 
 	var chart = c3.generate({
 		bindto: "#chart" + chartDivName,
@@ -40,15 +41,22 @@ function createGraph(data, chartDivName) {
 	slayer().fromArray(arrayData).then(spikes => {
 		console.log(spikes);		
 		// Example Output = { x: 4, y: 12 }, { x: 12, y: 25 } 
+		
+		//for loop to detect punches ie acceleration above 2 
 		var realPunches = 0;
 		for (var i = 0; i < spikes.length; i++) {
 			if (spikes[i].y > 2) {
 				realPunches++;
 			}
 		}
-		document.getElementById("spikes" + chartDivName).innerHTML = "Number of Punches: " + realPunches;
-
+		document.getElementById("spikes" + chartDivName).innerHTML = realPunches;
 		// Example Output = Number of Punches: 25
+
+		//Circular Progress Bar to Visually Show number of punches
+		document.getElementById("NumPunches").innerHTML = realPunches;
+		document.getElementById("NumPunches2").innerHTML = realPunches;
+
+
 	});
 
 }
@@ -56,20 +64,6 @@ function createGraph(data, chartDivName) {
 //Call the Functions
 parseData(createGraph, "../data/GeneActiv Data.csv", "");
 parseData(createGraph, "../data/BTT.csv", "2");
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 },{"slayer":18}],2:[function(require,module,exports){
 (function (Buffer){
