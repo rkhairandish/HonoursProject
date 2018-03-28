@@ -1,3 +1,9 @@
+//Global Variables
+var realPunches = 0;
+var y = ["Acceleration"];
+
+
+
 
 //Parse the data to create a graph with the data
 function parseData(createGraph, filename, chartDivName, findPunchesInGraph) {
@@ -10,11 +16,6 @@ function parseData(createGraph, filename, chartDivName, findPunchesInGraph) {
 	});
 }
  
-
-
-var y = ["Acceleration"];
-
-
 // Function to Create the Graph 
 function createGraph(data, chartDivName) {
 	var date = [ "Date + Time --> "];
@@ -23,8 +24,6 @@ function createGraph(data, chartDivName) {
 					date.push(data[i][0]);
 					y.push(data[i][2]);
 				}
-//	console.log(date);
-//	console.log(y);
 
 	var chart = c3.generate({
 		bindto: "#chart" + chartDivName,
@@ -40,13 +39,14 @@ function createGraph(data, chartDivName) {
 		// Example Output = Number of Punches: 25
 }
 
+
 function findPunchesInGraph(data, chartDivName) {
 
 	//Find Peaks in the Graph
 	var slayer = require('slayer');
 	var arrayData = y;
 
-	slayer().fromArray(arrayData).then(spikes => {
+	slayer().fromArray(arrayData).then(spikes => { 
 		console.log(spikes);
 		// Example Output = { x: 4, y: 12 }, { x: 12, y: 25 } 
 
@@ -59,17 +59,16 @@ function findPunchesInGraph(data, chartDivName) {
 		}
 		console.log("Real punches", realPunches)
 		document.getElementById("spikes" + chartDivName).innerHTML = realPunches;
+
+		circularGraph(realPunches, chartDivName);
 	});
 }
 
-function circularGraph(data, chartDivName) {
+function circularGraph(punches, chartDivName) {
 	
-
-
 	//Circular Progress Bar to Visually Show number of punches
-	document.getElementById("NumPunches").innerHTML = realPunches;
-	document.getElementById("NumPunches2").innerHTML = realPunches;
-
+	console.log("circular punches", punches)
+	document.getElementById("NumPunches" + chartDivName).innerHTML = punches;
 }
 
 //Call the Functions
