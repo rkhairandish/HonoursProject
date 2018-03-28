@@ -6,6 +6,10 @@ var y = ["Acceleration"];
 
 
 
+
+
+
+
 //Parse the data to create a graph with the data
 function parseData(createGraph, filename, chartDivName, findPunchesInGraph) {
 	Papa.parse(filename, {
@@ -17,6 +21,13 @@ function parseData(createGraph, filename, chartDivName, findPunchesInGraph) {
 	});
 }
  
+
+
+
+
+
+
+
 // Function to Create the Graph 
 function createGraph(data, chartDivName) {
 	var date = [ "Date + Time --> "];
@@ -35,10 +46,13 @@ function createGraph(data, chartDivName) {
 	    zoom: { enabled: true },
 	    legend: { position: 'bottom' }
 	});
-
-	
-		// Example Output = Number of Punches: 25
 }
+
+
+
+
+
+
 
 
 function findPunchesInGraph(data, chartDivName) {
@@ -48,8 +62,6 @@ function findPunchesInGraph(data, chartDivName) {
 	var arrayData = y;
 
 	slayer().fromArray(arrayData).then(spikes => { 
-		console.log(spikes);
-		// Example Output = { x: 4, y: 12 }, { x: 12, y: 25 } 
 
 		//for loop to detect punches ie acceleration above 2 
 		var realPunches = 0;
@@ -58,19 +70,30 @@ function findPunchesInGraph(data, chartDivName) {
 				realPunches++;
 			}
 		}
-		console.log("Real punches", realPunches)
-		document.getElementById("spikes" + chartDivName).innerHTML = realPunches;
-
+		console.log("Real punches", chartDivName, "    " , realPunches)
 		circularGraph(realPunches, chartDivName);
 	});
 }
 
+
+
+
+
+
+
+
 function circularGraph(punches, chartDivName) {
 	
 	//Circular Progress Bar to Visually Show number of punches
-	console.log("circular punches", punches)
 	document.getElementById("NumPunches" + chartDivName).innerHTML = punches;
 }
+
+
+
+
+
+
+
 
 //Call the Functions
 parseData(createGraph, "../data/GeneActiv Data.csv", "", findPunchesInGraph);
