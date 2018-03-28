@@ -1,28 +1,31 @@
 (function(){function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s}return e})()({1:[function(require,module,exports){
 
 //Parse the data to create a graph with the data
-function parseData(createGraph, filename, chartDivName) {
+function parseData(createGraph, filename, chartDivName, findPunchesInGraph) {
 	Papa.parse(filename, {
 		download: true,
 		complete: function(results) {
 			createGraph(results.data, chartDivName);
+			findPunchesInGraph(results.data, chartDivName);
 		}
 	});
 }
  
+
+
+var y = ["Acceleration"];
+
+
 // Function to Create the Graph 
 function createGraph(data, chartDivName) {
 	var date = [ "Date + Time --> "];
-	var y = ["Acceleration"];
 
-	for (var i = 1; i < data.length; i++) {
-		date.push(data[i][0]);
-		y.push(data[i][2]);
-	}
-
-	console.log(date);
-	console.log(y);
-
+				for (var i = 1; i < data.length; i++) {
+					date.push(data[i][0]);
+					y.push(data[i][2]);
+				}
+//	console.log(date);
+//	console.log(y);
 
 	var chart = c3.generate({
 		bindto: "#chart" + chartDivName,
@@ -34,14 +37,20 @@ function createGraph(data, chartDivName) {
 	    legend: { position: 'bottom' }
 	});
 
+	
+		// Example Output = Number of Punches: 25
+}
+
+function findPunchesInGraph(data, chartDivName) {
+
 	//Find Peaks in the Graph
 	var slayer = require('slayer');
 	var arrayData = y;
 
 	slayer().fromArray(arrayData).then(spikes => {
-		console.log(spikes);		
+		console.log(spikes);
 		// Example Output = { x: 4, y: 12 }, { x: 12, y: 25 } 
-		
+
 		//for loop to detect punches ie acceleration above 2 
 		var realPunches = 0;
 		for (var i = 0; i < spikes.length; i++) {
@@ -49,21 +58,24 @@ function createGraph(data, chartDivName) {
 				realPunches++;
 			}
 		}
+		console.log("Real punches", realPunches)
 		document.getElementById("spikes" + chartDivName).innerHTML = realPunches;
-		// Example Output = Number of Punches: 25
-
-		//Circular Progress Bar to Visually Show number of punches
-		document.getElementById("NumPunches").innerHTML = realPunches;
-		document.getElementById("NumPunches2").innerHTML = realPunches;
-
-
 	});
+}
+
+function circularGraph(data, chartDivName) {
+	
+
+
+	//Circular Progress Bar to Visually Show number of punches
+	document.getElementById("NumPunches").innerHTML = realPunches;
+	document.getElementById("NumPunches2").innerHTML = realPunches;
 
 }
 
 //Call the Functions
-parseData(createGraph, "../data/GeneActiv Data.csv", "");
-parseData(createGraph, "../data/BTT.csv", "2");
+parseData(createGraph, "../data/GeneActiv Data.csv", "", findPunchesInGraph);
+parseData(createGraph, "../data/BTT.csv", "2", findPunchesInGraph);
 
 },{"slayer":18}],2:[function(require,module,exports){
 (function (Buffer){
