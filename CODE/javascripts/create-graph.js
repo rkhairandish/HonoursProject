@@ -71,7 +71,11 @@ function findPunchesInGraph(data, chartDivName) {
 			}
 		}
 		console.log("Real punches", chartDivName, "    " , realPunches)
-		circularGraph(realPunches, chartDivName);
+
+		document.getElementById("NumPunches" + chartDivName).innerHTML = realPunches;
+
+		//Calls the function
+		circularGraph(realPunches);
 	});
 }
 
@@ -82,13 +86,24 @@ function findPunchesInGraph(data, chartDivName) {
 
 
 
-function circularGraph(punches, chartDivName) {
+function circularGraph(punches) {
 	
+	console.log("circular graph called")
 	//Circular Progress Bar to Visually Show number of punches
-	document.getElementById("NumPunches" + chartDivName).innerHTML = punches;
+	var elements = document.getElementsByClassName("c100 p100");
+	
+
+	
+	if (punches < 30){   					//Less than 30 punches = red
+		elements[1].className = "c100 p100 red";
+	} else if (punches > 60){				//More than 60 Punches = green
+		elements[1].className = "c100 p100 green";
+	}
+	  else {								//Inbetween 30 - 60 punches = orange
+		elements[1].className = "c100 p100 orange";	
+	  }
+
 }
-
-
 
 
 
