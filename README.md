@@ -11,17 +11,5 @@ Instructions:
   - Upload into given location or website 
   - View Timeline Graph, Count Punches ETC
  
- Languages used:
- - JavaScript (Using C3 JS)
- - JSON
- - CSS (Using Materialize CSS)
- - HTML - MDL Dashboard Template 
- - Pyhton ( to deploy locally - at location: http://localhost:8000/)
- - CSV for Accelerometer data 
- 
-Content from:
-- Front-end Framework -  http://materializecss.com/
- 
-- PapaParse - to parse in the CSV files
- 
-- c3js.org - to create interactive visually pleasing graphs
+
+
