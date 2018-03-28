@@ -40,7 +40,20 @@ function createGraph(data, chartDivName) {
 	var chart = c3.generate({
 		bindto: "#chart" + chartDivName,
 	    data: {
-	        columns: [ y ] },
+			columns: [ y ] }, 
+
+		colors: {
+			"y": '#000000'
+		},
+		legend: {
+			colors: {
+				'y': '#000'
+			}
+		},
+		// color: function (color, d) {
+		// 	// d will be 'id' when called for legends
+		// 	return d.id && d.id === 'y' ? d3.rgb(color).darker(d.value / 300) : color;
+		// },
 	    axis: { x: {  type: 'category', categories: date,       
 	    tick: {	multiline: false, culling: { max: 6 } } } },
 	    zoom: { enabled: true },

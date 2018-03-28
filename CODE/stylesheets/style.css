@@ -218,3 +218,14 @@ _:-ms-input-placeholder, :root .demo-graph {
     border-radius: 0px;
     border-width: 1px;
 }
+
+.c3-axis-y text {
+   fill: rgb(22, 22, 22);
+   font-size:12px;
+}
+
+.c3-axis-x text {
+    font-size:12px;
+    fill:rgb(22, 22, 22);
+}
+
