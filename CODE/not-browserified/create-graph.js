@@ -107,12 +107,12 @@ function circularGraph(punches) {
 
 	
 	if (punches < 30){   					//Less than 30 punches = red
-		elements[1].className = "c100 p100 red";
+		elements[0].className = "c100 p100 red";
 	} else if (punches > 60){				//More than 60 Punches = green
-		elements[1].className = "c100 p100 green";
+		elements[0].className = "c100 p100 green";
 	}
 	  else {								//Inbetween 30 - 60 punches = orange
-		elements[1].className = "c100 p100 orange";	
+		elements[0].className = "c100 p100 orange";	
 	  }
 
 }

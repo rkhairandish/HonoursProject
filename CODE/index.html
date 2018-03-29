@@ -28,7 +28,7 @@
 
 <body>
 
-<nav class="nav nav-pills nav-fill fixed-top" style="font-size:1.5vw" >
+<nav class="nav nav-pills nav-fill sticky-top" style="font-size:1.5vw" >
 	
 	<a class="nav-item nav-link active" href="#">Dashboard</a>
 	<a class="nav-item nav-link " href="#">Graphs</a>
@@ -43,33 +43,34 @@
     	<div class="container">
 			<div id="chart"></div>
 			<div id="spikes"></div>
+						<!-- Circular Progress Bar to represent Punches -->
+							<h2 >Punches from Graph 1</h2>
+						<div class="c100 p100">
+							<span id="NumPunches"> Punches </span>
+							<div class="slice">
+							<div class="bar"></div>
+							<div class="fill"></div>
+							</div>
+						</div>
 					<br>
 										<br>
 										<br>
 										<br>
 			<div id="chart2"></div>
 			<div id="spikes2"></div>
-										<br>
-										<br>
-										<br>
-															<!-- Circular Progress Bar to represent Punches -->
-															<div align="center" class="c100 p100">
-																<span id="NumPunches"> Punches </span>
-																<div class="slice">
-																	<div class="bar"></div>
-																	<div class="fill"></div>
-																</div>
-															</div>
-															
-															<!-- 2nd Circular Progress Bar to represent Punches -->
-															<div align="center" class="c100 p100">
-																<span id="NumPunches2"> Punches </span>
-																<div class="slice">
-																	<div class="bar"></div>
-																	<div class="fill"></div>
-																</div>
-															</div>
-															<br>
+			<br>
+			<br>
+			<br>
+				<!-- 2nd Circular Progress Bar to represent Punches -->
+					<h2>Punches from Graph 2</h2>
+				<div align="center" class="c100 p100">
+							<span id="NumPunches2"> Punches </span>
+								<div class="slice">
+								<div class="bar"></div>
+								<div class="fill"></div>
+							</div>
+						</div>
+				<br>
 		</div>
 				<script src="javascripts/create-graph.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
