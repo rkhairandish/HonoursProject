@@ -106,16 +106,17 @@ function circularGraph(punches) {
 	var elements = document.getElementsByClassName("c100 p100");
 	
 
+for (i = 0; i < elements.length; i++) {
 	
 	if (punches < 30){   					//Less than 30 punches = red
-		elements[0].className = "c100 p100 red";
+		elements[i].className = "c100 p100 red";
 	} else if (punches > 60){				//More than 60 Punches = green
-		elements[0].className = "c100 p100 green";
+		elements[i].className = "c100 p100 green";
 	}
 	  else {								//Inbetween 30 - 60 punches = orange
-		elements[0].className = "c100 p100 orange";	
+		elements[i].className = "c100 p100 orange";	
 	  }
-
+	} 
 }
 
 
