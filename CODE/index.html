@@ -27,29 +27,42 @@
   	</head>
 
 <body>
-
-<nav class="nav nav-pills nav-fill sticky-top" style="font-size:1.5vw; background-color:rgb(255, 255, 255);" >
-	
-	<a class="nav-item nav-link active" href="#">Dashboard</a>
-	<a class="nav-item nav-link " href="/Graph.html">Graphs</a>
-	<a class="nav-item nav-link " href="/Versus Page.html">Versus</a>
-	<a class="nav-item nav-link " href="/About.html">About</a>
-	<a class="nav-item nav-link disabled" href="#">By Ramesh Khairandish</a>
+<nav class="navbar navbar-inverse" >
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="#">Boxing Performance Tracker</a>
+		</div>
+		<ul class="nav ">
+			<li class="active">
+				<a href="/index.html">Dashboard</a>
+			</li>
+			<li>
+				<a href="/Graph.html">Graphs</a>
+			</li>
+			<li>
+				<a href="/Versus Page.html">Versus</a>
+			</li>
+			<li>
+				<a href="/About.html">About</a>
+			</li>
+		</ul>
+	</div>
 </nav>
+						<h2 align="center" style="font-size:3vw"> Boxing Performance Tracker </h2>
 					<br>
-					<br>
-		<h2 align="center" style="font-size:4vw"> Boxing Performance Tracker </h2>
-					<br>
+					<div class="container">
+						<div class="row">
+				
 					<br>
     	<div class="container">
 <div class="card text-center">
 	<div class="card-header">
 		Dashboard
 	</div>
-	<table style="width:100%">	
+	<table style="width:100%" >	
 		<tr>
 			<td><!-- Circular Progress Bar to represent Punches -->
-			<h2>Punches from Graph 1</h2>
+			<h2>Graph 1 Punches</h2>
 			<div class="c100 p100 center">
 				<span id="NumPunches"> Punches </span>
 				<div class="slice">
@@ -58,7 +71,7 @@
 				</div>
 			</div></td>
 			<td><!-- 2nd Circular Progress Bar to represent Punches -->
-			<h2>Punches from Graph 2</h2>
+			<h2>Graph 2 Punches</h2>
 			<div align="center" class="c100 p100">
 				<span id="NumPunches2"> Punches </span>
 				<div class="slice">
@@ -68,20 +81,20 @@
 					<br>
 								<td>
 									<!-- 1st Circular Progress Bar to Avg Acceleration -->
-									<h2>Avg Punch Acceleration (m/s)</h2>
+									<h2>Avg Punch Acceleration (g)</h2>
 									<div align="center" class="c100 p100">
 										<span id="Avg Punches"> Avg Speed </span>
 										<div class="slice">
 											<div class="bar"></div>
 											<div class="fill"></div>
 				</div></td>
-													<!-- 2nd Circular Progress Bar to Avg Acceleration -->
+													 <!-- 2nd Circular Progress Bar to Avg Acceleration 
 													<h2>Avg Punch Acceleration (m/s)</h2>
 													<div align="center" class="c100 p100">
 														<span id="Avg Punches"> Avg Speed </span>
 														<div class="slice">
 															<div class="bar"></div>
-															<div class="fill"></div>
+															<div class="fill"></div> -->
 
 		</div>
 		<br>

@@ -14,9 +14,16 @@
  * limitations under the License.
  */
 
-html, body {
+/* html, body {
   font-family: 'Roboto', 'Helvetica', sans-serif;
+background-color: grey;
+} */
+
+body {
+    height: 100%;
+    background: linear-gradient( rgb(252, 252, 252) 50%);
 }
+
 .demo-avatar {
   width: 48px;
   height: 48px;
@@ -166,7 +173,7 @@ _:-ms-input-placeholder, :root .demo-graph {
   height: 32px;
 }
 .demo-cards .mdl-card__title.mdl-card__title {
-  color: white;
+  color: rgb(75, 75, 75);
   font-size: 24px;
   font-weight: 400;
 }
