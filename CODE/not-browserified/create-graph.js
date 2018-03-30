@@ -1,6 +1,6 @@
 //Global Variables
-var realPunches = 0;
-var y = ["Acceleration"];
+var yLabel = ["Acceleration"];
+
 
 
 
@@ -33,7 +33,7 @@ function createGraph(data, chartDivName) {
 
 				for (var i = 1; i < data.length; i++) {
 					date.push(data[i][0]);
-					y.push(data[i][2]);
+					yLabel.push(data[i][2]);
 				}
 
 	var chart = c3.generate({
@@ -41,7 +41,7 @@ function createGraph(data, chartDivName) {
 		size: {
 			width: 980},
 	    data: {
-			columns: [ y ] }, 
+			columns: [ yLabel ] }, 
 
 		colors: {
 			"y": '#000000'
@@ -69,7 +69,8 @@ function findPunchesInGraph(data, chartDivName) {
 
 	//Find Peaks in the Graph
 	var slayer = require('slayer');
-	var arrayData = y;
+	var arrayData = yLabel;
+
 
 	slayer().fromArray(arrayData).then(spikes => { 
 
@@ -86,8 +87,44 @@ function findPunchesInGraph(data, chartDivName) {
 
 		//Calls the function
 		circularGraph(realPunches);
+		getAvgSpeedOfPunches(spikes, chartDivName);
 	});
 }
+
+
+
+
+
+
+function getAvgSpeedOfPunches(data, chartDivName) {
+
+	//Find Peaks in the Graph
+	var slayer = require('slayer');
+	var dataFromArray = yLabel;
+
+
+	slayer().fromArray(dataFromArray).then(spikes => {
+
+		//for loop to detect acceleration above 7G
+		var gAccelerationAmount = 0;
+		var numberOfRealPunches = 0;
+
+		for (var i = 0; i < spikes.length; i++) {
+			if (spikes[i].y > 2) {
+			//	console.log("Spikes" + spikes[i].y)
+				numberOfRealPunches++
+				gAccelerationAmount += Number(spikes[i].y);
+			} 
+		} var avg = gAccelerationAmount/numberOfRealPunches;
+
+		// console.log("gAccelerationAmount", gAccelerationAmount, " numberOfRealPunches   ", numberOfRealPunches)
+		// console.log("Avg Punches", chartDivName, "    ", avg)
+
+		document.getElementById("Avg Punches" + chartDivName).innerHTML = avg.toFixed(2);
+	});
+}
+
+
 
 
 
@@ -123,4 +160,4 @@ for (i = 0; i < elements.length; i++) {
 
 //Call the Functions
 parseData(createGraph, "../data/GeneActiv Data.csv", "", findPunchesInGraph);
-parseData(createGraph, "../data/BTT.csv", "2", findPunchesInGraph);
+parseData(createGraph, "../data/BTT.csv", "2", findPunchesInGraph );

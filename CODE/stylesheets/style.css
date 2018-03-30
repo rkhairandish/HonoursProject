@@ -148,7 +148,7 @@ _:-ms-input-placeholder, :root .demo-graph {
 }
 /* TODO end */
 .demo-graph:nth-child(1) {
-  color: #00b9d8;
+  color: #4100d8;
 }
 .demo-graph:nth-child(2) {
   color: #d9006e;
@@ -183,7 +183,7 @@ _:-ms-input-placeholder, :root .demo-graph {
   background-repeat: no-repeat;
 }
 .demo-cards .mdl-card__actions a {
-  color: #00BCD4;
+  color: rgb(0, 21, 212);
   text-decoration: none;
 }
 
@@ -191,7 +191,7 @@ _:-ms-input-placeholder, :root .demo-graph {
   margin: 0;
 }
 .demo-options .mdl-checkbox__box-outline {
-  border-color: rgba(255, 255, 255, 0.89);
+  border-color: rgba(83, 83, 83, 0.89);
 }
 .demo-options ul {
   margin: 0;
@@ -201,7 +201,7 @@ _:-ms-input-placeholder, :root .demo-graph {
   margin: 4px 0;
 }
 .demo-options .material-icons {
-  color: rgba(255, 255, 255, 0.89);
+  color: rgba(83, 83, 83, 0.89);
 }
 .demo-options .mdl-card__actions {
   height: 64px;
