@@ -206,10 +206,10 @@ var elements = document.getElementsByClassName("Date/Time");
 	// console.log("Length" + lengthOfSession);
 	document.getElementById("Date/Time").innerHTML = "Start of Session: " + startSessionTimestamp[1] + "<br>" + "End of Session: " + 
 		endSessionTimestamp[1] + "<br>" +
-		"Duration (Hr, Min, Sec, Ms): " +
-		lengthOfSession[0] + " : " +
-		lengthOfSession[1] + " : " +
-		lengthOfSession[2] + " : " +
+		"Duration: " + " Hr: " +
+		lengthOfSession[0] + " Min: " +
+		lengthOfSession[1] + " Sec: " +
+		lengthOfSession[2] + " Ms: " +
 		lengthOfSession[3];
 
 	return dateTimeObj;
@@ -232,6 +232,7 @@ var elements = document.getElementsByClassName("Date/Time");
 //Call the Functions
 parseData(createGraph, "../data/GeneActiv Data.csv", "", findPunchesInGraph);
 parseData(createGraph, "../data/BTT.csv", "2", findPunchesInGraph );
+//parseData(createGraph, "../data/Lots of punches Data SubSet of Boxing on 26.03.2018.csv", "2", findPunchesInGraph);
 
 },{"slayer":18}],2:[function(require,module,exports){
 (function (Buffer){
