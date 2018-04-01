@@ -222,8 +222,8 @@ _:-ms-input-placeholder, :root .demo-graph {
 }
 
 .nav-item { 
-    border-radius: 0px;
-    border-width: 1px;
+    /* border-radius: 0px; */
+    border-width: 0px;
 }
 
 .c3-axis-y text {

@@ -28,6 +28,11 @@ function parseData(createGraph, filename, chartDivName, findPunchesInGraph) {
 
 
 
+
+
+
+
+
 // Function to Create the Graph 
 function createGraph(data, chartDivName) {
 	var date = [ "Date + Time -> "];
@@ -67,12 +72,14 @@ function createGraph(data, chartDivName) {
 
 
 
+
+
+
 function findPunchesInGraph(data, chartDivName) {
 
 	//Find Peaks in the Graph
 	var slayer = require('slayer');
 	var arrayData = yLabel;
-
 
 	slayer().fromArray(arrayData).then(spikes => { 
 
@@ -83,7 +90,6 @@ function findPunchesInGraph(data, chartDivName) {
 				realPunches++;
 			}
 		}
-		console.log("Real punches", chartDivName, "    " , realPunches)
 
 		document.getElementById("NumPunches" + chartDivName).innerHTML = realPunches;
 
@@ -92,6 +98,10 @@ function findPunchesInGraph(data, chartDivName) {
 		getAvgSpeedOfPunches(spikes, chartDivName);
 	});
 }
+
+
+
+
 
 
 
@@ -135,9 +145,10 @@ function getAvgSpeedOfPunches(data, chartDivName) {
 
 
 
+
+
+
 function circularGraph(punches) {
-	
-	console.log("circular graph called")
 	//Circular Progress Bar to Visually Show number of punches
 	var elements = document.getElementsByClassName("c100 p100 ");
 	
@@ -160,18 +171,53 @@ for (i = 0; i < elements.length; i++) {
 
 function firstAndLast(date) {
 
-	var DatesFromFile = date;
+var elements = document.getElementsByClassName("Date/Time");
 
-	var firstItem = date[1];
-	var lastItem = date[date.length - 1];
+	
 
-	var objOutput = {
-		first: firstItem,
-		last: lastItem
-	};
-	console.log("Date is: " + objOutput.first + objOutput.last);
-	return objOutput;
+	var startSessionTimestamp = date[1];
+	var endSessionTimestamp = date[date.length - 1];
+
+	var splitStartTime = startSessionTimestamp;
+	var splitEndTime = endSessionTimestamp;
+
+
+	startSessionTimestamp = startSessionTimestamp.split(" ");
+	endSessionTimestamp = endSessionTimestamp.split(" ");
+	
+	splitStartTime = startSessionTimestamp[1].split(":");
+	splitEndTime = endSessionTimestamp[1].split(":"); 
+
+	var dateTimeObj = {
+		firstDateTime: startSessionTimestamp,
+		lastDateTime: endSessionTimestamp,
+	}
+//	console.log("split : " + splitStartTime + " " + splitEndTime);
+
+	var lengthOfSession = [];
+
+	for (var i = 0; i < splitStartTime.length; i++){
+
+		 lengthOfSession.push(Math.abs(splitStartTime[i] - splitEndTime[i]));
+
+	}
+	
+	// console.log("Length" + lengthOfSession);
+	document.getElementById("Date/Time").innerHTML = "Start of Session: " + startSessionTimestamp[1] + "<br>" + "End of Session: " + 
+		endSessionTimestamp[1] + "<br>" +
+		"Duration (Hr, Min, Sec, Milli): " +
+		lengthOfSession[0] + " : " +
+		lengthOfSession[1] + " : " +
+		lengthOfSession[2] + " : " +
+		lengthOfSession[3];
+
+	return dateTimeObj;
 }
+
+
+
+
+
 
 
 
