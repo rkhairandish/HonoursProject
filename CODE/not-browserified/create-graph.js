@@ -205,7 +205,7 @@ var elements = document.getElementsByClassName("Date/Time");
 	// console.log("Length" + lengthOfSession);
 	document.getElementById("Date/Time").innerHTML = "Start of Session: " + startSessionTimestamp[1] + "<br>" + "End of Session: " + 
 		endSessionTimestamp[1] + "<br>" +
-		"Duration (Hr, Min, Sec, Milli): " +
+		"Duration (Hr, Min, Sec, Ms): " +
 		lengthOfSession[0] + " : " +
 		lengthOfSession[1] + " : " +
 		lengthOfSession[2] + " : " +
