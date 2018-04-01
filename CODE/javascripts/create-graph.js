@@ -1,6 +1,7 @@
 (function(){function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s}return e})()({1:[function(require,module,exports){
 //Global Variables
 var yLabel = ["Acceleration"];
+var date = [];
 
 
 
@@ -55,8 +56,9 @@ function createGraph(data, chartDivName) {
 	    axis: { x: {  type: 'category', categories: date,       
 	    tick: {	multiline: false, culling: { max: 6 } } } },
 	    zoom: { enabled: true },
-	    legend: { position: 'bottom' }
+		legend: { position: 'bottom' }
 	});
+	var display = firstAndLast(date);
 }
 
 
@@ -153,6 +155,28 @@ for (i = 0; i < elements.length; i++) {
 	  }
 	} 
 }
+
+
+
+
+function firstAndLast(date) {
+
+	var DatesFromFile = date;
+
+	var firstItem = date[1];
+	var lastItem = date[date.length - 1];
+
+	var objOutput = {
+		first: firstItem,
+		last: lastItem
+	};
+	console.log("Date is: " + objOutput.first + objOutput.last);
+	return objOutput;
+}
+
+
+
+
 
 
 

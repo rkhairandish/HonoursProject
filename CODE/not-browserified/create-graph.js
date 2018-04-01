@@ -1,5 +1,6 @@
 //Global Variables
 var yLabel = ["Acceleration"];
+var date = [];
 
 
 
@@ -54,8 +55,9 @@ function createGraph(data, chartDivName) {
 	    axis: { x: {  type: 'category', categories: date,       
 	    tick: {	multiline: false, culling: { max: 6 } } } },
 	    zoom: { enabled: true },
-	    legend: { position: 'bottom' }
+		legend: { position: 'bottom' }
 	});
+	var display = firstAndLast(date);
 }
 
 
@@ -152,6 +154,28 @@ for (i = 0; i < elements.length; i++) {
 	  }
 	} 
 }
+
+
+
+
+function firstAndLast(date) {
+
+	var DatesFromFile = date;
+
+	var firstItem = date[1];
+	var lastItem = date[date.length - 1];
+
+	var objOutput = {
+		first: firstItem,
+		last: lastItem
+	};
+	console.log("Date is: " + objOutput.first + objOutput.last);
+	return objOutput;
+}
+
+
+
+
 
 
 
