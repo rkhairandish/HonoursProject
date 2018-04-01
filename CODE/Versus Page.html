@@ -27,32 +27,26 @@
 </head>
 
 <body>
-
-					<div class="container-fluid" style="background-color:rgb(175, 175, 175);color:rgb(0, 69, 126);;height:75px;">
-											<h2 align="center" style="font-size:3vw"> Boxing Performance Tracker </h2>
-														<nav class="col-sm-3">
-															<ul class="nav nav-pills nav-stacked nav-item nav-link" data-spy="affix" data-offset-top="205">
-																<li class="active">
-																	<a href="/index.html">Dashboard</a>
-																</li>
-																<li>
-																	<a href="/Graph.html">Graphs</a>
-																</li>
-																<li>
-																	<a href="/Versus Page.html">Versus</a>
-																</li>
-																<li>
-																	<a href="/About.html">About</a>
-																</li>
-															</ul>
-														</nav>
-										</div> 
-	</nav>
-	<br>
-	<br>
-	<br>
-	<br>
-	<h2 align="center" style="font-size:4vw"> Graphs Page</h2>
+<nav class="navbar navbar-inverse">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="#">Boxing Performance Tracker</a>
+		</div>
+		<ul class="nav ">
+			<li>	<a href="/index.html">Dashboard</a></li>
+			<li>
+				<a href="/Graph.html">Graphs</a>
+			</li>
+			<li>
+				<a href="/Versus Page.html">Versus</a>
+			</li>
+			<li>
+				<a href="/About.html">About</a>
+			</li>
+		</ul>
+	</div>
+</nav>
+	<h2 align="center" style="font-size:4vw"> Versus Page</h2>
 	<br>
 	<br>
 	<div class="container">
@@ -68,32 +62,6 @@
 	<h2>Graph 2</h2>
 		<div id="chart2"></div>
 		<div id="spikes2"></div>
-		<br>
-		<!-- Circular Progress Bar to represent Punches -->
-		<h2>Punches from Graph 1</h2>
-		<div class="c100 p100">
-			<span id="NumPunches"> Punches </span>
-			<div class="slice">
-				<div class="bar"></div>
-				<div class="fill"></div>
-			</div>
-		</div>
-		<br>
-		<br>
-		<!-- 2nd Circular Progress Bar to represent Punches -->
-		<h2>Punches from Graph 2</h2>
-		<div align="center" class="c100 p100">
-			<span id="NumPunches2"> Punches </span>
-			<div class="slice">
-				<div class="bar"></div>
-				<div class="fill"></div>
-			</div>
-		</div>
-		<br>
-		<h2> </h2>
-		<div class="card-footer text-muted">
-				Boxing Performance Tracker: Versus Page
-		</div>
 	</div>
 	<script src="javascripts/create-graph.js"></script>
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -102,6 +70,34 @@
 	 crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 	 crossorigin="anonymous"></script>
+
+
+
+
+
+	<table style="width:100%">
+		
+<tr>
+	<td>
+	<!-- Circular Progress Bar to represent Punches -->
+	
+	<h2>Graph 1 Punches</h2>
+	
+	<div class="c100 p100 center">
+		<span id="NumPunches"> Punches </span>
+		<div class="slice">
+			<div class="bar"></div>
+			<div class="fill"></div>
+		</div>
+	</div></td>
+
+
+	
+	<td>Jackson</td>
+	<td>94</td>
+</tr>
+		
+	</table>
 
 </body>
 

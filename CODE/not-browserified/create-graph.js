@@ -52,7 +52,7 @@ function createGraph(data, chartDivName) {
 			}
 		},
 	    axis: { x: {  type: 'category', categories: date,       
-	    tick: {	multiline: false, culling: { max: 2 } } } },
+	    tick: {	multiline: false, culling: { max: 6 } } } },
 	    zoom: { enabled: true },
 	    legend: { position: 'bottom' }
 	});
@@ -160,4 +160,4 @@ for (i = 0; i < elements.length; i++) {
 
 //Call the Functions
 parseData(createGraph, "../data/GeneActiv Data.csv", "", findPunchesInGraph);
-parseData(createGraph, "../data/Lots of punches Data SubSet of Boxing on 26.03.2018.csv", "2", findPunchesInGraph );
+parseData(createGraph, "../data/BTT.csv", "2", findPunchesInGraph );
