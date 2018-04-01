@@ -53,7 +53,7 @@ function createGraph(data, chartDivName) {
 			}
 		},
 	    axis: { x: {  type: 'category', categories: date,       
-	    tick: {	multiline: false, culling: { max: 6 } } } },
+	    tick: {	multiline: false, culling: { max: 2 } } } },
 	    zoom: { enabled: true },
 	    legend: { position: 'bottom' }
 	});
