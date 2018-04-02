@@ -8,7 +8,8 @@ Instructions:
   - Punch away
   - Stop by Pressing Button on GeneActiv (long red flash)
   - Plug GeneActiv into your PC and Download CSV file from GeneActiv Software 
-  - Upload into given location or website 
+  - Upload into given location
+  - go to website (http://localhost:8000/)
   - View Timeline Graph, Count Punches ETC
  
 
