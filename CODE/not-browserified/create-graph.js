@@ -175,7 +175,7 @@ var elements = document.getElementsByClassName("Date/Time");
 	var endSessionTimestamp = date[date.length - 1];
 
 	//Date
-	document.getElementById("Date").innerHTML =  date[1];
+	document.getElementById("Date").innerHTML = startSessionTimestamp;
 
 	var splitStartTime = startSessionTimestamp;
 	var splitEndTime = endSessionTimestamp;
@@ -191,7 +191,7 @@ var elements = document.getElementsByClassName("Date/Time");
 		firstDateTime: startSessionTimestamp,
 		lastDateTime: endSessionTimestamp,
 	}
-//	console.log("split : " + splitStartTime + " " + splitEndTime);
+
 
 	var lengthOfSession = [];
 

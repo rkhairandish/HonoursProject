@@ -72,32 +72,100 @@
 	 crossorigin="anonymous"></script>
 
 
-
-
-
 	<table style="width:100%">
-		
-<tr>
-	<td>
-	<!-- Circular Progress Bar to represent Punches -->
+		<tr>
 	
-	<h2>Graph 1 Punches</h2>
+			<!-- Date/Time of recorded session -->
+			<h2>Date/Time</h2>
 	
-	<div class="c100 p100 center">
-		<span id="NumPunches"> Punches </span>
-		<div class="slice">
-			<div class="bar"></div>
-			<div class="fill"></div>
-		</div>
-	</div></td>
+			<div align="center" class="Date/Time"></div>
+			<th>Date </th>
+			<th> Time </th>
+			<th>Duration</th>
+		</tr>
+		<tr>
+			<td>
+				<div id="Date"></div>
+			</td>
+			<td>
+				<div id="Time"></div>
+			</td>
+			<td>
+				<div id="Duration"></div>
+			</td>
 
 
-	
-	<td>Jackson</td>
-	<td>94</td>
-</tr>
-		
+						<!-- Date/Time of 2nd recorded session -->
+						<h2>Date/Time</h2>
+						
+						<div align="center" class="Date/Time"></div>
+						<th>Date </th>
+						<th> Time </th>
+						<th>Duration</th>
+						</tr>
+						<tr>
+							<td>
+								<div id="Date2"></div>
+							</td>
+							<td>
+								<div id="Time2"></div>
+							</td>
+							<td>
+								<div id="Duration2"></div>
+							</td>
+
+
+		</tr>
 	</table>
+
+
+<!-- Charts to display punches and average acceleration -->
+
+<table style="width:100%">
+	<tr>
+
+		<td>
+			<!-- Circular Progress Bar to represent Punches -->
+
+			<h2>Graph 1 Punches</h2>
+
+			<div class="c100 p100 center">
+				<span id="NumPunches"> Punches </span>
+				<div class="slice">
+					<div class="bar"></div>
+					<div class="fill"></div>
+				</div>
+			</div>
+		</td>
+
+
+
+		<td>
+			<!-- 2nd Circular Progress Bar to represent Punches -->
+			<h2>Graph 2 Punches</h2>
+			<div align="center" class="c100 p100">
+				<span id="NumPunches2"> Punches </span>
+				<div class="slice">
+					<div class="bar"></div>
+					<div class="fill"></div>
+					<br>
+					<br>
+					<td>
+						<!-- 1st Circular Progress Bar to Avg Acceleration -->
+						<h2>Avg Punch Acceleration (g)</h2>
+						<div align="center" class="c100 p100">
+							<span id="Avg Punches"> Avg Speed </span>
+							<div class="slice">
+								<div class="bar"></div>
+								<div class="fill"></div>
+							</div>
+					</td>
+					<br>
+					<br>
+					<br>
+					<br>
+	</tr>
+</table>
 
 </body>
 
