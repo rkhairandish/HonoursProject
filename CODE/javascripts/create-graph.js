@@ -124,14 +124,10 @@ function getAvgSpeedOfPunches(data, chartDivName) {
 
 		for (var i = 0; i < spikes.length; i++) {
 			if (spikes[i].y > 2) {
-			//	console.log("Spikes" + spikes[i].y)
 				numberOfRealPunches++
 				gAccelerationAmount += Number(spikes[i].y);
 			} 
 		} var avg = gAccelerationAmount/numberOfRealPunches;
-
-		// console.log("gAccelerationAmount", gAccelerationAmount, " numberOfRealPunches   ", numberOfRealPunches)
-		// console.log("Avg Punches", chartDivName, "    ", avg)
 
 		document.getElementById("Avg Punches" + chartDivName).innerHTML = avg.toFixed(2);
 	});
@@ -179,6 +175,9 @@ var elements = document.getElementsByClassName("Date/Time");
 	var startSessionTimestamp = date[1];
 	var endSessionTimestamp = date[date.length - 1];
 
+	//Date
+	document.getElementById("Date").innerHTML =  date[1];
+
 	var splitStartTime = startSessionTimestamp;
 	var splitEndTime = endSessionTimestamp;
 
@@ -203,10 +202,13 @@ var elements = document.getElementsByClassName("Date/Time");
 
 	}
 	
-	// console.log("Length" + lengthOfSession);
-	document.getElementById("Date/Time").innerHTML = "Start of Session: " + startSessionTimestamp[1] + "<br>" + "End of Session: " + 
-		endSessionTimestamp[1] + "<br>" +
-		"Duration: " + " Hr: " +
+
+		// Time
+	document.getElementById("Time").innerHTML = "Start of Session: " + startSessionTimestamp[1] + "<br>" + "End of Session: " +
+		endSessionTimestamp[1] + "<br>";
+	
+	// Duration
+	document.getElementById("Duration").innerHTML = " Hr: " +
 		lengthOfSession[0] + " Min: " +
 		lengthOfSession[1] + " Sec: " +
 		lengthOfSession[2] + " Ms: " +
