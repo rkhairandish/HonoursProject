@@ -175,15 +175,14 @@ function firstAndLast(date) {
 	var startSessionTimestamp = date[1];
 	var endSessionTimestamp = date[date.length - 1];
 
-	//Date
-	document.getElementById("Date").innerHTML = startSessionTimestamp;
-
 	var splitStartTime = startSessionTimestamp;
 	var splitEndTime = endSessionTimestamp;
 
 
 	startSessionTimestamp = startSessionTimestamp.split(" ");
 	endSessionTimestamp = endSessionTimestamp.split(" ");
+
+
 	
 	splitStartTime = startSessionTimestamp[1].split(":");
 	splitEndTime = endSessionTimestamp[1].split(":"); 
@@ -202,8 +201,11 @@ function firstAndLast(date) {
 
 	}
 	
+	
+	//Date
+	document.getElementById("Date").innerHTML = startSessionTimestamp.slice(0,1);
 
-		// Time
+	// Time
 	document.getElementById("Time").innerHTML = "Start of Session: " + startSessionTimestamp[1] + "<br>" + "End of Session: " +
 		endSessionTimestamp[1] + "<br>";
 	
