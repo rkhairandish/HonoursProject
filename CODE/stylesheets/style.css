@@ -236,3 +236,7 @@ _:-ms-input-placeholder, :root .demo-graph {
     fill:rgb(22, 22, 22);
 }
 
+p.ex1 {
+    border: 0.5px solid red; 
+    padding: 10px;
+}
