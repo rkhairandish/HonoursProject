@@ -27,25 +27,30 @@
 </head>
 
 <body>
-<nav class="navbar navbar-inverse">
-	<div class="container-fluid">
-		<div class="navbar-header">
-			<a class="navbar-brand" href="/index.html" style="font-size:250%;">Boxing Performance Tracker</a>
+
+	<!-- Navigation Bar for Versus Page -->
+	<nav class="navbar-inverse navbar fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header ">
+				<a class="navbar-brand" href="/index.html" style="font-size:250%;">Boxing Performance Tracker</a>
+			</div>
+			<ul class="nav ">
+				<li>
+					<a href="/index.html" style="font-size:200%;">Dashboard</a>
+				</li>
+				<li>
+					<a href="/Graph.html" style="font-size:200%;">Graph</a>
+				</li>
+				<li class="active">
+					<a href="/Versus Page.html" style="font-size:200%;">Versus</a>
+				</li>
+				<li>
+					<a href="/About.html" style="font-size:200%;">About</a>
+				</li>
+			</ul>
 		</div>
-		<ul class="nav ">
-			<li>	<a href="/index.html">Dashboard</a></li>
-			<li>
-				<a href="/Graph.html">Graphs</a>
-			</li>
-			<li>
-				<a href="/Versus Page.html">Versus</a>
-			</li>
-			<li>
-				<a href="/About.html">About</a>
-			</li>
-		</ul>
-	</div>
-</nav>
+	</nav>
+
 	<h2 align="center" style="font-size:4vw"> Versus Page</h2>
 	<br>
 	<br>
@@ -54,23 +59,6 @@
 	<div class="card-header">
 		Versus
 	</div>
-	<h2> Graph 1</h2>
-	<div class="container">
-		<div id="chart"></div>
-		<div id="spikes"></div>
-		<br>
-	<h2>Graph 2</h2>
-		<div id="chart2"></div>
-		<div id="spikes2"></div>
-	</div>
-	<script src="javascripts/create-graph.js"></script>
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-	 crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-	 crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-	 crossorigin="anonymous"></script>
-
 
 	<table style="width:100%">
 		<tr>
@@ -126,7 +114,6 @@
 
 		<td>
 			<!-- Circular Progress Bar to represent Punches -->
-
 			<h2>Graph 1 Punches</h2>
 
 			<div class="c100 p100 center">
@@ -139,7 +126,6 @@
 		</td>
 
 
-
 		<td>
 			<!-- 2nd Circular Progress Bar to represent Punches -->
 			<h2>Graph 2 Punches</h2>
@@ -148,24 +134,54 @@
 				<div class="slice">
 					<div class="bar"></div>
 					<div class="fill"></div>
-					<br>
-					<br>
-					<td>
-						<!-- 1st Circular Progress Bar to Avg Acceleration -->
-						<h2>Avg Punch Acceleration (g)</h2>
-						<div align="center" class="c100 p100">
-							<span id="Avg Punches"> Avg Speed </span>
-							<div class="slice">
-								<div class="bar"></div>
-								<div class="fill"></div>
-							</div>
-					</td>
-					<br>
-					<br>
-					<br>
-					<br>
+				
+	<br>
+	<br>
+
+	 	<td>
+
+
+			<!-- 1st Circular Progress Bar to Avg Acceleration -->
+				<h2>Avg Punch Acceleration (g)</h2>
+				<div align="center" class="c100 p100">
+					<span id="Avg Punches"> Avg Speed </span>
+						<div class="slice">
+							<div class="bar"></div>
+							<div class="fill"></div>
+						</div>
+		</td>
+
+	<br>
+
 	</tr>
 </table>
+<table style="width:100%">
+	<tr>
+		<td>
+			<!-- Line/Timeline Graphs -->
+			<h2> Graph 1</h2>
+			<div class="container">
+				<div id="chart"></div>
+				<div id="spikes"></div>
+				<br>
+				<h2>Graph 2</h2>
+				<div id="chart2"></div>
+				<div id="spikes2"></div>
+			</div>
+		</td>
+
+	</tr>
+</table>
+
+
+
+	<script src="javascripts/create-graph.js"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	 crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+	 crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+	 crossorigin="anonymous"></script>
 
 </body>
 

@@ -166,8 +166,8 @@ for (i = 0; i < elements.length; i++) {
 
 
 function firstAndLast(date) {
-
-var elements = document.getElementsByClassName("Date/Time");
+	//Function to Get The First and Last Date/Time information from the file/session
+	var elements = document.getElementsByClassName("Date/Time");
 
 	
 
@@ -192,7 +192,7 @@ var elements = document.getElementsByClassName("Date/Time");
 		lastDateTime: endSessionTimestamp,
 	}
 
-
+	//Gets Length of Session by taking away the start of session time with the end of session time
 	var lengthOfSession = [];
 
 	for (var i = 0; i < splitStartTime.length; i++){

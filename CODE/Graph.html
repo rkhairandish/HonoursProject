@@ -28,14 +28,29 @@
 
 <body>
 
-	<nav class="nav nav-pills nav-fill sticky-top" style="font-size:1.5vw; background-color:rgb(255, 255, 255);">
-
-		<a class="nav-item nav-link " href="/index.html">Dashboard</a>
-		<a class="nav-item nav-link active" href="/Graph.html">Graphs</a>
-		<a class="nav-item nav-link " href="/Versus Page.html">Versus</a>
-		<a class="nav-item nav-link " href="/About.html">About</a>
-		<a class="nav-item nav-link disabled" href="#">By Ramesh Khairandish</a>
+	<!-- Navigation Bar for Graph Page-->
+	<nav class="navbar-inverse navbar fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header ">
+				<a class="navbar-brand" href="/index.html" style="font-size:250%;">Boxing Performance Tracker</a>
+			</div>
+			<ul class="nav ">
+				<li>
+					<a href="/index.html" style="font-size:200%;">Dashboard</a>
+				</li>
+				<li class="active">
+					<a href="/Graph.html" style="font-size:200%;">Graph</a>
+				</li>
+				<li>
+					<a href="/Versus Page.html" style="font-size:200%;">Versus</a>
+				</li>
+				<li>
+					<a href="/About.html" style="font-size:200%;">About</a>
+				</li>
+			</ul>
+		</div>
 	</nav>
+
 	<br>
 	<br>
 		<div class="container">
@@ -51,8 +66,9 @@
 			<h2>Graph 2</h2>
 		<div id="chart2"></div>
 		<div id="spikes2"></div>
-			<a class="navbar-brand" href="/index.html" style="font-size:250%;">Boxing Performance Tracker</a>
 	</div>
+
+	
 	<script src="javascripts/create-graph.js"></script>
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
 	 crossorigin="anonymous"></script>
