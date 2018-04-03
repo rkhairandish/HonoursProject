@@ -231,6 +231,7 @@ function firstAndLast(date) {
 
 
 //Call the Functions
-parseData(createGraph, "../data/GeneActiv Data.csv", "", findPunchesInGraph);
-parseData(createGraph, "../data/BTT.csv", "2", findPunchesInGraph );
-//parseData(createGraph, "../data/Lots of punches Data SubSet of Boxing on 26.03.2018.csv", "2", findPunchesInGraph);
+parseData(createGraph, "../data/BTT1.csv", "", findPunchesInGraph);
+parseData(createGraph, "../data/BTT2.csv", "2", findPunchesInGraph );
+//parseData(createGraph, "../data/BTT3.csv", "3", findPunchesInGraph);
+
