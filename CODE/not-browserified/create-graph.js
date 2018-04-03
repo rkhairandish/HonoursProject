@@ -122,7 +122,7 @@ function getAvgSpeedOfPunches(data, chartDivName) {
 		var numberOfRealPunches = 0;
 
 		for (var i = 0; i < spikes.length; i++) {
-			if (spikes[i].y > 6) {
+			if (spikes[i].y > 5) {
 				numberOfRealPunches++
 				gAccelerationAmount += Number(spikes[i].y);
 			} 
@@ -146,7 +146,7 @@ function getAvgSpeedOfPunches(data, chartDivName) {
 
 function circularGraph(punches) {
 	//Circular Progress Bar to Visually Show number of punches
-	var elements = document.getElementsByClassName("c100 p100 ");
+	var elements = document.getElementsByClassName("c100 p100");
 	
 
 for (i = 0; i < elements.length; i++) {
@@ -193,19 +193,23 @@ function getFirstAndLastDateTime(date) {
 			for (var i = 0; i < splitStartTime.length; i++){
 				 lengthOfSession.push(Math.abs(splitStartTime[i] - splitEndTime[i]));
 			}
+
+
+
 	//Date
-	document.getElementById("DisplayDate").innerHTML = startSessionTimestamp.slice(0,1);
+		var splicedstartSessionTimestamp = startSessionTimestamp.slice(0,1);
+	    document.getElementById("DisplayDate").innerHTML = splicedstartSessionTimestamp;
 
 	// Time
 	document.getElementById("Time").innerHTML = "Start: " + startSessionTimestamp[1] + "<br>" + "End: " +
 		endSessionTimestamp[1] + "<br>";
 	
 	// Duration
-	document.getElementById("Duration").innerHTML = " Hr: " +
-		lengthOfSession[0] + " Min: " +
-		lengthOfSession[1] + " Sec: " +
-		lengthOfSession[2] + " Ms: " +
-		lengthOfSession[3];
+	document.getElementById("Duration").innerHTML = 
+		lengthOfSession[0] + " Hr - " + 
+		lengthOfSession[1] + " Min - " +
+		lengthOfSession[2] + " Sec - " +
+		lengthOfSession[3] + " Ms" ;
 
 	return dateTimeObj;
 }
@@ -225,7 +229,7 @@ function getFirstAndLastDateTime(date) {
 
 
 //Call the Functions
-//parseData(createGraph, "../data/BTT3.csv", "", findPunchesInGraph);
-parseData(createGraph, "../data/BTT1.csv", "2", findPunchesInGraph );
+parseData(createGraph, "../data/BTT1.csv", "", findPunchesInGraph);
+parseData(createGraph, "../data/BTT2.csv", "2", findPunchesInGraph );
 //parseData(createGraph, "../data/BTT3.csv", "3", findPunchesInGraph);
 
