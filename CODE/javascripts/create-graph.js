@@ -63,7 +63,7 @@ function createGraph(data, chartDivName) {
 	    zoom: { enabled: true },
 		legend: { position: 'bottom' }
 	});
-	var display = firstAndLast(date);
+	var display = getFirstAndLastDateTime(date);
 }
 
 
@@ -123,7 +123,7 @@ function getAvgSpeedOfPunches(data, chartDivName) {
 		var numberOfRealPunches = 0;
 
 		for (var i = 0; i < spikes.length; i++) {
-			if (spikes[i].y > 2) {
+			if (spikes[i].y > 6) {
 				numberOfRealPunches++
 				gAccelerationAmount += Number(spikes[i].y);
 			} 
@@ -166,11 +166,9 @@ for (i = 0; i < elements.length; i++) {
 
 
 
-function firstAndLast(date) {
+function getFirstAndLastDateTime(date) {
 	//Function to Get The First and Last Date/Time information from the file/session
 	var elements = document.getElementsByClassName("Date/Time");
-
-	
 
 	var startSessionTimestamp = date[1];
 	var endSessionTimestamp = date[date.length - 1];
@@ -179,13 +177,11 @@ function firstAndLast(date) {
 	var splitEndTime = endSessionTimestamp;
 
 
-	startSessionTimestamp = startSessionTimestamp.split(" ");
-	endSessionTimestamp = endSessionTimestamp.split(" ");
-
-
+			startSessionTimestamp = startSessionTimestamp.split(" ");
+			endSessionTimestamp = endSessionTimestamp.split(" ");
 	
-	splitStartTime = startSessionTimestamp[1].split(":");
-	splitEndTime = endSessionTimestamp[1].split(":"); 
+			splitStartTime = startSessionTimestamp[1].split(":");
+			splitEndTime = endSessionTimestamp[1].split(":"); 
 
 	var dateTimeObj = {
 		firstDateTime: startSessionTimestamp,
@@ -195,18 +191,14 @@ function firstAndLast(date) {
 	//Gets Length of Session by taking away the start of session time with the end of session time
 	var lengthOfSession = [];
 
-	for (var i = 0; i < splitStartTime.length; i++){
-
-		 lengthOfSession.push(Math.abs(splitStartTime[i] - splitEndTime[i]));
-
-	}
-	
-	
+			for (var i = 0; i < splitStartTime.length; i++){
+				 lengthOfSession.push(Math.abs(splitStartTime[i] - splitEndTime[i]));
+			}
 	//Date
-	document.getElementById("Date").innerHTML = startSessionTimestamp.slice(0,1);
+	document.getElementById("DisplayDate").innerHTML = startSessionTimestamp.slice(0,1);
 
 	// Time
-	document.getElementById("Time").innerHTML = "Start of Session: " + startSessionTimestamp[1] + "<br>" + "End of Session: " +
+	document.getElementById("Time").innerHTML = "Start: " + startSessionTimestamp[1] + "<br>" + "End: " +
 		endSessionTimestamp[1] + "<br>";
 	
 	// Duration
@@ -234,8 +226,8 @@ function firstAndLast(date) {
 
 
 //Call the Functions
-parseData(createGraph, "../data/BTT1.csv", "", findPunchesInGraph);
-parseData(createGraph, "../data/BTT2.csv", "2", findPunchesInGraph );
+//parseData(createGraph, "../data/BTT3.csv", "", findPunchesInGraph);
+parseData(createGraph, "../data/BTT1.csv", "2", findPunchesInGraph );
 //parseData(createGraph, "../data/BTT3.csv", "3", findPunchesInGraph);
 
 
