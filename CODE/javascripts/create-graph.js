@@ -81,58 +81,23 @@ function findPunchesInGraph(data, chartDivName) {
 	var slayer = require('slayer');
 	var arrayData = yLabel;
 
-	slayer().fromArray(arrayData).then(spikes => {
+	slayer().fromArray(arrayData).then(spikes => { 
 
-
-		//for loop to detect punches ie acceleration above 2 
+		//for loop to detect punches ie acceleration above 6 
 		var realPunches = 0;
 		for (var i = 0; i < spikes.length; i++) {
-			if (spikes[i].y > 5) {
+			if (spikes[i].y > 6) {
 				realPunches++;
 			}
-			// console.log("Spikes" + spikes[i].y);			
-			// console.log("realPunches" + realPunches);
 		}
 
 		document.getElementById("NumPunches" + chartDivName).innerHTML = realPunches;
 
-		console.log("real punches" + realPunches);
 		//Calls the function
 		circularGraph(realPunches);
 		getAvgSpeedOfPunches(spikes, chartDivName);
 	});
 }
-
-
-
-
-
-// function findPunchesInGraph(data, chartDivName) {
-
-// var slayer = require('slayer');
-// var arrayData = yLabel;
-
-// slayer().y(item => item.value).fromArray(arrayData).then(spikes => {
-
-// 		//for loop to detect punches ie acceleration above 2 
-// 		var realPunches = 0;
-// 		for (var i = 0; i < spikes.length; i++) {
-// 			if (spikes[i].y < 5) {
-// 				realPunches++;
-// 			}
-// 		}
-
-// 		document.getElementById("NumPunches" + chartDivName).innerHTML = realPunches;
-
-// 		console.log("real punches" + realPunches);
-		
-// 		//Calls the function
-// 		circularGraph(realPunches);
-// 		getAvgSpeedOfPunches(spikes, chartDivName);
-// 		console.log("number of spikes" + spikes);    // [ { x: 4, y: 12 }, { x: 12, y: 25 } ]
-// 	});
-// }
-
 
 
 
@@ -269,8 +234,8 @@ function getFirstAndLastDateTime(date) {
 
 
 
-parseData(createGraph, "../data/BTT7.csv", "", findPunchesInGraph);
-//parseData(createGraph, "../data/BTT2.csv", "2", findPunchesInGraph );
+parseData(createGraph, "../data/BTT1.csv", "", findPunchesInGraph);
+parseData(createGraph, "../data/BTT2.csv","2", findPunchesInGraph );
 //parseData(createGraph, "../data/BTT3.csv", "3", findPunchesInGraph);
 
 

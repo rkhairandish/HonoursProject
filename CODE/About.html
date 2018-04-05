@@ -1,133 +1,332 @@
 
 <!DOCTYPE html>
 <html>
-	<head>
 
-		<!-- Bootstrap v4 -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-		 crossorigin="anonymous">
+<head>
 
-		<title>RK: Boxing Performance Tracker</title>
-		<link rel='stylesheet' href='stylesheets/style.css' />
-		<link rel='stylesheet' href='stylesheets/bootstrap.min.css' />
-		<link rel='stylesheet' href='stylesheets/font-awesome.min.css' />
-		<link rel='stylesheet' href='stylesheets/circle.css' />
-		
-		
+	<!-- Bootstrap v4 -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	 crossorigin="anonymous">
 
-		<!-- Load c3.css -->
-		<link href="stylesheets/c3.css" rel="stylesheet" type="text/css">
+	<title>RK: Boxing Performance Tracker</title>
+	<link rel='stylesheet' href='stylesheets/style.css' />
+	<link rel='stylesheet' href='stylesheets/bootstrap.min.css' />
+	<link rel='stylesheet' href='stylesheets/font-awesome.min.css' />
+	<link rel='stylesheet' href='stylesheets/circle.css' />
 
-		<!-- Load d3.js and c3.js -->
-		<script src="javascripts/d3.v3.min.js" charset="utf-8"></script>
-		<script src="javascripts/c3.min.js"></script>
 
-		<!-- Load papaparse.js -->
+
+	<!-- Load c3.css -->
+	<link href="stylesheets/c3.css" rel="stylesheet" type="text/css">
+
+	<!-- Load d3.js and c3.js -->
+	<script src="javascripts/d3.v3.min.js" charset="utf-8"></script>
+	<script src="javascripts/c3.min.js"></script>
+
+	<!-- Load papaparse.js -->
 	<script src="javascripts/papaparse.min.js"></script>
 
 
-					<script src="javascripts/create-graph.js"></script>
+	<!-- From W3Schools -->
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<!-- Front for Montserrat -->
+	<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
 
 
+	<!-- Setting the font for the page -->
+	<style>
+		html,
+		body,
+		h1,
+		h2,
+		h3,
+		h4,
+		h5 {
+			font-family: 'Montserrat';
+		}
+	</style>
 
-  	</head>
+</head>
 
 <body>
-	
-	<!-- Navigation Bar for About Page-->
-<nav class="navbar-inverse navbar-fixed-top">
-	<div class="container-fluid">
-		<div class="navbar-header ">
-			<a class="navbar-brand" href="/index.html" style="font-size:250%;">Boxing Performance Tracker</a>
+
+	<nav align="right" class="navbar-inverse navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header ">
+				<a class="navbar-brand" href="/index.html" style="font-size:250%;" align="right">Boxing Performance Tracker</a>
+	</nav>
+
+
+
+	<!-- Sidebar/menu -->
+	<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar">
+		<br>
+		<div class="w3-container w3-row">
+			<div class="w3-col s4">
+				<img src="/images/avatar2.png" class="w3-circle w3-margin-right" style="width:46px">
+			</div>
+			<div class="w3-col s8 w3-bar">
+				<span>Welcome,
+					<strong>Mike</strong>
+				</span>
+				<br>
+				<a href="/index.html" class="w3-bar-item w3-button w3-xlarge">
+					<i class="fa fa-dashboard"></i>
+				</a>
+				<a href="/Versus Page.html" class="w3-bar-item w3-button w3-xlarge">
+					<i class="fa fa-cloud-upload"></i>
+				</a>
+				<a href="/Info.html" class="w3-bar-item w3-button w3-xlarge">
+					<i class="fa fa-info"></i>
+				</a>
+			</div>
 		</div>
-		<ul class="nav">
-				<li>
-					<a href="/index.html" style="font-size:200%;">Dashboard</a>
-				</li>
-			<li>
-				<a href="/Graph.html" style="font-size:200%;">Graph</a>
-			</li>
-				<li>
-					<a href="/Versus Page.html" style="font-size:200%;">Versus</a>
-				</li>
-			<li class="active">
-				<a href="/About.html" style="font-size:200%;">About</a>
-			</li>
-			<li>
-			<a href="/Info.html" style="font-size:200%;">Info</a>
-			</li>
-		</ul>
+		<hr>
+		<div class="w3-container">
+			<h5 href="/index.html">MENU</h5>
+		</div>
+		<div class="w3-bar-block">
+			<a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu">
+				<i class="fa fa-remove fa-fw"></i> Close Menu</a>
+			<a href="/index.html" class="w3-bar-item w3-button w3-padding ">
+				<i class="fa fa-users fa-fw"></i> Overview</a>
+			<a href="/Graph.html" class="w3-bar-item w3-button w3-padding">
+				<i class="fa fa-line-chart"></i> Graphs</a>
+			<a href="/Versus Page.html" class="w3-bar-item w3-button w3-padding">
+				<i class="fa fa-users"></i> Versus</a>
+			<a href="/About.html" class="w3-bar-item w3-button w3-padding w3-blue">
+				<i class="fa fa-cog fa-fw"></i> About</a>
+		</div>
+	</nav>
 
-	</div>
-</nav>	
 
-<br>
-<br>
-<br>
-<br>
-	<h2 align="center" style="font-size:4vw"> About Page </h2>
+	<!-- Overlay effect when opening sidebar on small screens -->
+	<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu"
+	 id="myOverlay"></div>
+
+	<!-- !PAGE CONTENT! -->
+	<div class="w3-main" style="margin-left:300px;margin-top:43px;">
+
+		<!-- Header -->
+		<header class="w3-container" style="padding-top:22px">
+			<h5>
+				<b>
+					<i class="fa fa-dashboard"></i> My Dashboard</b>
+			</h5>
+		</header>
+
+		<div class="w3-row-padding w3-margin-bottom">
+
+			<!-- Duration Card -->
+			<div class="w3-quarter">
+				<div class="w3-container w3-red w3-padding-16">
+					<div class="w3-left">
+						<i class="fa fa-hourglass-2 w3-xxxlarge"></i>
+					</div>
+					<h4 align="right">Duration</h4>
+
 					<br>
-    <div class="container">
+					<br>
+					<div class="Date/Time" align="left" id="Duration"></div>
+
+				</div>
+			</div>
+
+
+			<!-- Time Card -->
+			<div class="w3-quarter">
+				<div class="w3-container w3-blue w3-padding-16">
+					<div class="w3-left">
+						<i class="fa fa-clock-o w3-xxxlarge"></i>
+					</div>
+					<h4 align="right">Time</h4>
+					<br>
+					<div style="font-size:105%;" align="right" id="Time"></div>
+				</div>
+			</div>
+
+
+			<!-- Date Card -->
+			<div class="w3-quarter">
+				<div class="w3-container w3-teal w3-padding-16">
+					<div class="w3-left">
+						<i class="fa fa-calendar w3-xxxlarge"></i>
+					</div>
+					<h4 align="right">Date</h4>
+					<br>
+					<div style="font-size:200%;" align="center" id="DisplayDate"></div>
+
+				</div>
+			</div>
+
+			<!-- Instructions Card -->
+			<div class="w3-quarter">
+				<div class="w3-container w3-orange w3-text-white w3-padding-16">
+					<div class="w3-left">
+						<i class="fa fa-users w3-xxxlarge"></i>
+					</div>
+					<div class="w3-right">
+						<h4>Instructions</h4>
+					</div>
+					<div class="w3-clear"></div>
+					<br>
+					<h5 align="center">
+						<a href="/About.html"> Software/Device & Boxing</a>
+					</h5>
+				</div>
+			</div>
+		</div>
+
+
+
+		<div class="container">
+			<div class="card text-center">
+
+				<br>
 
 <div class="card text-center">
 	<div class="card-header">
-		Some definitions and Instructions to use the software/device & throw a punch.
+				<h3 align="center">Some definitions and Instructions on how to use the software/device & throw a punch!</h3>
 	</div>
-		<br>
-		<table style="width:100%">
+	<br>
+				<!-- Charts to display punches and average acceleration -->
+				<table width="90%" border="0" cellspacing="0" cellpadding="0">
+					<tr>
+
 			<tr>
-				<th style="text-align: center;" > Average Punch Acceleration (m/s)</th>
-				<th style="text-align: center;" >Acceleration Meaning</th>
-				<th style="text-align: center;" >Meaning in Physics</th>
+				<th style="text-align: center;"> Average Punch Acceleration (m/s)</th>
+				<th style="text-align: center;">Acceleration Meaning</th>
+				<th style="text-align: center;">Meaning in Physics</th>
 			</tr>
 			<tr>
-				<td> <p> Acceleration due to gravity (1G) is 
-				9.8 m/s<sup>2</sup> (Metre per second squared). </p>  </td>
+				<td>
+					<p> Acceleration due to gravity (1G) is 9.8 m/s
+						<sup>2</sup> (Metre per second squared). </p>
+				</td>
 				<td>Increase in speed or rate.</td>
 				<td>The rate of change of velocity per unit of time.</td>
 			</tr>
 			<tr>
-				<td> <img src="/images/noun_969605_cc.png" alt="Acceleration" width="250" height="250">  </td>
-				<td> <img src="/images/Acceleration2.png" alt="Acceleration" width="250" height="250"></td>
-				<td> <img src="/images/Apple.png" alt="Acceleration" width="250" height="250"></td>
-			</tr>
-		</table>
-		<br>
-		<br>
-		<br>
-			<h5 class="ex1" align="center"> -------------- Instructions To Use Software/Device --------------</h5>
-			<p class="ex1" align="left" >  1 - Put GeneActiv Wrist Accelerometer on desired wrist </p>
-			<p class="ex1" align="left">  2 - Start by Pressing Button on GeneActiv (long green flash) </p>
-			<p class="ex1" align="left">   3 - Punch away</p>
-			<p class="ex1" align="left">   4 - Stop by Pressing Button on GeneActiv again (long red flash) </p>
-			<p class="ex1" align="left">   5 - Plug GeneActiv into PC and Extract/Download CSV file from GeneActiv Software </p>
-			<p class="ex1" align="left">   6 - Save file (something like BTT3.csv recommended) into given location (HonoursProject/CODE/data/..) </p>
-			<p class="ex1" align="left">   7 - Go to website (http://localhost:8000/) </p>
-			<p class="ex1" align="left">   8 - View Timeline Graph, Count Punches ETC</p>
-
-
-
-			<h5 class="ex2" align="center"> -------------- How to throw Jab --------------</h5>
-			<p class="ex2" align="left"> 1 Get in position. Keep your chin down and your hands covering your face, like a boxer. Have your knees bent slightly so that they are balanced.</p>
-			<p class="ex2" align="left">  2 - Push off with your back foot and set foot. This gets your body to generate power.</p>
-			<p class="ex2" align="left">  3 - Quarter-rotate your jabbing shoulder as you throw the punch. Let your fist rotate a full 180 degrees through the target.</p>
-			<p class="ex2" align="left">  4 - Keep your other hand up to guard your face. Don't leave your face vulnerable to attack. </p>
-			<p class="ex2" align="left">  5 - Bring your jabbing arm back to the starting position. </p>
-			<p class="ex2" align="left">  6 - Throw a jab in order to:  Gauge the distance of your combatant & Keep your combatant away from you.</p>
-
+				<td>
+					<img src="/images/noun_969605_cc.png" alt="Acceleration" width="250" height="250"> </td>
+				<td>
+					<img src="/images/Acceleration2.png" alt="Acceleration" width="250" height="250">
+				</td>
+				<td>
+					<img src="/images/Apple.png" alt="Acceleration" width="250" height="250">
+				</td>
 			</tr>
 			</table>
-	<div class="card-footer text-muted">
-		Boxing Performance Tracker: About Page
-	</div>
-</div>
-		<br>
-		<br>
-		<br>
-	</div>
+			<br>
+			<br>
+			<br>
+			<h5 class="ex1" align="center"> -------------- Instructions To Use Software/Device and Save Files As CSV --------------</h5>
+			<p class="ex1" align="left"> 1 - Put GeneActiv Wrist Accelerometer on desired wrist </p>
+			<p class="ex1" align="left"> 2 - Start by Pressing Button on GeneActiv (long green flash) </p>
+			<p class="ex1" align="left"> 3 - Punch away</p>
+			<p class="ex1" align="left"> 4 - Stop by Pressing Button on GeneActiv again (long red flash) </p>
+			<p class="ex1" align="left"> 5 - Plug GeneActiv into PC and Extract/Download CSV file from GeneActiv Software </p>
+			<p class="ex1" align="left"> 6 - Save file (something like BTT3.csv recommended) into given location (HonoursProject/CODE/data/..) </p>
+			<p class="ex1" align="left"> 7 - Go to website (http://localhost:8000/) </p>
+			<p class="ex1" align="left"> 8 - View Timeline Graph, Count Punches ETC</p>
 
-  	</body>
+
+
+
+
+
+					</tr>
+				</table>
+				<h2> </h2>
+				<div class="card-footer text-muted">
+					Boxing Performance Tracker: Dashboard Page
+				</div>
+				</div>
+
+			</div>
+
+
+
+
+			<hr>
+			<div class="w3-container">
+				<h5>Link to Other Pages</h5>
+				<ul class="w3-ul w3-card-4 w3-white">
+					<li class="w3-padding-16">
+						<i class="fa fa-film w3-xxxlarge"></i>
+						<a class="w3-xlarge" href="https://youtu.be/LjeJmHg_S4A?t=146"> Recommended Boxing Tutorial</a>
+						<br>
+					</li>
+					<li class="w3-padding-16">
+						<i class="fa fa-external-link w3-xxxlarge"></i>
+						<a class="w3-xlarge" href="https://youtu.be/EQVuCtiuBUU?t=40"> GENEActiv Video Tutorial</a>
+						<br>
+					</li>
+				</ul>
+			</div>
+			<hr>
+
+
+
+
+
+
+			<!-- Footer -->
+			<footer class="w3-container w3-padding-16 w3-light-grey">
+				<h4>Boxing Performance Tracker By Ramesh Khairandish</h4>
+				<p> Webpage modified from templates at
+					<a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a>
+					and
+					<a href="https://getbootstrap.com/docs/4.0/components/navbar/" target="_blank">Bootstrap</a>
+				</p>
+			</footer>
+
+		</div>
+
+
+
+
+
+		<!-- Sidebar Content -->
+		<script>
+			// Get the Sidebar
+			var mySidebar = document.getElementById("mySidebar");
+
+			// Get the DIV with overlay effect
+			var overlayBg = document.getElementById("myOverlay");
+
+			// Toggle between showing and hiding the sidebar, and add overlay effect
+			function w3_open() {
+				if (mySidebar.style.display === 'block') {
+					mySidebar.style.display = 'none';
+					overlayBg.style.display = "none";
+				} else {
+					mySidebar.style.display = 'block';
+					overlayBg.style.display = "block";
+				}
+			}
+
+			// Close the sidebar with the close button
+			function w3_close() {
+				mySidebar.style.display = "none";
+				overlayBg.style.display = "none";
+			}
+		</script>
+
+
+
+
+		<script src="javascripts/create-graph.js"></script>
+
+</body>
+
 </html>
+
 
 
 
