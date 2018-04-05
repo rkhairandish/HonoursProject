@@ -165,6 +165,7 @@ for (i = 0; i < elements.length; i++) {
 
 
 
+
 function getFirstAndLastDateTime(date) {
 	//Function to Get The First and Last Date/Time information from the file/session
 	var elements = document.getElementsByClassName("Date/Time");
@@ -234,8 +235,8 @@ function getFirstAndLastDateTime(date) {
 
 
 
-parseData(createGraph, "../data/BTT1.csv", "", findPunchesInGraph);
-parseData(createGraph, "../data/BTT2.csv","2", findPunchesInGraph );
+parseData(createGraph, "../data/BTT5.csv", "", findPunchesInGraph);
+//parseData(createGraph, "../data/BTT2.csv","2", findPunchesInGraph );
 //parseData(createGraph, "../data/BTT3.csv", "3", findPunchesInGraph);
 
 
