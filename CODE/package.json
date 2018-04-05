@@ -14,5 +14,8 @@
     "grunt-browserify": "^5.2.0",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-exec": "^3.0.0"
+  },
+  "dependencies": {
+    "file-system": "^2.2.2"
   }
 }

@@ -21,9 +21,12 @@
 	<!-- Load d3.js and c3.js -->
 	<script src="javascripts/d3.v3.min.js" charset="utf-8"></script>
 	<script src="javascripts/c3.min.js"></script>
-
 	<!-- Load papaparse.js -->
 	<script src="javascripts/papaparse.min.js"></script>
+
+
+
+
 </head>
 
 <body>
@@ -89,6 +92,9 @@
 		</tr>
 	</table>
 
+<input type="file" id="csv-file" onchange="fileUpload()" />
+
+
 
 <table style="width:100%">
 	<tr>
@@ -115,6 +121,7 @@
 			<tr>
 
 		</table>
+
 <!-- Charts to display punches and average acceleration -->
 
 <table style="width:100%">
@@ -188,8 +195,33 @@
 	 crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
 	 crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-	 crossorigin="anonymous"></script>
+
+
+
+
+	 <!-- <script>
+	//Parse the data to create a graph with the data
+	function parseData(createGraph, filename, chartDivName, findPunchesInGraph) {
+		Papa.parse(filename, {
+			download: true,
+			complete: function (results) {
+				createGraph(results.data, chartDivName);
+				findPunchesInGraph(results.data, chartDivName);
+			}
+		});
+	}
+
+
+	function fileUpload() {
+
+			var file = document.getElementById("csv-file");
+
+			parseData(createGraph, file, "", findPunchesInGraph);
+			console.log("This worked" + file);
+
+		}
+	 </script> -->
+
 
 </body>
 

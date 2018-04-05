@@ -32,7 +32,6 @@ function parseData(createGraph, filename, chartDivName, findPunchesInGraph) {
 
 
 
-
 // Function to Create the Graph 
 function createGraph(data, chartDivName) {
 	var date = [ "Date + Time -> "];
@@ -219,17 +218,22 @@ function getFirstAndLastDateTime(date) {
 
 
 
-
-
-
-
-
-
-
-
-
 //Call the Functions
+
+
+// var file = require('file-system');
+// var fs = require('fs');
+
+// file.readFile === fs.readFile // true 
+
+// var listOfDataFiles = fs.readDirSync("./data");
+
+// console.log("list of files" + listOfDataFiles);
+
+
+
+
 parseData(createGraph, "../data/BTT1.csv", "", findPunchesInGraph);
-parseData(createGraph, "../data/BTT2.csv", "2", findPunchesInGraph );
+//parseData(createGraph, "../data/BTT2.csv", "2", findPunchesInGraph );
 //parseData(createGraph, "../data/BTT3.csv", "3", findPunchesInGraph);
 
