@@ -80,14 +80,17 @@ function findPunchesInGraph(data, chartDivName) {
 	var slayer = require('slayer');
 	var arrayData = yLabel;
 
-	slayer().fromArray(arrayData).then(spikes => { 
+	slayer().fromArray(arrayData).then(spikes => {
 
-		//for loop to detect punches ie acceleration above 2 
+
+		//for loop to detect punches ie acceleration above 3 
 		var realPunches = 0;
 		for (var i = 0; i < spikes.length; i++) {
-			if (spikes[i].y > 2) {
+			if (spikes[i].y > 3) {
 				realPunches++;
 			}
+			// console.log("Spikes" + spikes[i].y);			
+			// console.log("realPunches" + realPunches);
 		}
 
 		document.getElementById("NumPunches" + chartDivName).innerHTML = realPunches;
@@ -97,11 +100,6 @@ function findPunchesInGraph(data, chartDivName) {
 		getAvgSpeedOfPunches(spikes, chartDivName);
 	});
 }
-
-
-
-
-
 
 
 
