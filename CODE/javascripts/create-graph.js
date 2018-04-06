@@ -21,13 +21,6 @@ function parseData(createGraph, filename, chartDivName, findPunchesInGraph) {
 		}
 	});
 }
- 
-
-
-
-
-
-
 
 
 
@@ -35,28 +28,19 @@ function parseData(createGraph, filename, chartDivName, findPunchesInGraph) {
 
 // Function to Create the Graph 
 function createGraph(data, chartDivName) {
+
 	var date = [ "Date + Time -> "];
 
 				for (var i = 1; i < data.length; i++) {
 					date.push(data[i][0]);
 					yLabel.push(data[i][2]);
 				}
-
-	var chart = c3.generate({
+	 chart = c3.generate({
 		bindto: "#chart" + chartDivName,
 		size: {
 			width: 980},
 	    data: {
 			columns: [ yLabel ] }, 
-
-		colors: {
-			"y": '#000000'
-		},
-		legend: {
-			colors: {
-				'y': '#000'
-			}
-		},
 	    axis: { x: {  type: 'category', categories: date,       
 	    tick: {	multiline: false, culling: { max: 6 } } } },
 	    zoom: { enabled: true },
@@ -64,8 +48,6 @@ function createGraph(data, chartDivName) {
 	});
 	var display = getFirstAndLastDateTime(date);
 }
-
-
 
 
 
@@ -233,10 +215,8 @@ function getFirstAndLastDateTime(date) {
 // console.log("list of files" + listOfDataFiles);
 
 
-
-
-parseData(createGraph, "../data/BTT5.csv", "", findPunchesInGraph);
-//parseData(createGraph, "../data/BTT2.csv","2", findPunchesInGraph );
+parseData(createGraph, "../data/BTT1.csv", "", findPunchesInGraph);
+parseData(createGraph, "../data/BTT1.csv", "2", findPunchesInGraph);
 //parseData(createGraph, "../data/BTT3.csv", "3", findPunchesInGraph);
 
 
