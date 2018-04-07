@@ -216,7 +216,7 @@ function getFirstAndLastDateTime(date) {
 
 
 parseData(createGraph, "../data/BTT1.csv", "", findPunchesInGraph);
-parseData(createGraph, "../data/BTT1.csv", "2", findPunchesInGraph);
+//parseData(createGraph, "../data/BTT1.csv", "2", findPunchesInGraph);
 //parseData(createGraph, "../data/BTT3.csv", "3", findPunchesInGraph);
 
 
