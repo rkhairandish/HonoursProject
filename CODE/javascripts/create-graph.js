@@ -1,4 +1,245 @@
 (function(){function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s}return e})()({1:[function(require,module,exports){
+//Global Variables
+var date = [];
+var yLabel = ["Acceleration"];
+
+
+
+
+
+
+
+
+
+//Parse the data to create a graph with the data
+function parseData(createGraph, filename, chartDivName, findPunchesInGraph) {
+	Papa.parse(filename, {
+		worker: true,
+		download: true,
+		complete: function(results) {
+			createGraph(results.data, chartDivName);
+			findPunchesInGraph(results.data, chartDivName);
+		}
+	});
+}
+
+
+
+
+
+// Function to Create the Graph 
+function createGraph(data, chartDivName) {
+	 yLabel = ["Acceleration"];
+	var date = [ "Date + Time -> "];
+
+				for (var i = 1; i < data.length; i++) {
+					date.push(data[i][0]);
+					yLabel.push(data[i][2]);
+				}
+	 chart = c3.generate({
+		bindto: "#chart" + chartDivName,
+		size: {
+			width: 980},
+	    data: {
+			columns: [ yLabel ] }, 
+	    axis: { x: {  type: 'category', categories: date,       
+	    tick: {	multiline: false, culling: { max: 6 } } } },
+	    zoom: { enabled: true },
+		legend: { position: 'bottom' }
+	});
+	var display = getFirstAndLastDateTime(date);
+	
+}
+
+
+
+
+
+
+
+
+
+
+function findPunchesInGraph(data, chartDivName) {
+
+	//Find Peaks in the Graph
+	var slayer = require('slayer');
+	var arrayData = yLabel;
+
+	slayer().fromArray(arrayData).then(spikes => {
+
+		//  minPeakDistance = 10;
+		//for loop to detect punches ie acceleration above 6 
+		var realPunches = 0;
+		for (var i = 0; i < spikes.length; i++) {
+			if (spikes[i].y > 5) {
+				realPunches++;
+			}
+		}
+
+		document.getElementById("NumPunches" + chartDivName).innerHTML = realPunches;
+
+		//Calls the function
+		circularGraph(realPunches);
+		getAvgSpeedOfPunches(spikes, chartDivName);
+	});
+}
+
+
+
+
+
+
+
+
+
+function getAvgSpeedOfPunches(data, chartDivName) {
+
+	//Find Peaks in the Graph
+	var slayer = require('slayer');
+	var dataFromArray = yLabel;
+
+	slayer().fromArray(dataFromArray).then(spikes => {
+
+		//for loop to detect acceleration above 5G
+		var gAccelerationAmount = 0;
+		var numberOfRealPunches = 0;
+
+		for (var i = 0; i < spikes.length; i++) {
+			if (spikes[i].y > 5) {
+				numberOfRealPunches++
+				gAccelerationAmount += Number(spikes[i].y);
+			} 
+		} var avg = gAccelerationAmount/numberOfRealPunches;
+
+		document.getElementById("Avg Punches" + chartDivName).innerHTML = avg.toFixed(2);
+	});
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function circularGraph(punches) {
+	//Circular Progress Bar to Visually Show number of punches
+	var elements = document.getElementsByClassName("c100 p100");
+	
+
+for (i = 0; i < elements.length; i++) {
+	
+	if (punches < 30){   					//Less than 30 punches = red
+		elements[i].className = "c100 p100 center red";
+	} else if (punches > 60){				//More than 60 Punches = green
+		elements[i].className = "c100 p100 center green";
+	}
+	  else {								//Inbetween 30 - 60 punches = orange
+		elements[i].className = "c100 p100 center orange";	
+	  }
+	} 
+}
+
+
+
+
+
+
+
+
+
+
+function getFirstAndLastDateTime(date) {
+	
+	//Function to Get The First and Last Date/Time information from the data
+	var elements = document.getElementsByClassName("Date/Time");
+
+	var startSessionTimestamp = date[1];
+	var endSessionTimestamp = date[date.length - 1];
+
+	var splitStartTime = startSessionTimestamp;
+	var splitEndTime = endSessionTimestamp;
+
+			startSessionTimestamp = startSessionTimestamp.split(" ");
+			endSessionTimestamp = endSessionTimestamp.split(" ");
+	
+			splitStartTime = startSessionTimestamp[1].split(":");
+			splitEndTime = endSessionTimestamp[1].split(":"); 
+
+	var dateTimeObj = {
+		firstDateTime: startSessionTimestamp,
+		lastDateTime: endSessionTimestamp,
+	}
+
+	//Gets Duration of the Session by taking away the start of session time with the end of session time
+	var lengthOfSession = [];
+
+			for (var i = 0; i < splitStartTime.length; i++){
+				 lengthOfSession.push(Math.abs(splitStartTime[i] - splitEndTime[i]));
+			}
+
+
+
+	//Date
+		var splicedstartSessionTimestamp = startSessionTimestamp.slice(0,1);
+	    document.getElementById("DisplayDate").innerHTML = splicedstartSessionTimestamp;
+
+	// Time
+	document.getElementById("Time").innerHTML = "Start: " + startSessionTimestamp[1] + "<br>" + "End: " +
+		endSessionTimestamp[1] + "<br>";
+	
+	// Duration
+	document.getElementById("Duration").innerHTML = 
+		lengthOfSession[0] + " Hr - " + 
+		lengthOfSession[1] + " Min - " +
+		lengthOfSession[2] + " Sec - " +
+		lengthOfSession[3] + " Ms" ;
+
+	// var start = splitStartTime[0];
+	// var end = splitEndTime[1];
+	//  document.getElementById("diff").innerHTML = diff(start, end);
+
+	return dateTimeObj;
+}
+
+
+
+// function diff(start, end) {
+
+// 	start = start.split(":");
+// 	end = end.split(":");
+// 	var startDate = new Date(0, 0, 0, start[0], start[1], 0);
+// 	var endDate = new Date(0, 0, 0, end[0], end[1], 0);
+// 	var diff = endDate.getTime() - startDate.getTime();
+// 	var hours = Math.floor(diff / 1000 / 60 / 60);
+// 	diff -= hours * (1000 * 60 * 60);
+// 	var minutes = Math.floor(diff / 1000 / 60);
+// 	diff -= minutes * (1000 * 60);
+// 	var seconds = Math.floor(diff / 1000);
+
+// 	return (hours <= 9 ? "0" : "") + hours + ":" + (minutes <= 9 ? "0" : "") + minutes + ":" + (seconds <= 9 ? "0" : "") +  seconds;
+// } 
+
+
+
+
+
+//Call the Functions
+
+parseData(createGraph, "../data/BTT1.csv", "", findPunchesInGraph);
+//parseData(createGraph, "../data/BTT3.csv", "2", findPunchesInGraph);
+//parseData(createGraph, "../data/BTT3.csv", "3", findPunchesInGraph);
+
+
+},{"slayer":18}],2:[function(require,module,exports){
 (function (Buffer){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -108,8 +349,8 @@ function objectToString(o) {
   return Object.prototype.toString.call(o);
 }
 
-}).call(this,{"isBuffer":require("../../../../../../../../../../usr/local/lib/node_modules/browserify/node_modules/is-buffer/index.js")})
-},{"../../../../../../../../../../usr/local/lib/node_modules/browserify/node_modules/is-buffer/index.js":34}],2:[function(require,module,exports){
+}).call(this,{"isBuffer":require("../../../../../usr/local/lib/node_modules/browserify/node_modules/is-buffer/index.js")})
+},{"../../../../../usr/local/lib/node_modules/browserify/node_modules/is-buffer/index.js":34}],3:[function(require,module,exports){
 (function (process,global){
 /*!
  * @overview es6-promise - a tiny implementation of Promises/A+.
@@ -1292,7 +1533,7 @@ return Promise$1;
 
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"_process":35}],3:[function(require,module,exports){
+},{"_process":35}],4:[function(require,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -1317,14 +1558,14 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],4:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 var toString = {}.toString;
 
 module.exports = Array.isArray || function (arr) {
   return toString.call(arr) == '[object Array]';
 };
 
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -1372,7 +1613,7 @@ function nextTick(fn, arg1, arg2, arg3) {
 
 
 }).call(this,require('_process'))
-},{"_process":35}],6:[function(require,module,exports){
+},{"_process":35}],7:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -1497,7 +1738,7 @@ function forEach(xs, f) {
     f(xs[i], i);
   }
 }
-},{"./_stream_readable":8,"./_stream_writable":10,"core-util-is":1,"inherits":3,"process-nextick-args":5}],7:[function(require,module,exports){
+},{"./_stream_readable":9,"./_stream_writable":11,"core-util-is":2,"inherits":4,"process-nextick-args":6}],8:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -1545,7 +1786,7 @@ function PassThrough(options) {
 PassThrough.prototype._transform = function (chunk, encoding, cb) {
   cb(null, chunk);
 };
-},{"./_stream_transform":9,"core-util-is":1,"inherits":3}],8:[function(require,module,exports){
+},{"./_stream_transform":10,"core-util-is":2,"inherits":4}],9:[function(require,module,exports){
 (function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -2563,7 +2804,7 @@ function indexOf(xs, x) {
   return -1;
 }
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./_stream_duplex":6,"./internal/streams/BufferList":11,"./internal/streams/destroy":12,"./internal/streams/stream":13,"_process":35,"core-util-is":1,"events":32,"inherits":3,"isarray":4,"process-nextick-args":5,"safe-buffer":16,"string_decoder/":24,"util":30}],9:[function(require,module,exports){
+},{"./_stream_duplex":7,"./internal/streams/BufferList":12,"./internal/streams/destroy":13,"./internal/streams/stream":14,"_process":35,"core-util-is":2,"events":32,"inherits":4,"isarray":5,"process-nextick-args":6,"safe-buffer":17,"string_decoder/":25,"util":30}],10:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -2778,7 +3019,7 @@ function done(stream, er, data) {
 
   return stream.push(null);
 }
-},{"./_stream_duplex":6,"core-util-is":1,"inherits":3}],10:[function(require,module,exports){
+},{"./_stream_duplex":7,"core-util-is":2,"inherits":4}],11:[function(require,module,exports){
 (function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -3458,7 +3699,7 @@ Writable.prototype._destroy = function (err, cb) {
   cb(err);
 };
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./_stream_duplex":6,"./internal/streams/destroy":12,"./internal/streams/stream":13,"_process":35,"core-util-is":1,"inherits":3,"process-nextick-args":5,"safe-buffer":16,"util-deprecate":26}],11:[function(require,module,exports){
+},{"./_stream_duplex":7,"./internal/streams/destroy":13,"./internal/streams/stream":14,"_process":35,"core-util-is":2,"inherits":4,"process-nextick-args":6,"safe-buffer":17,"util-deprecate":27}],12:[function(require,module,exports){
 'use strict';
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -3538,7 +3779,7 @@ if (util && util.inspect && util.inspect.custom) {
     return this.constructor.name + ' ' + obj;
   };
 }
-},{"safe-buffer":16,"util":30}],12:[function(require,module,exports){
+},{"safe-buffer":17,"util":30}],13:[function(require,module,exports){
 'use strict';
 
 /*<replacement>*/
@@ -3613,10 +3854,10 @@ module.exports = {
   destroy: destroy,
   undestroy: undestroy
 };
-},{"process-nextick-args":5}],13:[function(require,module,exports){
+},{"process-nextick-args":6}],14:[function(require,module,exports){
 module.exports = require('events').EventEmitter;
 
-},{"events":32}],14:[function(require,module,exports){
+},{"events":32}],15:[function(require,module,exports){
 exports = module.exports = require('./lib/_stream_readable.js');
 exports.Stream = exports;
 exports.Readable = exports;
@@ -3625,10 +3866,10 @@ exports.Duplex = require('./lib/_stream_duplex.js');
 exports.Transform = require('./lib/_stream_transform.js');
 exports.PassThrough = require('./lib/_stream_passthrough.js');
 
-},{"./lib/_stream_duplex.js":6,"./lib/_stream_passthrough.js":7,"./lib/_stream_readable.js":8,"./lib/_stream_transform.js":9,"./lib/_stream_writable.js":10}],15:[function(require,module,exports){
+},{"./lib/_stream_duplex.js":7,"./lib/_stream_passthrough.js":8,"./lib/_stream_readable.js":9,"./lib/_stream_transform.js":10,"./lib/_stream_writable.js":11}],16:[function(require,module,exports){
 module.exports = require('./readable').Transform
 
-},{"./readable":14}],16:[function(require,module,exports){
+},{"./readable":15}],17:[function(require,module,exports){
 /* eslint-disable node/no-deprecated-api */
 var buffer = require('buffer')
 var Buffer = buffer.Buffer
@@ -3692,7 +3933,7 @@ SafeBuffer.allocUnsafeSlow = function (size) {
   return buffer.SlowBuffer(size)
 }
 
-},{"buffer":31}],17:[function(require,module,exports){
+},{"buffer":31}],18:[function(require,module,exports){
 'use strict';
 
 var Factory = require('./lib/core.js');
@@ -3702,7 +3943,7 @@ Factory.Slayer.prototype.createReadStream = require('./lib/readers/stream.js');
 
 module.exports = Factory;
 
-},{"./lib/core.js":19,"./lib/readers/array.js":21,"./lib/readers/stream.js":22}],18:[function(require,module,exports){
+},{"./lib/core.js":20,"./lib/readers/array.js":22,"./lib/readers/stream.js":23}],19:[function(require,module,exports){
 'use strict';
 
 var utils = require('../utils.js');
@@ -3725,7 +3966,7 @@ module.exports = function refineSpikes(distance, item, i, array){
 
   return item > max ? item : null;
 };
-},{"../utils.js":23}],19:[function(require,module,exports){
+},{"../utils.js":24}],20:[function(require,module,exports){
 'use strict';
 
 var extend = require('xtend');
@@ -3929,7 +4170,7 @@ module.exports = function SlayerFactory(config){
 
 module.exports.Slayer = Slayer;
 
-},{"./algorithms/default.js":18,"xtend":27}],20:[function(require,module,exports){
+},{"./algorithms/default.js":19,"xtend":28}],21:[function(require,module,exports){
 'use strict';
 
 /**
@@ -3976,7 +4217,7 @@ module.exports = {
   objectMapper: objectMapper
 };
 
-},{}],21:[function(require,module,exports){
+},{}],22:[function(require,module,exports){
 'use strict';
 
 var Promise = require('es6-promise');
@@ -4024,7 +4265,7 @@ function fromArray(data){
 
 module.exports = fromArray;
 
-},{"./_common.js":20,"es6-promise":2}],22:[function(require,module,exports){
+},{"./_common.js":21,"es6-promise":3}],23:[function(require,module,exports){
 'use strict';
 
 var through = require('through2');
@@ -4125,7 +4366,7 @@ function createReadStream(options){
 
 module.exports = createReadStream;
 
-},{"./_common.js":20,"through2":25,"xtend":27}],23:[function(require,module,exports){
+},{"./_common.js":21,"through2":26,"xtend":28}],24:[function(require,module,exports){
 'use strict';
 
 var defaultArrayMap = function(el){
@@ -4260,7 +4501,7 @@ module.exports = {
     return Array.apply(null, Array(length)).map(mapper || defaultArrayMap);
   }
 };
-},{}],24:[function(require,module,exports){
+},{}],25:[function(require,module,exports){
 'use strict';
 
 var Buffer = require('safe-buffer').Buffer;
@@ -4533,7 +4774,7 @@ function simpleWrite(buf) {
 function simpleEnd(buf) {
   return buf && buf.length ? this.write(buf) : '';
 }
-},{"safe-buffer":16}],25:[function(require,module,exports){
+},{"safe-buffer":17}],26:[function(require,module,exports){
 (function (process){
 var Transform = require('readable-stream/transform')
   , inherits  = require('util').inherits
@@ -4633,7 +4874,7 @@ module.exports.obj = through2(function (options, transform, flush) {
 })
 
 }).call(this,require('_process'))
-},{"_process":35,"readable-stream/transform":15,"util":38,"xtend":27}],26:[function(require,module,exports){
+},{"_process":35,"readable-stream/transform":16,"util":38,"xtend":28}],27:[function(require,module,exports){
 (function (global){
 
 /**
@@ -4704,7 +4945,7 @@ function config (name) {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],27:[function(require,module,exports){
+},{}],28:[function(require,module,exports){
 module.exports = extend
 
 var hasOwnProperty = Object.prototype.hasOwnProperty;
@@ -4725,245 +4966,7 @@ function extend() {
     return target
 }
 
-},{}],28:[function(require,module,exports){
-//Global Variables
-var date = [];
-var yLabel = ["Acceleration"];
-
-
-
-
-
-
-
-
-
-//Parse the data to create a graph with the data
-function parseData(createGraph, filename, chartDivName, findPunchesInGraph) {
-	Papa.parse(filename, {
-		download: true,
-		complete: function(results) {
-			createGraph(results.data, chartDivName);
-			findPunchesInGraph(results.data, chartDivName);
-		}
-	});
-}
-
-
-
-
-
-// Function to Create the Graph 
-function createGraph(data, chartDivName) {
-	 yLabel = ["Acceleration"];
-	var date = [ "Date + Time -> "];
-
-				for (var i = 1; i < data.length; i++) {
-					date.push(data[i][0]);
-					yLabel.push(data[i][2]);
-				}
-	 chart = c3.generate({
-		bindto: "#chart" + chartDivName,
-		size: {
-			width: 980},
-	    data: {
-			columns: [ yLabel ] }, 
-	    axis: { x: {  type: 'category', categories: date,       
-	    tick: {	multiline: false, culling: { max: 6 } } } },
-	    zoom: { enabled: true },
-		legend: { position: 'bottom' }
-	});
-	var display = getFirstAndLastDateTime(date);
-	
-}
-
-
-
-
-
-
-
-
-
-function findPunchesInGraph(data, chartDivName) {
-
-	//Find Peaks in the Graph
-	var slayer = require('slayer');
-	var arrayData = yLabel;
-
-	slayer().fromArray(arrayData).then(spikes => { 
-
-		//for loop to detect punches ie acceleration above 6 
-		var realPunches = 0;
-		for (var i = 0; i < spikes.length; i++) {
-			if (spikes[i].y > 6) {
-				realPunches++;
-			}
-		}
-
-		document.getElementById("NumPunches" + chartDivName).innerHTML = realPunches;
-
-		//Calls the function
-		circularGraph(realPunches);
-		getAvgSpeedOfPunches(spikes, chartDivName);
-	});
-}
-
-
-
-
-
-
-
-
-
-
-
-
-function getAvgSpeedOfPunches(data, chartDivName) {
-
-	//Find Peaks in the Graph
-	var slayer = require('slayer');
-	var dataFromArray = yLabel;
-
-
-	slayer().fromArray(dataFromArray).then(spikes => {
-
-		//for loop to detect acceleration above 7G
-		var gAccelerationAmount = 0;
-		var numberOfRealPunches = 0;
-
-		for (var i = 0; i < spikes.length; i++) {
-			if (spikes[i].y > 5) {
-				numberOfRealPunches++
-				gAccelerationAmount += Number(spikes[i].y);
-			} 
-		} var avg = gAccelerationAmount/numberOfRealPunches;
-
-		document.getElementById("Avg Punches" + chartDivName).innerHTML = avg.toFixed(2);
-	});
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function circularGraph(punches) {
-	//Circular Progress Bar to Visually Show number of punches
-	var elements = document.getElementsByClassName("c100 p100");
-	
-
-for (i = 0; i < elements.length; i++) {
-	
-	if (punches < 30){   					//Less than 30 punches = red
-		elements[i].className = "c100 p100 center red";
-	} else if (punches > 60){				//More than 60 Punches = green
-		elements[i].className = "c100 p100 center green";
-	}
-	  else {								//Inbetween 30 - 60 punches = orange
-		elements[i].className = "c100 p100 center orange";	
-	  }
-	} 
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function getFirstAndLastDateTime(date) {
-	
-	//Function to Get The First and Last Date/Time information from the data
-	var elements = document.getElementsByClassName("Date/Time");
-
-	var startSessionTimestamp = date[1];
-	var endSessionTimestamp = date[date.length - 1];
-
-	var splitStartTime = startSessionTimestamp;
-	var splitEndTime = endSessionTimestamp;
-
-
-			startSessionTimestamp = startSessionTimestamp.split(" ");
-			endSessionTimestamp = endSessionTimestamp.split(" ");
-	
-			splitStartTime = startSessionTimestamp[1].split(":");
-			splitEndTime = endSessionTimestamp[1].split(":"); 
-
-	var dateTimeObj = {
-		firstDateTime: startSessionTimestamp,
-		lastDateTime: endSessionTimestamp,
-	}
-
-	//Gets Duration of the Session by taking away the start of session time with the end of session time
-	var lengthOfSession = [];
-
-			for (var i = 0; i < splitStartTime.length; i++){
-				 lengthOfSession.push(Math.abs(splitStartTime[i] - splitEndTime[i]));
-			}
-
-
-
-	//Date
-		var splicedstartSessionTimestamp = startSessionTimestamp.slice(0,1);
-	    document.getElementById("DisplayDate").innerHTML = splicedstartSessionTimestamp;
-
-	// Time
-	document.getElementById("Time").innerHTML = "Start: " + startSessionTimestamp[1] + "<br>" + "End: " +
-		endSessionTimestamp[1] + "<br>";
-	
-	// Duration
-	document.getElementById("Duration").innerHTML = 
-		lengthOfSession[0] + " Hr - " + 
-		lengthOfSession[1] + " Min - " +
-		lengthOfSession[2] + " Sec - " +
-		lengthOfSession[3] + " Ms" ;
-
-	return dateTimeObj;
-}
-
-
-
-
-
-
-//Call the Functions
-
-
-// var file = require('file-system');
-// var fs = require('fs');
-
-// file.readFile === fs.readFile // true 
-
-// var listOfDataFiles = fs.readDirSync("./data");
-
-// console.log("list of files" + listOfDataFiles);
-
-
-parseData(createGraph, "../data/BTT1.csv", "", findPunchesInGraph);
-//parseData(createGraph, "../data/BTT3.csv", "2", findPunchesInGraph);
-//parseData(createGraph, "../data/BTT3.csv", "3", findPunchesInGraph);
-
-
-},{"slayer":17}],29:[function(require,module,exports){
+},{}],29:[function(require,module,exports){
 'use strict'
 
 exports.byteLength = byteLength
@@ -7638,8 +7641,8 @@ process.chdir = function (dir) {
 process.umask = function() { return 0; };
 
 },{}],36:[function(require,module,exports){
-arguments[4][3][0].apply(exports,arguments)
-},{"dup":3}],37:[function(require,module,exports){
+arguments[4][4][0].apply(exports,arguments)
+},{"dup":4}],37:[function(require,module,exports){
 module.exports = function isBuffer(arg) {
   return arg && typeof arg === 'object'
     && typeof arg.copy === 'function'
@@ -8236,4 +8239,4 @@ function hasOwnProperty(obj, prop) {
 }
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./support/isBuffer":37,"_process":35,"inherits":36}]},{},[28]);
+},{"./support/isBuffer":37,"_process":35,"inherits":36}]},{},[1]);

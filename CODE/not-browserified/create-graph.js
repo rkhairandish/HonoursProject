@@ -13,6 +13,7 @@ var yLabel = ["Acceleration"];
 //Parse the data to create a graph with the data
 function parseData(createGraph, filename, chartDivName, findPunchesInGraph) {
 	Papa.parse(filename, {
+		worker: true,
 		download: true,
 		complete: function(results) {
 			createGraph(results.data, chartDivName);
@@ -57,18 +58,20 @@ function createGraph(data, chartDivName) {
 
 
 
+
 function findPunchesInGraph(data, chartDivName) {
 
 	//Find Peaks in the Graph
 	var slayer = require('slayer');
 	var arrayData = yLabel;
 
-	slayer().fromArray(arrayData).then(spikes => { 
+	slayer().fromArray(arrayData).then(spikes => {
 
+		//  minPeakDistance = 10;
 		//for loop to detect punches ie acceleration above 6 
 		var realPunches = 0;
 		for (var i = 0; i < spikes.length; i++) {
-			if (spikes[i].y > 6) {
+			if (spikes[i].y > 5) {
 				realPunches++;
 			}
 		}
@@ -89,19 +92,15 @@ function findPunchesInGraph(data, chartDivName) {
 
 
 
-
-
-
 function getAvgSpeedOfPunches(data, chartDivName) {
 
 	//Find Peaks in the Graph
 	var slayer = require('slayer');
 	var dataFromArray = yLabel;
 
-
 	slayer().fromArray(dataFromArray).then(spikes => {
 
-		//for loop to detect acceleration above 7G
+		//for loop to detect acceleration above 5G
 		var gAccelerationAmount = 0;
 		var numberOfRealPunches = 0;
 
@@ -157,11 +156,6 @@ for (i = 0; i < elements.length; i++) {
 
 
 
-
-
-
-
-
 function getFirstAndLastDateTime(date) {
 	
 	//Function to Get The First and Last Date/Time information from the data
@@ -172,7 +166,6 @@ function getFirstAndLastDateTime(date) {
 
 	var splitStartTime = startSessionTimestamp;
 	var splitEndTime = endSessionTimestamp;
-
 
 			startSessionTimestamp = startSessionTimestamp.split(" ");
 			endSessionTimestamp = endSessionTimestamp.split(" ");
@@ -209,26 +202,36 @@ function getFirstAndLastDateTime(date) {
 		lengthOfSession[2] + " Sec - " +
 		lengthOfSession[3] + " Ms" ;
 
+	// var start = splitStartTime[0];
+	// var end = splitEndTime[1];
+	//  document.getElementById("diff").innerHTML = diff(start, end);
+
 	return dateTimeObj;
 }
 
+
+
+// function diff(start, end) {
+
+// 	start = start.split(":");
+// 	end = end.split(":");
+// 	var startDate = new Date(0, 0, 0, start[0], start[1], 0);
+// 	var endDate = new Date(0, 0, 0, end[0], end[1], 0);
+// 	var diff = endDate.getTime() - startDate.getTime();
+// 	var hours = Math.floor(diff / 1000 / 60 / 60);
+// 	diff -= hours * (1000 * 60 * 60);
+// 	var minutes = Math.floor(diff / 1000 / 60);
+// 	diff -= minutes * (1000 * 60);
+// 	var seconds = Math.floor(diff / 1000);
+
+// 	return (hours <= 9 ? "0" : "") + hours + ":" + (minutes <= 9 ? "0" : "") + minutes + ":" + (seconds <= 9 ? "0" : "") +  seconds;
+// } 
 
 
 
 
 
 //Call the Functions
-
-
-// var file = require('file-system');
-// var fs = require('fs');
-
-// file.readFile === fs.readFile // true 
-
-// var listOfDataFiles = fs.readDirSync("./data");
-
-// console.log("list of files" + listOfDataFiles);
-
 
 parseData(createGraph, "../data/BTT1.csv", "", findPunchesInGraph);
 //parseData(createGraph, "../data/BTT3.csv", "2", findPunchesInGraph);

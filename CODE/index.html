@@ -188,6 +188,9 @@
 	</div>
 	<br>
 
+	<div>
+		<span id="diff"> DiffTime</span>
+	</div>
 
 	<!-- Charts to display punches and average acceleration -->
 	<table width="90%" border="0" cellspacing="0" cellpadding="0" >	
@@ -211,14 +214,44 @@
 						<div  class="c100 p100">
 							<span id="Avg Punches"> Avg Speed </span>
 							<div class="slice">
-								<div class="bar"></div>
-								<div class="fill"></div>
+								<!-- <div class="bar"></div>
+								<div class="fill"></div> -->
 							</div>
 					</td>
 							<br>
-							<br>
-							<br>
-							<br>
+		
+		
+
+		<!-- Key For Red  -->
+		<td> 
+						<h4> Punches</h4>
+					<svg height="100" width="100">
+						<circle cx="50" cy="50" r="20" stroke="red" stroke-width="3" fill="white" />
+						<text x="30" y="15" fill="red">< 30 </text>
+					</svg>
+		</td>
+
+
+				<!-- Key For orange  -->
+		<td>
+			<h4> Colour </h4>
+			<svg height="100" width="100">
+				<circle cx="50" cy="50" r="20" stroke="orange" stroke-width="3" fill="white" />
+				<text x="30" y="15" fill="orange"> 30 - 60 </text>
+			</svg>
+		</td>
+
+				<!-- Key For Green  -->
+		<td>
+						<h4> Key</h4>
+			<svg height="100" width="100">
+				<circle cx="50" cy="50" r="20" stroke="Green" stroke-width="3" fill="white" />
+				<text x="30" y="15" fill="Green"> < 60</text>
+			</svg>
+		</td>
+
+
+
 							</tr>
 							</table>
 							<h2> </h2>
@@ -237,20 +270,17 @@
 	</div>
 	
 
-	<!-- Container with general information - number of punches this week etc -->
+	<!-- Container with general information -->
 		<div class="w3-container">
-			<h5>General Stats</h5>
-			<p>Number of Punches This Week</p>
-			<div class="w3-grey">
-				<div class="w3-container w3-center w3-padding w3-orange" style="width:50%">+50</div>
-			</div>
-	
-			<p>Number of Punches This Month</p>
-			<div class="w3-grey">
-				<div class="w3-container w3-center w3-padding w3-red" style="width:75%">+75</div>
-			</div>
+			<h5 align="center" >Circular Graph Key For Punches</h5>
+
+
+
+		
 		</div>
 		
+
+
 		<hr>
 		<div class="w3-container">
 			<h5>Link to Other Pages</h5>
