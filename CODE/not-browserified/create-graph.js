@@ -90,6 +90,8 @@ function findPunchesInGraph(data, chartDivName) {
 
 
 
+
+
 function getAvgSpeedOfPunches(data, chartDivName) {
 
 	//Find Peaks in the Graph
@@ -126,6 +128,8 @@ function getAvgSpeedOfPunches(data, chartDivName) {
 
 
 
+
+
 function circularGraph(punches) {
 	//Circular Progress Bar to Visually Show number of punches
 	var elements = document.getElementsByClassName("c100 p100");
@@ -148,8 +152,19 @@ for (i = 0; i < elements.length; i++) {
 
 
 
+
+
+
+
+
+
+
+
+
+
 function getFirstAndLastDateTime(date) {
-	//Function to Get The First and Last Date/Time information from the file/session
+	
+	//Function to Get The First and Last Date/Time information from the data
 	var elements = document.getElementsByClassName("Date/Time");
 
 	var startSessionTimestamp = date[1];
@@ -170,7 +185,7 @@ function getFirstAndLastDateTime(date) {
 		lastDateTime: endSessionTimestamp,
 	}
 
-	//Gets Length of Session by taking away the start of session time with the end of session time
+	//Gets Duration of the Session by taking away the start of session time with the end of session time
 	var lengthOfSession = [];
 
 			for (var i = 0; i < splitStartTime.length; i++){
@@ -216,6 +231,6 @@ function getFirstAndLastDateTime(date) {
 
 
 parseData(createGraph, "../data/BTT1.csv", "", findPunchesInGraph);
-parseData(createGraph, "../data/BTT1.csv", "2", findPunchesInGraph);
+//parseData(createGraph, "../data/BTT3.csv", "2", findPunchesInGraph);
 //parseData(createGraph, "../data/BTT3.csv", "3", findPunchesInGraph);
 
