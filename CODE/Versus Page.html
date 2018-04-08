@@ -21,207 +21,362 @@
 	<!-- Load d3.js and c3.js -->
 	<script src="javascripts/d3.v3.min.js" charset="utf-8"></script>
 	<script src="javascripts/c3.min.js"></script>
+
 	<!-- Load papaparse.js -->
 	<script src="javascripts/papaparse.min.js"></script>
 
 
+	<!-- From W3Schools -->
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+	<!-- Front for Montserrat -->
+	<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+
+
+	<!-- Setting the font for the page -->
+	<style>
+		html,
+		body,
+		h1,
+		h2,
+		h3,
+		h4,
+		h5 {
+			font-family: 'Montserrat';
+		}
+	</style>
 
 </head>
 
 <body>
 
-	<!-- Navigation Bar for Versus Page -->
-	<nav class="navbar-inverse navbar-fixed-top">
+	<nav align="right" class="navbar-inverse navbar-fixed-top">
 		<div class="container-fluid">
 			<div class="navbar-header ">
-				<a class="navbar-brand" href="/index.html" style="font-size:250%;">Boxing Performance Tracker</a>
+				<a class="navbar-brand" href="/index.html" style="font-size:250%;" align="right">Boxing Performance Tracker</a>
+	</nav>
+
+
+
+	<!-- Sidebar/menu -->
+	<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar">
+		<br>
+		<div class="w3-container w3-row">
+			<div class="w3-col s4">
+				<img src="/images/avatar2.png" class="w3-circle w3-margin-right" style="width:46px">
 			</div>
-			<ul class="nav ">
-				<li>
-					<a href="/index.html" style="font-size:200%;">Dashboard</a>
-				</li>
-				<li>
-					<a href="/Graph.html" style="font-size:200%;">Graph</a>
-				</li>
-				<li class="active">
-					<a href="/Versus Page.html" style="font-size:200%;">Versus</a>
-				</li>
-				<li>
-					<a href="/About.html" style="font-size:200%;">About</a>
-				</li>
-			</ul>
+			<div class="w3-col s8 w3-bar">
+				<span>Welcome,
+					<strong>Mike</strong>
+				</span>
+				<br>
+				<a href="/index.html" class="w3-bar-item w3-button w3-xlarge">
+					<i class="fa fa-dashboard"></i>
+				</a>
+				<a href="/Versus Page.html" class="w3-bar-item w3-button w3-xlarge">
+					<i class="fa fa-cloud-upload"></i>
+				</a>
+				<a href="/Info.html" class="w3-bar-item w3-button w3-xlarge">
+					<i class="fa fa-info"></i>
+				</a>
+			</div>
+		</div>
+		<hr>
+		<div class="w3-container">
+			<h5 href="/index.html">MENU</h5>
+		</div>
+		<div class="w3-bar-block">
+			<a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu">
+				<i class="fa fa-remove fa-fw"></i> Close Menu</a>
+			<a href="/index.html" class="w3-bar-item w3-button w3-padding w3-blue">
+				<i class="fa fa-users fa-fw"></i> Overview</a>
+			<a href="/Graph.html" class="w3-bar-item w3-button w3-padding">
+				<i class="fa fa-line-chart"></i> Graphs</a>
+			<a href="/Versus Page.html" class="w3-bar-item w3-button w3-padding">
+				<i class="fa fa-users"></i> Versus</a>
+			<a href="/About.html" class="w3-bar-item w3-button w3-padding">
+				<i class="fa fa-cog fa-fw"></i> About</a>
 		</div>
 	</nav>
-<br>
-<br>
-<br>
-<br>
-	<h2 align="center" style="font-size:4vw"> Versus Page</h2>
-	<br>
-	<br>
-	<div class="container">
-	<div class="card text-center">
-	<div class="card-header">
-		Versus
-	</div>
-
-	<table style="width:100%">
-		<tr>
-	
-			<!-- Date/Time of recorded session -->
-			<h3>Graph 1: Date/Time</h3>
-	
-			<div align="center" class="Date/Time"></div>
-			<th style="text-align: center;" >Date </th>
-			<th style="text-align: center;" > Time </th>
-			<th style="text-align: center;" >Duration</th>
-		</tr>
-		<tr>
-			<td>
-				<div id="DisplayDate"></div>
-			</td>
-			<td>
-				<div id="Time"></div>
-			</td>
-			<td>
-				<div id="Duration"></div>
-			</td>
-
-<br>
-		</tr>
-	</table>
-
-<input type="file" id="csv-file" onchange="fileUpload()" />
 
 
+	<!-- Overlay effect when opening sidebar on small screens -->
+	<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu"
+	 id="myOverlay"></div>
 
-<table style="width:100%">
-	<tr>
-		<!-- Date/Time of 2nd recorded session -->
-		<h3>Graph 2: Date/Time</h3>
+	<!-- !PAGE CONTENT! -->
+	<div class="w3-main" style="margin-left:300px;margin-top:43px;">
 
-		<div align="center" class="Date/Time"></div>
-			<th style="text-align: center;">Date </th>
-			<th style="text-align: center;"> Time </th>
-			<th style="text-align: center;">Duration</th>
-	</tr>
-	<tr>
-		<td>
-			<div id="Date2"></div>
-		</td>
-		<td>
-			<div id="Time2"></div>
-		</td>
-		<td>
-			<div id="Duration2"></div>
-		</td>
+		<!-- Header -->
+		<header class="w3-container" style="padding-top:22px">
+			<h5>
+				<b>
+					<i class="fa fa-dashboard"></i> My Dashboard</b>
+			</h5>
+		</header>
 
-		<table style="width:100%">
-			<tr>
+		<div class="w3-row-padding w3-margin-bottom">
 
-		</table>
+			<!-- Duration Card -->
+			<div class="w3-quarter">
+				<div class="w3-container w3-red w3-padding-16">
+					<div class="w3-left">
+						<i class="fa fa-hourglass-2 w3-xxxlarge"></i>
+					</div>
+					<h4 align="right">Duration</h4>
 
-<!-- Charts to display punches and average acceleration -->
+					<br>
+					<br>
+					<div class="Date/Time" align="left" id="Duration"></div>
 
-<table style="width:100%">
-	<tr>
-
-		<td>
-			<!-- Circular Progress Bar to represent Punches -->
-			<h2>Graph 1 Punches</h2>
-
-			<div class="c100 p100 center">
-				<span id="NumPunches"> Punches </span>
-				<div class="slice">
-					<div class="bar"></div>
-					<div class="fill"></div>
 				</div>
 			</div>
-		</td>
 
 
-		<td>
-			<!-- 2nd Circular Progress Bar to represent Punches -->
-			<h2>Graph 2 Punches</h2>
-			<div align="center" class="c100 p100">
-				<span id="NumPunches2"> Punches </span>
-				<div class="slice">
-					<div class="bar"></div>
-					<div class="fill"></div>
-				
-	<br>
-	<br>
-
-	 	<td>
-
-
-			<!-- 1st Circular Progress Bar to Avg Acceleration -->
-				<h2>Avg Punch Acceleration (g)</h2>
-				<div align="center" class="c100 p100">
-					<span id="Avg Punches"> Avg Speed </span>
-						<div class="slice">
-							<div class="bar"></div>
-							<div class="fill"></div>
-						</div>
-		</td>
-
-	<br>
-
-	</tr>
-</table>
-<table style="width:100%">
-	<tr>
-		<td>
-			<!-- Line/Timeline Graphs -->
-			<h2> Graph 1</h2>
-			<div class="container">
-				<div id="chart"></div>
-				<div id="spikes"></div>
-				<br>
-				<h2>Graph 2</h2>
-				<div id="chart2"></div>
-				<div id="spikes2"></div>
+			<!-- Time Card -->
+			<div class="w3-quarter">
+				<div class="w3-container w3-blue w3-padding-16">
+					<div class="w3-left">
+						<i class="fa fa-clock-o w3-xxxlarge"></i>
+					</div>
+					<h4 align="right">Time</h4>
+					<br>
+					<div style="font-size:105%;" align="right" id="Time"></div>
+				</div>
 			</div>
-		</td>
-
-	</tr>
-</table>
 
 
+			<!-- Date Card -->
+			<div class="w3-quarter">
+				<div class="w3-container w3-teal w3-padding-16">
+					<div class="w3-left">
+						<i class="fa fa-calendar w3-xxxlarge"></i>
+					</div>
+					<h4 align="right">Date</h4>
+					<br>
+					<div style="font-size:200%;" align="center" id="DisplayDate"></div>
 
-	<script src="javascripts/create-graph.js"></script>
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-	 crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-	 crossorigin="anonymous"></script>
+				</div>
+			</div>
+
+
+			<!-- Instructions Card -->
+			<div class="w3-quarter">
+				<div class="w3-container w3-orange w3-text-white w3-padding-16">
+					<div class="w3-left">
+						<i class="fa fa-users w3-xxxlarge"></i>
+					</div>
+					<div class="w3-right">
+						<h4>Instructions</h4>
+					</div>
+					<div class="w3-clear"></div>
+					<br>
+					<h5 align="center">
+						<a href="/About.html"> Software/Device & Boxing</a>
+					</h5>
+				</div>
+			</div>
+		</div>
+
+	<div class="container">
+		<div class="card text-center">
+			<div class="card-header">
+				Versus
+				<input type="file" id="csv-file" onchange="fileUpload()" />
+			</div>
+
+	
+		<!-- Graph 2 Date/Time/Duration -->
+			<!-- <table style="width:100%">
+				<tr> -->
+					<!-- Date/Time of 2nd recorded session -->
+					<!-- <h3>Graph 2: Date/Time</h3>
+	
+					<div align="center" class="Date/Time"></div>
+					<th style="text-align: center;">Date </th>
+					<th style="text-align: center;"> Time </th>
+					<th style="text-align: center;">Duration</th>
+				</tr>
+				<tr>
+					<td>
+						<div id="Date"></div>
+					</td>
+					<td>
+						<div id="Time"></div>
+					</td>
+					<td>
+						<div id="Duration"></div>
+					</td>
+	
+					<table style="width:100%">
+						<tr>
+	
+					</table> -->
+	
+					<!-- Charts to display punches and average acceleration -->
+	
+					<table style="width:100%">
+						<tr>
+	
+							<td>
+								<!-- Circular Progress Bar to represent Punches -->
+								<h2>Graph 1 Punches</h2>
+	
+								<div class="c100 p100 center">
+									<span id="NumPunches">Punches</span>
+									<div class="slice">
+										<div class="bar"></div>
+										<div class="fill"></div>
+									</div>
+								</div>
+							</td>
+	
+	
+							<td>
+								<!-- 2nd Circular Progress Bar to represent Punches -->
+								<h2>Graph 2 Punches</h2>
+								<div align="center" class="c100 p100">
+									<span id="NumPunches2">N/A</span>
+									<div class="slice">
+										<div class="bar"></div>
+										<div class="fill"></div>
+	
+										<br>
+										<br>
+	
+										<td>
+	
+	
+											<!-- 1st Circular Progress Bar to Avg Acceleration -->
+											<h2>Avg Punch Acceleration (g)</h2>
+											<div align="center" class="c100 p100">
+												<span id="Avg Punches"> Avg g </span>
+												<div class="slice">
+													<div class="bar"></div>
+													<div class="fill"></div>
+												</div>
+										</td>
+	
+										<br>
+	
+						</tr>
+					</table>
+					<table style="width:100%">
+						<tr>
+							<td>
+								<!-- Line/Timeline Graphs -->
+								<h2> Graph 1</h2>
+								<div class="container">
+									<div id="chart"></div>
+									<div id="spikes"></div>
+									<br>
+									<h2>Graph 2</h2>
+									<div id="chart2"></div>
+									<div id="spikes2"></div>
+								</div>
+							</td>
+	
+						</tr>
+					</table>
 
 
 
 
-	 <!-- <script>
-	//Parse the data to create a graph with the data
-	function parseData(createGraph, filename, chartDivName, findPunchesInGraph) {
-		Papa.parse(filename, {
-			download: true,
-			complete: function (results) {
-				createGraph(results.data, chartDivName);
-				findPunchesInGraph(results.data, chartDivName);
+
+				<h2> </h2>
+				<div class="card-footer text-muted">
+					Boxing Performance Tracker: Dashboard Page
+				</div>
+				</div>
+
+			</div>
+
+			<!-- Top container -->
+			<div class="w3-bar w3-top w3-black w3-large" style="z-index:4">
+				<button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();">
+					<i class="fa fa-bars"></i> Menu</button>
+				<span class="w3-bar-item w3-right">Boxing Performance Tracker </span>
+			</div>
+
+
+			<hr>
+			<div class="w3-container">
+				<h5>Link to Other Pages</h5>
+				<ul class="w3-ul w3-card-4 w3-white">
+					<li class="w3-padding-16">
+						<i class="fa fa-film w3-xxxlarge"></i>
+						<a class="w3-xlarge" href="https://youtu.be/LjeJmHg_S4A?t=146"> Recommended Boxing Tutorial</a>
+						<br>
+					</li>
+					<li class="w3-padding-16">
+						<i class="fa fa-external-link w3-xxxlarge"></i>
+						<a class="w3-xlarge" href="https://youtu.be/EQVuCtiuBUU?t=40"> GENEActiv Video Tutorial</a>
+						<br>
+					</li>
+					<li class="w3-padding-16">
+						<i href="/About.html" class="fa fa-info-circle w3-xxxlarge"></i>
+						<a class="w3-xlarge" href="/About.html"> About Page: Instructions for saving GENEActiv data as CSV</a>
+						<br>
+					</li>
+				</ul>
+			</div>
+			<hr>
+
+
+
+
+
+
+			<!-- Footer -->
+			<footer class="w3-container w3-padding-16 w3-light-grey">
+				<h4>Boxing Performance Tracker By Ramesh Khairandish</h4>
+				<p> Webpage modified from templates at
+					<a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a>
+					and
+					<a href="https://getbootstrap.com/docs/4.0/components/navbar/" target="_blank">Bootstrap</a>
+				</p>
+			</footer>
+
+		</div>
+
+
+
+
+
+		<!-- Sidebar Content -->
+		<script>
+			// Get the Sidebar
+			var mySidebar = document.getElementById("mySidebar");
+
+			// Get the DIV with overlay effect
+			var overlayBg = document.getElementById("myOverlay");
+
+			// Toggle between showing and hiding the sidebar, and add overlay effect
+			function w3_open() {
+				if (mySidebar.style.display === 'block') {
+					mySidebar.style.display = 'none';
+					overlayBg.style.display = "none";
+				} else {
+					mySidebar.style.display = 'block';
+					overlayBg.style.display = "block";
+				}
 			}
-		});
-	}
+
+			// Close the sidebar with the close button
+			function w3_close() {
+				mySidebar.style.display = "none";
+				overlayBg.style.display = "none";
+			}
+		</script>
 
 
-	function fileUpload() {
 
-			var file = document.getElementById("csv-file");
 
-			parseData(createGraph, file, "", findPunchesInGraph);
-			console.log("This worked" + file);
-
-		}
-	 </script> -->
-
+		<script src="javascripts/create-graph.js"></script>
 
 </body>
 
