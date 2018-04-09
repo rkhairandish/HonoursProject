@@ -30,7 +30,7 @@ function parseData(createGraph, filename, chartDivName, findPunchesInGraph) {
 // Function to Create the Graph 
 function createGraph(data, chartDivName) {
 	 yLabel = ["Acceleration"];
-	var date = [ "Date + Time -> "];
+	var date = [ ];
 
 				for (var i = 1; i < data.length; i++) {
 					date.push(data[i][0]);
@@ -42,10 +42,21 @@ function createGraph(data, chartDivName) {
 			width: 980},
 	    data: {
 			columns: [ yLabel ] }, 
-	    axis: { x: {  type: 'category', categories: date,       
-	    tick: {	multiline: false, culling: { max: 6 } } } },
-	    zoom: { enabled: true },
-		legend: { position: 'bottom' }
+		 axis: {
+			 x: {
+				//  array map to get Time from Date&Time
+				 type: 'category', categories: date.map((item) => { return item[11] + 
+					 item[12] + 
+					 item[13] + 
+					 item[14] + 
+					 item[15] + item[16] + item[17] + item[18] ;}), 
+				     
+	    tick: {	multiline: false, culling: { max: 5 } } } },
+		zoom: { enabled: true },
+		 point: {
+			 show: false
+		 },
+		legend: { position: 'right' }
 	});
 	var display = getFirstAndLastDateTime(date);
 	
@@ -234,8 +245,8 @@ function getFirstAndLastDateTime(date) {
 
 //Call the Functions
 
-parseData(createGraph, "../data/BTT8.csv", "", findPunchesInGraph);
-//parseData(createGraph, "../data/BTT3.csv", "2", findPunchesInGraph);
+parseData(createGraph, "../data/BTT1.csv", "", findPunchesInGraph);
+//parseData(createGraph, "../data/BTT2.csv", "2", findPunchesInGraph);
 //parseData(createGraph, "../data/BTT1.csv", "", findPunchesInGraph);
 
 },{"slayer":18}],2:[function(require,module,exports){
