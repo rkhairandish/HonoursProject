@@ -66,9 +66,9 @@ function findPunchesInGraph(data, chartDivName) {
 	var slayer = require('slayer');
 	var arrayData = yLabel;
 
-	slayer().fromArray(arrayData).then(spikes => {
+	slayer({ minPeakDistance: 1, minPeakHeight: 7}).fromArray(arrayData).then(spikes => {
 
-		//  minPeakDistance = 10;
+	  
 		//for loop to detect punches ie acceleration above 6 
 		var realPunches = 0;
 		for (var i = 0; i < spikes.length; i++) {
@@ -234,10 +234,9 @@ function getFirstAndLastDateTime(date) {
 
 //Call the Functions
 
-parseData(createGraph, "../data/BTT1.csv", "", findPunchesInGraph);
+parseData(createGraph, "../data/BTT8.csv", "", findPunchesInGraph);
 //parseData(createGraph, "../data/BTT3.csv", "2", findPunchesInGraph);
-//parseData(createGraph, "../data/BTT3.csv", "3", findPunchesInGraph);
-
+//parseData(createGraph, "../data/BTT1.csv", "", findPunchesInGraph);
 
 },{"slayer":18}],2:[function(require,module,exports){
 (function (Buffer){
