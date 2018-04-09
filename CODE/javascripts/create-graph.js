@@ -246,7 +246,7 @@ function getFirstAndLastDateTime(date) {
 //Call the Functions
 
 parseData(createGraph, "../data/BTT1.csv", "", findPunchesInGraph);
-//parseData(createGraph, "../data/BTT2.csv", "2", findPunchesInGraph);
+parseData(createGraph, "../data/BTT2.csv", "2", findPunchesInGraph);
 //parseData(createGraph, "../data/BTT1.csv", "", findPunchesInGraph);
 
 },{"slayer":18}],2:[function(require,module,exports){
