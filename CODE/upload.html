@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <!-- ICON Free for personal use From https://www.iconfinder.com/icons/22976/box_boxer_boxing_gloves_sport_sports_icon#size=256  -->
+    <link rel="icon" href="/images/icon.png">
+
+    <!-- Bootstrap v4 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+
+    <title>RK: Boxing Performance Tracker</title>
+    <link rel='stylesheet' href='stylesheets/style.css' />
+    <link rel='stylesheet' href='stylesheets/bootstrap.min.css' />
+    <link rel='stylesheet' href='stylesheets/font-awesome.min.css' />
+    <link rel='stylesheet' href='stylesheets/circle.css' />
+
+
+
+    <!-- Load c3.css -->
+    <link href="stylesheets/c3.css" rel="stylesheet" type="text/css">
+
+    <!-- Load d3.js and c3.js -->
+    <script src="javascripts/d3.v3.min.js" charset="utf-8"></script>
+    <script src="javascripts/c3.min.js"></script>
+
+    <!-- Load papaparse.js -->
+    <script src="javascripts/papaparse.min.js"></script>
+
+
+    <!-- From W3Schools -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Front for Montserrat -->
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+
+
+    <!-- Setting the font for the page -->
+    <style>
+        html,
+        body,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            font-family: 'Montserrat';
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <nav align="right" class="navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header ">
+                <a class="navbar-brand" href="/index.html" style="font-size:250%;" align="right">Boxing Performance Tracker</a>
+    </nav>
+
+
+
+    <!-- Sidebar/menu -->
+    <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar">
+        <br>
+        <div class="w3-container w3-row">
+            <div class="w3-col s4">
+                <img src="/images/icon.png" class="w3-circle w3-margin-right" style="width:80%">
+            </div>
+            <div class="w3-col s8 w3-bar">
+                <span>Welcome to
+                    <strong>BPT</strong>
+                </span>
+                <br>
+                <a href="/index.html" class="w3-bar-item w3-button w3-xlarge">
+                    <i class="fa fa-dashboard"></i>
+                </a>
+                <a href="/Versus Page.html" class="w3-bar-item w3-button w3-xlarge">
+                    <i class="fa fa-cloud-upload"></i>
+                </a>
+                <a href="/About.html" class="w3-bar-item w3-button w3-xlarge">
+                    <i class="fa fa-info"></i>
+                </a>
+            </div>
+        </div>
+        <hr>
+        <div class="w3-container">
+            <h5 href="/index.html">MENU</h5>
+        </div>
+        <div class="w3-bar-block">
+            <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu">
+                <i class="fa fa-remove fa-fw"></i> Close Menu</a>
+            <a href="/index.html" class="w3-bar-item w3-button w3-padding w3-blue">
+                <i class="fa fa-dashboard fa-fw"></i> Overview</a>
+            <a href="/Graph.html" class="w3-bar-item w3-button w3-padding">
+                <i class="fa fa-line-chart"></i> Graphs</a>
+            <a href="/Versus Page.html" class="w3-bar-item w3-button w3-padding">
+                <i class="fa fa-users"></i> Versus</a>
+            <a href="/About.html" class="w3-bar-item w3-button w3-padding">
+                <i class="fa fa-info fa-fw"></i> About</a>
+            <a href="/upload.html" class="w3-bar-item w3-button w3-padding">
+                <i class="fa fa-cloud-upload fa-fw"></i> Upload</a>
+        </div>
+    </nav>
+
+
+
+    <div class="w3-main" style="margin-left:300px;margin-top:43px;">
+    
+        <!-- Header -->
+        <header class="w3-container" style="padding-top:22px">
+            <h5>
+                <b>
+                    <i class="fa fa-dashboard"></i> My Dashboard - Upload</b>
+            </h5>
+        </header>
+
+
+<!-- UPLOAD BUTTON -->
+    <label class="control-label">Select Files to Upload:</label>
+    <span class="btn btn-default btn-file">
+        <input type="file" name="File Upload" id="txtFileUpload" accept=".csv" runat="server" multiple>
+    </span>
+    
+    <!-- <input type="file" name="File Upload" id="txtFileUpload" accept=".csv" /> -->
+    
+    <!-- <script type="text/javascript">
+        Papa.parse(file, {
+                complete: function (results) {
+                    console.log("Finished:", results.data);
+                }
+            });
+    </script> -->
+
+
+
+
+
+        <script src="javascripts/create-graph.js"></script>
+
+</body>
+
+</html>
