@@ -54,7 +54,7 @@ function createGraph(data, chartDivName) {
 					 item[15] + item[16] + item[17] + item[18] ;}), 
 				     
 	    tick: {	multiline: false, culling: { max: 5 } } } },
-		zoom: { enabled: true },
+		// zoom: { enabled: false },
 		 point: {
 			 show: false
 		 },
@@ -222,6 +222,7 @@ function getFirstAndLastDateTime(date) {
 //Call the Functions
 
 parseData(createGraph, "../data/BTT1.csv", "", findPunchesInGraph);
+//parseData(createGraph, "../data/L.csv", "", findPunchesInGraph);
 //parseData(createGraph, "../data/BTT2.csv", "2", findPunchesInGraph);
 //parseData(createGraph, "../data/BTT1.csv", "", findPunchesInGraph);
 
