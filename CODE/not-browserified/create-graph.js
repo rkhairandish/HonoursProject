@@ -40,7 +40,7 @@ function createGraph(data, chartDivName) {
 		size: {
 			width: 980},
 	    data: {
-			columns: [ yLabel ] }, 
+			columns: [yLabel] }, 
 		 axis: {
 			 x: {
 				//  array map to get Time from Date&Time
@@ -57,8 +57,7 @@ function createGraph(data, chartDivName) {
 		 },
 		legend: { position: 'right' }
 	});
-	var display = getFirstAndLastDateTime(date);
-	
+	var display = getFirstAndLastDateTime(date);	
 }
 
 
@@ -210,8 +209,7 @@ function getFirstAndLastDateTime(date) {
 	document.getElementById("Duration").innerHTML = 
 		lengthOfSession[0] + " Hr - " + 
 		lengthOfSession[1] + " Min - " +
-		lengthOfSession[2] + " Sec - " +
-		lengthOfSession[3] + " Ms" ;
+		lengthOfSession[2] + " Sec " ;
 
 	// var start = splitStartTime[0];
 	// var end = splitEndTime[1];
