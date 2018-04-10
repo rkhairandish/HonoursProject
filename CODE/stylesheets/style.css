@@ -233,12 +233,6 @@ _:-ms-input-placeholder, :root .demo-graph {
 }
 
 p.ex1 {
-    border: 0.5px solid rgb(0, 81, 255);; 
+    border: 0.5px solid rgb(255, 255, 255);; 
     padding: 10px;
 }
-
-p.ex2 {
-    border: 0.5px solid rgb(255, 0, 0); 
-    padding: 10px;
-}
-
