@@ -95,7 +95,7 @@
         <div class="w3-bar-block">
             <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu">
                 <i class="fa fa-remove fa-fw"></i> Close Menu</a>
-            <a href="/index.html" class="w3-bar-item w3-button w3-padding w3-blue">
+            <a href="/index.html" class="w3-bar-item w3-button w3-padding ">
                 <i class="fa fa-dashboard fa-fw"></i> Overview</a>
             <a href="/Graph.html" class="w3-bar-item w3-button w3-padding">
                 <i class="fa fa-line-chart"></i> Graphs</a>
@@ -103,9 +103,10 @@
                 <i class="fa fa-users"></i> Versus</a>
             <a href="/About.html" class="w3-bar-item w3-button w3-padding">
                 <i class="fa fa-info fa-fw"></i> About</a>
-            <a href="/upload.html" class="w3-bar-item w3-button w3-padding">
+            <a href="/upload.html" class="w3-bar-item w3-button w3-padding w3-blue">
                 <i class="fa fa-cloud-upload fa-fw"></i> Upload</a>
         </div>
+                <hr>
     </nav>
 
 
@@ -120,24 +121,76 @@
             </h5>
         </header>
 
+            <div class="w3-row-padding w3-margin-bottom">
+            
+                <!-- Duration Card -->
+                <div class="w3-quarter">
+                    <div class="w3-container w3-red w3-padding-16">
+                        <div class="w3-left">
+                            <i class="fa fa-hourglass-2 w3-xxxlarge"></i>
+                        </div>
+                        <h4 align="right">Duration</h4>
+            
+                        <br>
+                        <br>
+                        <div class="Date/Time" align="left" id="Duration"></div>
+            
+                    </div>
+                </div>
+            
+            
+                <!-- Time Card -->
+                <div class="w3-quarter">
+                    <div class="w3-container w3-blue w3-padding-16">
+                        <div class="w3-left">
+                            <i class="fa fa-clock-o w3-xxxlarge"></i>
+                        </div>
+                        <h4 align="right">Time</h4>
+                        <br>
+                        <div style="font-size:105%;" align="right" id="Time"></div>
+                    </div>
+                </div>
+            
+            
+                <!-- Date Card -->
+                <div class="w3-quarter">
+                    <div class="w3-container w3-teal w3-padding-16">
+                        <div class="w3-left">
+                            <i class="fa fa-calendar w3-xxxlarge"></i>
+                        </div>
+                        <h4 align="right">Date</h4>
+                        <br>
+                        <div style="font-size:200%;" align="center" id="DisplayDate"></div>
+            
+                    </div>
+                </div>
+            
+            
+                <!-- Instructions Card -->
+                <div class="w3-quarter">
+                    <div class="w3-container w3-orange w3-text-white w3-padding-16">
+                        <div class="w3-left">
+                            <i class="fa fa-users w3-xxxlarge"></i>
+                        </div>
+                        <div class="w3-right">
+                            <h4>Instructions</h4>
+                        </div>
+                        <div class="w3-clear"></div>
+                        <br>
+                        <h5 align="center">
+                            <a href="/About.html"> Software/Device & Boxing</a>
+                        </h5>
+                    </div>
+                </div>
+            </div>
+
+
 
 <!-- UPLOAD BUTTON -->
     <label class="control-label">Select Files to Upload:</label>
     <span class="btn btn-default btn-file">
-        <input type="file" name="File Upload" id="txtFileUpload" accept=".csv" runat="server" multiple>
+        <input type="file" name="File Upload" id="txtFileUpload" accept=".csv" >
     </span>
-    
-    <!-- <input type="file" name="File Upload" id="txtFileUpload" accept=".csv" /> -->
-    
-    <!-- <script type="text/javascript">
-        Papa.parse(file, {
-                complete: function (results) {
-                    console.log("Finished:", results.data);
-                }
-            });
-    </script> -->
-
-
 
 
 

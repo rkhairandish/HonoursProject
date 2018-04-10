@@ -27,6 +27,33 @@ function parseData(createGraph, filename, chartDivName, findPunchesInGraph) {
 
 
 
+// document.getElementById('txtFileUpload').addEventListener('change', upload, false);
+
+// function upload(evt) {
+
+// 	var uploadedData = null;
+// 	var uploadedFile = evt.target.files[0];
+// 	var reader = new FileReader();
+// 	reader.readAsText(uploadedFile);
+// 	reader.onload = function (event) {
+// 		var csvData = event.target.result;
+
+// 		var uploadedData = Papa.parse(csvData, { header: true });
+
+// 		console.log("this is the data" + uploadedData);
+
+// 	};
+// 	reader.onerror = function () {
+// 		alert('Unable to read ' + uploadedFile.fileName);
+// 	};
+
+// }
+
+
+
+
+
+
 // Function to Create the Graph 
 function createGraph(data, chartDivName) {
 	 yLabel = ["Acceleration"];
@@ -62,6 +89,8 @@ function createGraph(data, chartDivName) {
 	});
 	var display = getFirstAndLastDateTime(date);	
 }
+
+
 
 
 
