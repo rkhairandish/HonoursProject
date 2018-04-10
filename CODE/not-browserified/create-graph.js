@@ -43,6 +43,8 @@ function createGraph(data, chartDivName) {
 			columns: [yLabel] }, 
 		 axis: {
 			 x: {
+
+
 				//  array map to get Time from Date&Time
 				 type: 'category', categories: date.map((item) => { return item[11] + 
 					 item[12] + 
@@ -196,7 +198,6 @@ function getFirstAndLastDateTime(date) {
 			}
 
 
-
 	//Date
 		var splicedstartSessionTimestamp = startSessionTimestamp.slice(0,1);
 	    document.getElementById("DisplayDate").innerHTML = splicedstartSessionTimestamp;
@@ -211,31 +212,8 @@ function getFirstAndLastDateTime(date) {
 		lengthOfSession[1] + " Min - " +
 		lengthOfSession[2] + " Sec " ;
 
-	// var start = splitStartTime[0];
-	// var end = splitEndTime[1];
-	//  document.getElementById("diff").innerHTML = diff(start, end);
-
 	return dateTimeObj;
 }
-
-
-
-// function diff(start, end) {
-
-// 	start = start.split(":");
-// 	end = end.split(":");
-// 	var startDate = new Date(0, 0, 0, start[0], start[1], 0);
-// 	var endDate = new Date(0, 0, 0, end[0], end[1], 0);
-// 	var diff = endDate.getTime() - startDate.getTime();
-// 	var hours = Math.floor(diff / 1000 / 60 / 60);
-// 	diff -= hours * (1000 * 60 * 60);
-// 	var minutes = Math.floor(diff / 1000 / 60);
-// 	diff -= minutes * (1000 * 60);
-// 	var seconds = Math.floor(diff / 1000);
-
-// 	return (hours <= 9 ? "0" : "") + hours + ":" + (minutes <= 9 ? "0" : "") + minutes + ":" + (seconds <= 9 ? "0" : "") +  seconds;
-// } 
-
 
 
 
@@ -243,5 +221,5 @@ function getFirstAndLastDateTime(date) {
 //Call the Functions
 
 parseData(createGraph, "../data/BTT1.csv", "", findPunchesInGraph);
-parseData(createGraph, "../data/BTT2.csv", "2", findPunchesInGraph);
+//parseData(createGraph, "../data/BTT2.csv", "2", findPunchesInGraph);
 //parseData(createGraph, "../data/BTT1.csv", "", findPunchesInGraph);
