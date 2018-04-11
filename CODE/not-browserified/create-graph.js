@@ -23,15 +23,13 @@ function parseData(createGraph, filename, chartDivName, findPunchesInGraph) {
 }
 
 
-
-
-
+//Upload 
 // document.getElementById('txtFileUpload').addEventListener('change', upload, false);
 
-// function upload(evt) {
+// function upload(data) {
 
 // 	var uploadedData = null;
-// 	var uploadedFile = evt.target.files[0];
+// 	var uploadedFile = data.target.files[0];
 // 	var reader = new FileReader();
 // 	reader.readAsText(uploadedFile);
 // 	reader.onload = function (event) {
@@ -39,13 +37,11 @@ function parseData(createGraph, filename, chartDivName, findPunchesInGraph) {
 
 // 		var uploadedData = Papa.parse(csvData, { header: true });
 
-// 		console.log("this is the data" + uploadedData);
-
+// 		console.log("this is the uploaded data" + uploadedData);
 // 	};
 // 	reader.onerror = function () {
 // 		alert('Unable to read ' + uploadedFile.fileName);
 // 	};
-
 // }
 
 
@@ -56,7 +52,7 @@ function parseData(createGraph, filename, chartDivName, findPunchesInGraph) {
 // Function to Create the Graph 
 function createGraph(data, chartDivName) {
 	 yLabel = ["Acceleration"];
-	var date = [ ];
+	 date = [ ];
 
 				for (var i = 1; i < data.length; i++) {
 					date.push(data[i][0]);
@@ -257,5 +253,5 @@ function getFirstAndLastDateTime(date) {
 
 parseData(createGraph, "../data/BTT1.csv", "", findPunchesInGraph);
 //parseData(createGraph, "../data/L.csv", "", findPunchesInGraph);
-//parseData(createGraph, "../data/BTT2.csv", "2", findPunchesInGraph);
+//parseData(createGraph, "../data/L.csv", "2", findPunchesInGraph);
 //parseData(createGraph, "../data/BTT1.csv", "", findPunchesInGraph);
