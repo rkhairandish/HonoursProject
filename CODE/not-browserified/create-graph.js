@@ -1,6 +1,7 @@
 //Global Variables
 var date = [];
 var yLabel = ["Acceleration"];
+var divValue = 0;
 
 
 
@@ -23,26 +24,41 @@ function parseData(createGraph, filename, chartDivName, findPunchesInGraph) {
 }
 
 
-//Upload 
-// document.getElementById('txtFileUpload').addEventListener('change', upload, false);
+// //Upload 
+document.getElementById('txtFileUpload').addEventListener('change', upload, false);
 
-// function upload(data) {
+function upload(data) {
 
-// 	var uploadedData = null;
-// 	var uploadedFile = data.target.files[0];
-// 	var reader = new FileReader();
-// 	reader.readAsText(uploadedFile);
-// 	reader.onload = function (event) {
-// 		var csvData = event.target.result;
+	var uploadedData = null;
+	var uploadedFile = data.target.files[0];
+	var reader = new FileReader();
 
-// 		var uploadedData = Papa.parse(csvData, { header: true });
+	div = document.createElement('div');
+	div.className = divValue;
+	document.getElementsByTagName('body')[0].appendChild(div);
 
-// 		console.log("this is the uploaded data" + uploadedData);
-// 	};
-// 	reader.onerror = function () {
-// 		alert('Unable to read ' + uploadedFile.fileName);
-// 	};
-// }
+	
+	reader.readAsText(uploadedFile);
+	reader.onload = function (event) {
+	
+		var csvData = event.target.result;
+
+		var uploadedData = Papa.parse(csvData, { header: true });
+
+
+		console.log("This is the uploaded data: " + Object.keys(uploadedData.data[1]));
+
+		
+		parseData(createGraph, " ", divValue.toString(), findPunchesInGraph);
+		
+			divValue++; 
+
+		console.log("divValue: " );
+	};
+	reader.onerror = function () {
+		alert('Unable to read ' + uploadedFile.fileName);
+	};
+}
 
 
 
@@ -82,7 +98,7 @@ function createGraph(data, chartDivName) {
 		 },
 		legend: { position: 'right' }
 	});
-	var display = getFirstAndLastDateTime(date);	
+	var display = getFirstAndLastDateTime(date); 
 }
 
 
@@ -227,15 +243,21 @@ function getFirstAndLastDateTime(date) {
 		var splicedstartSessionTimestamp = startSessionTimestamp.slice(0,1);
 	    document.getElementById("DisplayDate").innerHTML = splicedstartSessionTimestamp;
 
-	// Time
+	//Time
 	document.getElementById("Time").innerHTML = "Start: " + startSessionTimestamp[1] + "<br>" + "End: " +
 		endSessionTimestamp[1] + "<br>";
 	
-	// Duration
+	// Duration 
 	document.getElementById("Duration").innerHTML = 
 		lengthOfSession[0] + " Hr - " + 
 		lengthOfSession[1] + " Min - " +
 		lengthOfSession[2] + " Sec " ;
+
+	// var durationLength = new Date(lengthOfSession).getTime();
+
+
+	// console.log("durationLength" + durationLength);
+
 
 	return dateTimeObj;
 }
@@ -251,7 +273,6 @@ function getFirstAndLastDateTime(date) {
 
 //Call the Functions
 
-parseData(createGraph, "../data/BTT1.csv", "", findPunchesInGraph);
-//parseData(createGraph, "../data/L.csv", "", findPunchesInGraph);
-//parseData(createGraph, "../data/L.csv", "2", findPunchesInGraph);
 //parseData(createGraph, "../data/BTT1.csv", "", findPunchesInGraph);
+//parseData(createGraph, "../data/L.csv", "2", findPunchesInGraph);
+//parseData(createGraph, "../data/BTT2.csv", "2", findPunchesInGraph);
