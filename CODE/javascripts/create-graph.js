@@ -17,7 +17,19 @@ function parseData(createGraph, filename, chartDivName, findPunchesInGraph) {
 	Papa.parse(filename, {
 		worker: true,
 		download: true,
-		complete: function(results) {
+		complete: function (results) {
+			createGraph(results.data, chartDivName);
+			findPunchesInGraph(results.data, chartDivName);
+		}
+	});
+}
+
+//Parse the data to create a graph with the data
+function parseDataTmp(filename, chartDivName) {
+	Papa.parse(filename, {
+		worker: true,
+		download: true,
+		complete: function (results) {
 			createGraph(results.data, chartDivName);
 			findPunchesInGraph(results.data, chartDivName);
 		}
@@ -25,11 +37,10 @@ function parseData(createGraph, filename, chartDivName, findPunchesInGraph) {
 }
 
 
-// //Upload 
+	// //Upload 
 document.getElementById('txtFileUpload').addEventListener('change', upload, false);
 
 function upload(data) {
-
 	var uploadedData = null;
 	var uploadedFile = data.target.files[0];
 	var reader = new FileReader();
@@ -37,7 +48,6 @@ function upload(data) {
 	div = document.createElement('div');
 	div.className = divValue;
 	document.getElementsByTagName('body')[0].appendChild(div);
-
 	
 	reader.readAsText(uploadedFile);
 	reader.onload = function (event) {
@@ -46,12 +56,9 @@ function upload(data) {
 
 		var uploadedData = Papa.parse(csvData, { header: true });
 
-
 		console.log("This is the uploaded data: " + Object.keys(uploadedData.data[1]));
 
-		
 		parseData(createGraph, " ", divValue.toString(), findPunchesInGraph);
-		
 			divValue++; 
 
 		console.log("divValue: " );
@@ -274,7 +281,7 @@ function getFirstAndLastDateTime(date) {
 
 //Call the Functions
 
-//parseData(createGraph, "../data/BTT1.csv", "", findPunchesInGraph);
+//parseDataTmp("../data/BTT1.csv", "");
 //parseData(createGraph, "../data/L.csv", "2", findPunchesInGraph);
 //parseData(createGraph, "../data/BTT2.csv", "2", findPunchesInGraph);
 
