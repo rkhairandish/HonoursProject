@@ -39,7 +39,7 @@ function parseDataTmp(filename, chartDivName) {
 
 
 
-//handleFileSelect Code from https://www.html5rocks.com/en/tutorials/file/dndfiles/
+//Some Code in this function is from https://www.html5rocks.com/en/tutorials/file/dndfiles/
 function handleFileSelect(evt) {
 	var files = evt.target.files; // FileList object
 
@@ -49,7 +49,7 @@ function handleFileSelect(evt) {
 	document.getElementsByTagName('body')[0].appendChild(div);
 
 
-	// files is a FileList of File objects. List some properties.
+	// files is a FileList of File objects. List some properties 
 	var output = [];
 	for (var i = 0, f; f = files[i]; i++) {
 		output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
@@ -57,6 +57,12 @@ function handleFileSelect(evt) {
 			f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
 			'</li>');
 	}
+
+	//The File Name
+	var filenameTest = output[1];
+	console.log("Filename Test: " + filenameTest);
+
+
 	document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
 
 	parseData(createGraph, output.name, divValue.toString(), findPunchesInGraph);
