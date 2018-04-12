@@ -36,36 +36,35 @@ function parseDataTmp(filename, chartDivName) {
 }
 
 
-	// //Upload 
-document.getElementById('txtFileUpload').addEventListener('change', upload, false);
 
-function upload(data) {
-	var uploadedData = null;
-	var uploadedFile = data.target.files[0];
-	var reader = new FileReader();
+
+
+//handleFileSelect Code from https://www.html5rocks.com/en/tutorials/file/dndfiles/
+function handleFileSelect(evt) {
+	var files = evt.target.files; // FileList object
+
 
 	div = document.createElement('div');
 	div.className = divValue;
 	document.getElementsByTagName('body')[0].appendChild(div);
-	
-	reader.readAsText(uploadedFile);
-	reader.onload = function (event) {
-	
-		var csvData = event.target.result;
 
-		var uploadedData = Papa.parse(csvData, { header: true });
 
-		console.log("This is the uploaded data: " + Object.keys(uploadedData.data[1]));
+	// files is a FileList of File objects. List some properties.
+	var output = [];
+	for (var i = 0, f; f = files[i]; i++) {
+		output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
+			f.size, ' bytes, last modified: ',
+			f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
+			'</li>');
+	}
+	document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
 
-		parseData(createGraph, " ", divValue.toString(), findPunchesInGraph);
-			divValue++; 
-
-		console.log("divValue: " );
-	};
-	reader.onerror = function () {
-		alert('Unable to read ' + uploadedFile.fileName);
-	};
+	parseData(createGraph, output.name, divValue.toString(), findPunchesInGraph);
 }
+
+document.getElementById('files').addEventListener('change', handleFileSelect, false);
+
+
 
 
 
@@ -279,7 +278,6 @@ function getFirstAndLastDateTime(date) {
 
 
 //Call the Functions
-
 //parseDataTmp("../data/BTT1.csv", "");
-//parseData(createGraph, "../data/L.csv", "2", findPunchesInGraph);
+//parseData(createGraph, "../data/BTT1.csv", "", findPunchesInGraph);
 //parseData(createGraph, "../data/BTT2.csv", "2", findPunchesInGraph);

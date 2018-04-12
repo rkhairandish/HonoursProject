@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-
+    
+    <head>
+        
+        <meta charset="UTF-8">
     <!-- ICON Free for personal use From https://www.iconfinder.com/icons/22976/box_boxer_boxing_gloves_sport_sports_icon#size=256  -->
     <link rel="icon" href="/images/icon.png">
 
@@ -30,7 +31,6 @@
 
 
     <!-- From W3Schools -->
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
@@ -187,13 +187,18 @@
 
 
 <!-- UPLOAD BUTTON -->
-    <label class="control-label">Select Files to Upload:</label>
+    <!-- <label class="control-label">Select Files to Upload:</label>
     <span class="btn btn-default btn-file">
-        <input type="file" name="File Upload" id="txtFileUpload" accept=".csv" >
+        <input type="file" name="File Upload" id="txtFileUpload" accept=".csv" multiple >
     </span>
+     -->
 
-        <script src="javascripts/create-graph.js"></script>
 
+    <input type="file" id="files" name="files[]" multiple />
+    <output id="list"></output>
+    
+    
+            <script src="javascripts/create-graph.js"></script>
 </body>
 
 </html>
