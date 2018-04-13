@@ -59,34 +59,38 @@ function parseData(createGraph, filename, chartDivName, findPunchesInGraph) {
 
 
 	// //Upload 
-// document.getElementById('txtFileUpload').addEventListener('change', upload, false);
+document.getElementById('txtFileUpload').addEventListener('change', upload, false);
 
-// function upload(data) {
-// 	var uploadedData = null;
-// 	var uploadedFile = data.target.files[0];
-// 	var reader = new FileReader();
+function upload(data) {
+	var uploadedData = null;
+	var uploadedFile = data.target.files[0];
+	var reader = new FileReader();
 
-// 	div = document.createElement('div');
-// 	div.className = divValue;
-// 	document.getElementsByTagName('body')[0].appendChild(div);
+	div = document.createElement('div');
+	div.className = divValue;
+	document.getElementsByTagName('body')[0].appendChild(div);
 	
-// 	reader.readAsText(uploadedFile);
-// 	reader.onload = function (event) {
+	reader.readAsText(uploadedFile);
+	reader.onload = function (event) {
 	
-// 		var csvData = event.target.result;
+		var csvData = event.target.result;
 
-// 		var uploadedData = Papa.parse(csvData, { header: true });
 
-// 		console.log("This is the uploaded data: " + Object.keys(uploadedData.data[1]));
+		//This gets the data!!!
+		console.log("result", this.result);
 
-// 		parseData(createGraph, " ", divValue.toString(), findPunchesInGraph);
-// 			divValue++; 
+		var uploadedData = Papa.parse(csvData, { header: true });
 
-// 	};
-// 	reader.onerror = function () {
-// 		alert('Unable to read ' + uploadedFile.fileName);
-// 	};
-// }
+	//	console.log("This is the uploaded data: " + Object.keys(uploadedData.data[1]));
+
+		parseData(createGraph, " ", divValue.toString(), findPunchesInGraph);
+			divValue++; 
+
+	};
+	reader.onerror = function () {
+		alert('Unable to read ' + uploadedFile.fileName);
+	};
+}
 
 
 
