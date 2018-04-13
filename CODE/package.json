@@ -16,7 +16,6 @@
     "grunt-exec": "^3.0.0"
   },
   "dependencies": {
-    "d3-peaks": "0.0.1",
     "file-system": "^2.2.2"
   }
 }

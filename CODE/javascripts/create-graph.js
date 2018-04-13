@@ -24,57 +24,69 @@ function parseData(createGraph, filename, chartDivName, findPunchesInGraph) {
 	});
 }
 
-//Parse the data to create a graph with the data
-function parseDataTmp(filename, chartDivName) {
-	Papa.parse(filename, {
-		worker: true,
-		download: true,
-		complete: function (results) {
-			createGraph(results.data, chartDivName);
-			findPunchesInGraph(results.data, chartDivName);
-		}
-	});
-}
 
 
 
 
 
 //Some Code in this function is from https://www.html5rocks.com/en/tutorials/file/dndfiles/
-function handleFileSelect(evt) {
-	var files = evt.target.files; // FileList object
+// function handleFileSelect(evt) {
+// 	var files = evt.target.files; // FileList object
+	
 
 
-	div = document.createElement('div');
-	div.className = divValue;
-	document.getElementsByTagName('body')[0].appendChild(div);
+// 	div = document.createElement('div');
+// 	div.className = divValue;
+// 	document.getElementsByTagName('body')[0].appendChild(div);
+
+// 	// files is a FileList of File objects. List some properties 
+// 	var output = [];
+// 	for (var i = 0, f; f = files[i]; i++) {
+// 		output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
+// 			f.size, ' bytes, last modified: ',
+// 			f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
+// 			'</li>');
+// 			console.log("f",  );
+// 		}
 
 
-	// files is a FileList of File objects. List some properties 
-	var output = [];
-	for (var i = 0, f; f = files[i]; i++) {
-		output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
-			f.size, ' bytes, last modified: ',
-			f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
-			'</li>');
-	}
+// 	document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
 
-	//The File Name
-	var filenameTest = output[1];
-	console.log("Filename Test: " + filenameTest);
-
-
-	document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
-
-	parseData(createGraph, output.name, divValue.toString(), findPunchesInGraph);
-}
-
-document.getElementById('files').addEventListener('change', handleFileSelect, false);
+// 	createGraph(f, divValue.toString());
+// }
+// document.getElementById('files').addEventListener('change', handleFileSelect, false);
 
 
 
+	// //Upload 
+// document.getElementById('txtFileUpload').addEventListener('change', upload, false);
 
+// function upload(data) {
+// 	var uploadedData = null;
+// 	var uploadedFile = data.target.files[0];
+// 	var reader = new FileReader();
 
+// 	div = document.createElement('div');
+// 	div.className = divValue;
+// 	document.getElementsByTagName('body')[0].appendChild(div);
+	
+// 	reader.readAsText(uploadedFile);
+// 	reader.onload = function (event) {
+	
+// 		var csvData = event.target.result;
+
+// 		var uploadedData = Papa.parse(csvData, { header: true });
+
+// 		console.log("This is the uploaded data: " + Object.keys(uploadedData.data[1]));
+
+// 		parseData(createGraph, " ", divValue.toString(), findPunchesInGraph);
+// 			divValue++; 
+
+// 	};
+// 	reader.onerror = function () {
+// 		alert('Unable to read ' + uploadedFile.fileName);
+// 	};
+// }
 
 
 
