@@ -25,39 +25,6 @@ function parseData(createGraph, filename, chartDivName, findPunchesInGraph) {
 }
 
 
-
-
-
-
-//Some Code in this function is from https://www.html5rocks.com/en/tutorials/file/dndfiles/
-// function handleFileSelect(evt) {
-// 	var files = evt.target.files; // FileList object
-	
-
-
-// 	div = document.createElement('div');
-// 	div.className = divValue;
-// 	document.getElementsByTagName('body')[0].appendChild(div);
-
-// 	// files is a FileList of File objects. List some properties 
-// 	var output = [];
-// 	for (var i = 0, f; f = files[i]; i++) {
-// 		output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
-// 			f.size, ' bytes, last modified: ',
-// 			f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
-// 			'</li>');
-// 			console.log("f",  );
-// 		}
-
-
-// 	document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
-
-// 	createGraph(f, divValue.toString());
-// }
-// document.getElementById('files').addEventListener('change', handleFileSelect, false);
-
-
-
 	// //Upload 
 document.getElementById('txtFileUpload').addEventListener('change', upload, false);
 
@@ -79,7 +46,6 @@ function upload(data) {
 		
 		var papaParseData = Papa.parse(csvData);
 		
-		console.log(papaParseData); 
 		//Prase using JSON.Parse
 		// var i = JSON.parse("[" + csvData + "]");
 		
@@ -87,7 +53,6 @@ function upload(data) {
 		// 	text += csvData[i] + "<br>";
 		// }
 
-		// console.log("JSON.Parse: " + i);
 
 
 
@@ -95,16 +60,12 @@ function upload(data) {
 
 		var lines = this.result.split('\n');
 		for (var line = 0; line < lines.length; line++) {
-		}
-
-		
-		// console.log(this.result);
+		}		
 		
 		
-		
-		//	parseData(createGraph, " ", divValue.toString(), findPunchesInGraph);
+		//parseData(createGraph, " ", divValue.toString(), findPunchesInGraph);
 		createGraph(papaParseData, divValue.toString());
-		//divValue++; 
+		divValue++; 
 		
 		//console.log("uploadedData: ", uploadedData);
 
@@ -122,6 +83,7 @@ function createGraph(data, chartDivName) {
 	 yLabel = ["Acceleration"];
 	 date = [ ];
 
+	 //PapaPased into array with 3 sub-elements [0] = Date, [1] = X Axis and [2] = Y Axis 
 	 for (var i = 1; i < data.length; i++) {
 		 date.push(data[i][0]);
 		 yLabel.push(data[i][2]);
@@ -152,10 +114,7 @@ function createGraph(data, chartDivName) {
 				},
 				legend: { position: 'right' }
 		});
-
-	//console.log(date);
-
-	var display = getFirstAndLastDateTime(date); 
+	var display = getFirstAndLastDateTime(data); 
 }
 
 
@@ -259,29 +218,91 @@ for (i = 0; i < elements.length; i++) {
 
 
 
+			//HARD CODED 
+// function getFirstAndLastDateTime(date) {
+
+// 	//Function to Get The First and Last Date/Time information from the data
+// 	var elements = document.getElementsByClassName("Date/Time");
+
+// 	var startSessionTimestamp = date[1];
+
+	
+// 	var endSessionTimestamp = date[date.length - 1];
+	
+	
+// 	var splitStartTime = startSessionTimestamp;
+// 	var splitEndTime = endSessionTimestamp;
+	
+// 	startSessionTimestamp = startSessionTimestamp.split(" ");
+// 	endSessionTimestamp = endSessionTimestamp.split(" ");
+	
+	
+	
+// 	splitStartTime = startSessionTimestamp[1].split(":");
+// 	splitEndTime = endSessionTimestamp[1].split(":");
+	
+// 	console.log(splitStartTime);
+	
+// 	var dateTimeObj = {
+// 		firstDateTime: startSessionTimestamp,
+// 		lastDateTime: endSessionTimestamp,
+// 	}
+
+// 	//Gets Duration of the Session by taking away the start of session time with the end of session time
+// 	var lengthOfSession = [];
+
+// 	for (var i = 0; i < splitStartTime.length; i++) {
+// 		lengthOfSession.push(Math.abs(splitStartTime[i] - splitEndTime[i]));
+// 	}
+
+
+// 	//Date
+// 	var splicedstartSessionTimestamp = startSessionTimestamp.slice(0, 1);
+// 	document.getElementById("DisplayDate").innerHTML = splicedstartSessionTimestamp;
+
+// 	//Time
+// 	document.getElementById("Time").innerHTML = "Start: " + startSessionTimestamp[1] + "<br>" + "End: " +
+// 		endSessionTimestamp[1] + "<br>";
+
+// 	// Duration 
+// 	document.getElementById("Duration").innerHTML =
+// 		lengthOfSession[0] + " Hr - " +
+// 		lengthOfSession[1] + " Min - " +
+// 		lengthOfSession[2] + " Sec ";
+
+// 	// var durationLength = new Date(lengthOfSession).getTime();
+
+
+// 	// console.log("durationLength" + durationLength);
+
+
+// 	return dateTimeObj;
+// }
 
 
 
 
 
-
-
+//FOR UPLOAD 
 function getFirstAndLastDateTime(date) {
+	
+	console.log(date[1]);
 	
 	//Function to Get The First and Last Date/Time information from the data
 	var elements = document.getElementsByClassName("Date/Time");
 
-	var startSessionTimestamp = date[1];
-
-	//console.log(date[1]);
 	
-	var endSessionTimestamp = date[date.length - 1];
+	var startSessionTimestamp = date.data[1];
+	
+	var endSessionTimestamp = date.data[1].length - 1;
+	
 
 	var splitStartTime = startSessionTimestamp;
 	var splitEndTime = endSessionTimestamp;
 
-			startSessionTimestamp = startSessionTimestamp.split(" ");
-			endSessionTimestamp = endSessionTimestamp.split(" ");
+
+	startSessionTimestamp = startSessionTimestamp.split(" ");
+	endSessionTimestamp = endSessionTimestamp.split(" ");
 	
 			splitStartTime = startSessionTimestamp[1].split(":");
 			splitEndTime = endSessionTimestamp[1].split(":"); 
@@ -313,7 +334,7 @@ function getFirstAndLastDateTime(date) {
 		lengthOfSession[1] + " Min - " +
 		lengthOfSession[2] + " Sec " ;
 
-	// var durationLength = new Date(lengthOfSession).getTime();
+	 var durationLength = new Date(lengthOfSession).getTime();
 
 
 	// console.log("durationLength" + durationLength);
