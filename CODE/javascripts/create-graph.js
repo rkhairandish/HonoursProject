@@ -36,40 +36,23 @@ function upload(data) {
 	div = document.createElement('div');
 	div.className = divValue;
 	document.getElementsByTagName('body')[0].appendChild(div);
+
 	
 	reader.readAsText(uploadedFile);
-
 	reader.onload = function (event) {
 		
 		var csvData = event.target.result;
-		
-		
+	
 		var papaParseData = Papa.parse(csvData);
-		
-		//Prase using JSON.Parse
-		// var i = JSON.parse("[" + csvData + "]");
-		
-		// for (i = 0; i < csvData.JSON.parse("[" + "," + "]"); i++) {
-		// 	text += csvData[i] + "<br>";
-		// }
-
-
-
-
-
 
 		var lines = this.result.split('\n');
 		for (var line = 0; line < lines.length; line++) {
 		}		
 		
-		
 		//parseData(createGraph, " ", divValue.toString(), findPunchesInGraph);
 		createGraph(papaParseData, divValue.toString());
 		divValue++; 
 		
-		//console.log("uploadedData: ", uploadedData);
-
-
 	};
 	reader.onerror = function () {
 		alert('Unable to read ' + uploadedFile.fileName);
