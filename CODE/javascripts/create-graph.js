@@ -114,7 +114,8 @@ function createGraph(data, chartDivName) {
 				},
 				legend: { position: 'right' }
 		});
-	var display = getFirstAndLastDateTime(data); 
+		// console.log(data.data[1]);
+	getFirstAndLastDateTime(data); 
 }
 
 
@@ -286,27 +287,32 @@ for (i = 0; i < elements.length; i++) {
 //FOR UPLOAD 
 function getFirstAndLastDateTime(date) {
 	
-	console.log(date[1]);
 	
 	//Function to Get The First and Last Date/Time information from the data
 	var elements = document.getElementsByClassName("Date/Time");
-
+	
 	
 	var startSessionTimestamp = date.data[1];
 	
-	var endSessionTimestamp = date.data[1].length - 1;
 	
-
+	
+	
+	var endSessionTimestamp = date.data[date.data.length - 1][0];
+	
+	
 	var splitStartTime = startSessionTimestamp;
 	var splitEndTime = endSessionTimestamp;
+	
+	console.log("End" + endSessionTimestamp);
 
-
-	startSessionTimestamp = startSessionTimestamp.split(" ");
+	startSessionTimestamp = startSessionTimestamp[0].split(" ");
 	endSessionTimestamp = endSessionTimestamp.split(" ");
 	
-			splitStartTime = startSessionTimestamp[1].split(":");
-			splitEndTime = endSessionTimestamp[1].split(":"); 
-
+	console.log("Hello",startSessionTimestamp, "<br>" ,endSessionTimestamp);
+	
+	splitStartTime = startSessionTimestamp[1].split(":");
+	splitEndTime = endSessionTimestamp[1].split(":"); 
+	
 	var dateTimeObj = {
 		firstDateTime: startSessionTimestamp,
 		lastDateTime: endSessionTimestamp,
