@@ -71,20 +71,43 @@ function upload(data) {
 	document.getElementsByTagName('body')[0].appendChild(div);
 	
 	reader.readAsText(uploadedFile);
+
 	reader.onload = function (event) {
-	
+		
 		var csvData = event.target.result;
+		
+		
+		var papaParseData = Papa.parse(csvData);
+		
+		console.log(papaParseData); 
+		//Prase using JSON.Parse
+		// var i = JSON.parse("[" + csvData + "]");
+		
+		// for (i = 0; i < csvData.JSON.parse("[" + "," + "]"); i++) {
+		// 	text += csvData[i] + "<br>";
+		// }
+
+		// console.log("JSON.Parse: " + i);
 
 
-		//This gets the data!!!
-		console.log("result", this.result);
 
-		var uploadedData = Papa.parse(csvData, { header: true });
 
-	//	console.log("This is the uploaded data: " + Object.keys(uploadedData.data[1]));
 
-		parseData(createGraph, " ", divValue.toString(), findPunchesInGraph);
-			divValue++; 
+		var lines = this.result.split('\n');
+		for (var line = 0; line < lines.length; line++) {
+		}
+
+		
+		// console.log(this.result);
+		
+		
+		
+		//	parseData(createGraph, " ", divValue.toString(), findPunchesInGraph);
+		createGraph(papaParseData, divValue.toString());
+		//divValue++; 
+		
+		//console.log("uploadedData: ", uploadedData);
+
 
 	};
 	reader.onerror = function () {
@@ -99,34 +122,39 @@ function createGraph(data, chartDivName) {
 	 yLabel = ["Acceleration"];
 	 date = [ ];
 
-				for (var i = 1; i < data.length; i++) {
-					date.push(data[i][0]);
-					yLabel.push(data[i][2]);
-				}
-	 chart = c3.generate({
-		bindto: "#chart" + chartDivName,
-		size: {
-			width: 980},
-	    data: {
-			columns: [yLabel] }, 
-		 axis: {
-			 x: {
+	 for (var i = 1; i < data.length; i++) {
+		 date.push(data[i][0]);
+		 yLabel.push(data[i][2]);
+		}
+		
+		
+		chart = c3.generate({
+			bindto: "#chart" + chartDivName,
+			size: {
+				width: 980},
+				data: {
+					columns: [yLabel] }, 
+					axis: {
+						x: {
+							
+							
+							//  array map to get Time from Date&Time
+							type: 'category', categories: date.map((item) => { return item[11] + 
+								item[12] + 
+								item[13] + 
+								item[14] + 
+								item[15] + item[16] + item[17] + item[18] ;}), 
+								
+								tick: {	multiline: false, culling: { max: 5 } } } },
+								// zoom: { enabled: false },
+				point: {
+				show: false
+				},
+				legend: { position: 'right' }
+		});
 
+	//console.log(date);
 
-				//  array map to get Time from Date&Time
-				 type: 'category', categories: date.map((item) => { return item[11] + 
-					 item[12] + 
-					 item[13] + 
-					 item[14] + 
-					 item[15] + item[16] + item[17] + item[18] ;}), 
-				     
-	    tick: {	multiline: false, culling: { max: 5 } } } },
-		// zoom: { enabled: false },
-		 point: {
-			 show: false
-		 },
-		legend: { position: 'right' }
-	});
 	var display = getFirstAndLastDateTime(date); 
 }
 
@@ -244,6 +272,9 @@ function getFirstAndLastDateTime(date) {
 	var elements = document.getElementsByClassName("Date/Time");
 
 	var startSessionTimestamp = date[1];
+
+	//console.log(date[1]);
+	
 	var endSessionTimestamp = date[date.length - 1];
 
 	var splitStartTime = startSessionTimestamp;
