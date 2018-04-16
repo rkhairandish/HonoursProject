@@ -105,6 +105,18 @@ function createGraph(data, chartDivName) {
 				legend: { position: 'right' }
 		});
 
+	console.log(chart);
+
+	var toAdd = document.createDocumentFragment();
+
+	div = document.createElement('chart');
+	div.className = divValue;
+	document.getElementsByTagName('body')[0].appendChild(div);
+	document.getElementById("chart").innerHTML = chart;
+
+
+
+
 	findPunchesInGraph(data, chartDivName);
 	getFirstAndLastDateTime(data); 
 }
@@ -188,7 +200,7 @@ function getAvgSpeedOfPunches(data, chartDivName) {
 
 		var toAdd = document.createDocumentFragment();
 
-		div = document.createElement('NumPunches');
+		div = document.createElement('Avg Punches');
 		div.className = divValue;
 		document.getElementsByTagName('body')[0].appendChild(div);
 
