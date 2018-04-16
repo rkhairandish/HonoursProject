@@ -186,7 +186,13 @@ function getAvgSpeedOfPunches(data, chartDivName) {
 			} 
 		} var avg = gAccelerationAmount/numberOfRealPunches;
 
-		document.getElementById("Avg Punches" + chartDivName).innerHTML = avg.toFixed(2);
+		var toAdd = document.createDocumentFragment();
+
+		div = document.createElement('NumPunches');
+		div.className = divValue;
+		document.getElementsByTagName('body')[0].appendChild(div);
+
+		document.getElementById("Avg Punches").innerHTML = avg.toFixed(2);
 	});
 }
 
