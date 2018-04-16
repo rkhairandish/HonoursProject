@@ -48,11 +48,19 @@ function upload(data) {
 		var lines = this.result.split('\n');
 		for (var line = 0; line < lines.length; line++) {
 		}		
+
 		
 		//parseData(createGraph, " ", divValue.toString(), findPunchesInGraph);
-		createGraph(papaParseData, divValue.toString());
 		divValue++; 
 		
+		var divNumber = divValue.toString()
+		
+		createGraph(papaParseData, divNumber);
+		findPunchesInGraph(papaParseData, divNumber);
+
+		console.log("testing: ", divNumber)
+
+
 	};
 	reader.onerror = function () {
 		alert('Unable to read ' + uploadedFile.fileName);
@@ -63,15 +71,15 @@ function upload(data) {
 
 // Function to Create the Graph 
 function createGraph(data, chartDivName) {
-	 yLabel = ["Acceleration"];
+	
+	yLabel = ["Acceleration"];
 	 date = [ ];
 
 	 //PapaPased into array with 3 sub-elements [0] = Date, [1] = X Axis and [2] = Y Axis 
-	 for (var i = 1; i < data.length; i++) {
-		 date.push(data[i][0]);
-		 yLabel.push(data[i][2]);
+	 for (var i = 1; i < data.data.length; i++) {
+		 date.push(data.data[i][0]);
+		 yLabel.push(data.data[i][2]);
 		}
-		
 		
 		chart = c3.generate({
 			bindto: "#chart" + chartDivName,
@@ -97,7 +105,8 @@ function createGraph(data, chartDivName) {
 				},
 				legend: { position: 'right' }
 		});
-		// console.log(data.data[1]);
+
+	findPunchesInGraph(data, chartDivName);
 	getFirstAndLastDateTime(data); 
 }
 
@@ -114,26 +123,38 @@ function createGraph(data, chartDivName) {
 
 function findPunchesInGraph(data, chartDivName) {
 
+
 	//Find Peaks in the Graph
 	var slayer = require('slayer');
 	var arrayData = yLabel;
 
+	
 	slayer({ minPeakDistance: 1, minPeakHeight: 7}).fromArray(arrayData).then(spikes => {
-
-	  
+		
+		
 		//for loop to detect punches ie acceleration above 6 
 		var realPunches = 0;
+		
 		for (var i = 0; i < spikes.length; i++) {
 			if (spikes[i].y > 5) {
 				realPunches++;
 			}
 		}
 
-		document.getElementById("NumPunches" + chartDivName).innerHTML = realPunches;
+		
+		
+		
+		var toAdd = document.createDocumentFragment();
+		
+		div = document.createElement('NumPunches');
+		div.className = divValue;
+		document.getElementsByTagName('body')[0].appendChild(div);
+		
+		document.getElementById("NumPunches" ).innerHTML = realPunches;
 
 		//Calls the function
-		circularGraph(realPunches);
 		getAvgSpeedOfPunches(spikes, chartDivName);
+		circularGraph(realPunches);
 	});
 }
 
@@ -146,6 +167,8 @@ function findPunchesInGraph(data, chartDivName) {
 
 
 function getAvgSpeedOfPunches(data, chartDivName) {
+
+	console.log("testing getAvgSpeedOfPunches: ") 
 
 	//Find Peaks in the Graph
 	var slayer = require('slayer');
@@ -185,7 +208,10 @@ function getAvgSpeedOfPunches(data, chartDivName) {
 function circularGraph(punches) {
 	//Circular Progress Bar to Visually Show number of punches
 	var elements = document.getElementsByClassName("c100 p100");
-	
+
+	console.log("testing circularGraph: ")
+
+	console.log("Work: ",punches);
 
 for (i = 0; i < elements.length; i++) {
 	
@@ -270,6 +296,7 @@ for (i = 0; i < elements.length; i++) {
 //FOR UPLOAD 
 function getFirstAndLastDateTime(date) {
 	
+	console.log("testing getFirstAndLastDateTime: ")
 	
 	//Function to Get The First and Last Date/Time information from the data
 	var elements = document.getElementsByClassName("Date/Time");
@@ -286,12 +313,10 @@ function getFirstAndLastDateTime(date) {
 	var splitStartTime = startSessionTimestamp;
 	var splitEndTime = endSessionTimestamp;
 	
-	console.log("End" + endSessionTimestamp);
 
 	startSessionTimestamp = startSessionTimestamp[0].split(" ");
 	endSessionTimestamp = endSessionTimestamp.split(" ");
 	
-	console.log("Hello",startSessionTimestamp, "<br>" ,endSessionTimestamp);
 	
 	splitStartTime = startSessionTimestamp[1].split(":");
 	splitEndTime = endSessionTimestamp[1].split(":"); 
@@ -342,7 +367,6 @@ function getFirstAndLastDateTime(date) {
 
 
 //Call the Functions
-//parseDataTmp("../data/BTT1.csv", "");
 //parseData(createGraph, "../data/BTT1.csv", "", findPunchesInGraph);
 //parseData(createGraph, "../data/BTT2.csv", "2", findPunchesInGraph);
 
