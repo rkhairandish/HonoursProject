@@ -189,7 +189,11 @@
 	<input type="file" name="File Upload" id="txtFileUpload" accept=".csv" multiple>
 </span>
 
-	<h3 align="center" >Most Recent Session Statistics</h3>
+
+
+
+	<!-- Dashboard Section!!! -->
+	<h3 align="center" >Punches Dashboard</h3>
 
     	<div class="container">
 <div class="card text-center">
@@ -198,10 +202,6 @@
 	</div>
 	<br>
 
-	<!-- For when i figure out calculating difference between times -->
-	<!-- <div>
-		<span id="diff"> DiffTime</span>
-	</div> -->
 
 	<!-- Charts to display punches and average acceleration -->
 	<table width="90%" border="0" cellspacing="0" cellpadding="0" >	
@@ -222,7 +222,7 @@
 					<td>
 						<!-- 1st Circular Progress Bar to Avg Acceleration -->
 						<h2>Average Punch Acceleration (g)</h2>
-						<div  class="c100 p100">
+						<div  class="c100 p100 center">
 							<span id="Avg Punches"> Avg Speed </span>
 							<div class="slice">
 								<!-- <div class="bar"></div>
@@ -267,11 +267,152 @@
 							</table>
 							<h2> </h2>
 							<div class="card-footer text-muted">
-								Boxing Performance Tracker: Dashboard Page
+								Boxing Performance Tracker: Dashboard 
 							</div>
 							</div>
 
 	</div>
+
+	<hr>
+
+	<!-- Graph Section!!! -->
+		<h3 align="center"> Training Session Graph</h3>
+		<div class="container">
+			<div class="card text-center">
+				<div class="card-header">
+					Results
+				</div>
+				<br>
+				<div class="container">
+					<div id="chart"></div>
+					<div id="spikes"></div>
+					<br>
+					<h2></h2>
+					<div id="chart2"></div>
+					<div id="spikes2"></div>
+					<br>
+					<div id="chart3"></div>
+					<div id="spikes3"></div>
+				</div>
+		
+				<div class="card-footer text-muted">
+					Boxing Performance Tracker: Graphs 
+				</div>
+			</div>
+		</div>
+
+
+		<!-- Versus!!! -->
+
+	<div class="container">
+		<div class="card text-center">
+			<div class="card-header">
+				Versus
+			</div>
+	
+	
+			<!-- Graph 2 Date/Time/Duration -->
+			<table style="width:100%">
+					<tr>
+			<!-- Date/Time of 2nd recorded session -->
+			<h3>Graph 2: Date/Time</h3>
+		
+						<div align="center" class="Date/Time"></div>
+						<th style="text-align: center;">Date </th>
+						<th style="text-align: center;"> Time </th>
+						<th style="text-align: center;">Duration</th>
+					</tr>
+					<tr>
+						<td>
+							<div id="Date"></div>
+						</td>
+						<td>
+							<div id="Time"></div>
+						</td>
+						<td>
+							<div id="Duration"></div>
+						</td>
+		
+						<table style="width:100%">
+							<tr>
+		
+						</table>
+	
+			<!-- Charts to display punches and average acceleration -->
+	
+			<table style="width:100%">
+				<tr>
+	
+					<td>
+								<!-- Circular Progress Bar to represent Punches -->
+								<h2>Session 1 Punches</h2>
+								<div class="c100 p100 center">
+									<span id="NumPunches"> Punches </span>
+									<div class="slice">
+										<div class="bar"></div>
+										<div class="fill"></div>
+									</div>
+								</div>
+								</td>
+	
+					<td>
+						<!-- 2nd Circular Progress Bar to represent Punches -->
+						<h2>Session 2 Punches</h2>
+						<div align="center" class="c100 p100">
+							<span id="NumPunches2">N/A</span>
+							<div class="slice">
+								<div class="bar"></div>
+								<div class="fill"></div>
+	
+								<br>
+								<br>
+	
+								<td>
+	
+	
+									<!-- 1st Circular Progress Bar to Avg Acceleration -->
+									<h2>Avg Punch Acceleration (g)</h2>
+									<div align="center" class="c100 p100">
+										<span id="Avg Punches"> Avg g </span>
+										<div class="slice">
+											<div class="bar"></div>
+											<div class="fill"></div>
+										</div>
+								</td>
+	
+								<br>
+	
+				</tr>
+			</table>
+			<table style="width:100%">
+				<tr>
+					<td>
+						<!-- Line/Timeline Graphs -->
+						<h2> Session 1</h2>
+						<div class="container">
+							<div id="chart"></div>
+							<div id="spikes"></div>
+							<br>
+							<h2>Session 2</h2>
+							<div id="chart2"></div>
+							<div id="spikes2"></div>
+						</div>
+					</td>
+	
+				</tr>
+			</table>
+<hr>
+
+
+
+
+
+
+
+
+
+
+
 
 	<!-- Top container -->
 	<div class="w3-bar w3-top w3-black w3-large" style="z-index:4">

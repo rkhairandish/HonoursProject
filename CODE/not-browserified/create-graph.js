@@ -179,7 +179,7 @@ function findPunchesInGraph(data, chartDivName) {
 
 function getAvgSpeedOfPunches(data, chartDivName) {
 
-	console.log("testing getAvgSpeedOfPunches: ") 
+	console.log("testing getAvgSpeedOfPunches: " ) 
 
 	//Find Peaks in the Graph
 	var slayer = require('slayer');
@@ -198,6 +198,7 @@ function getAvgSpeedOfPunches(data, chartDivName) {
 			} 
 		} var avg = gAccelerationAmount/numberOfRealPunches;
 
+
 		var toAdd = document.createDocumentFragment();
 
 		div = document.createElement('Avg Punches');
@@ -205,6 +206,8 @@ function getAvgSpeedOfPunches(data, chartDivName) {
 		document.getElementsByTagName('body')[0].appendChild(div);
 
 		document.getElementById("Avg Punches").innerHTML = avg.toFixed(2);
+
+		
 	});
 }
 
