@@ -46,6 +46,14 @@
 	html,	body,	h1,		h2,		h3,		h4,		h5 {
 		font-family: 'Montserrat';
 	}
+
+	p {
+    text-indent: 50px;
+}
+
+label{
+	text-indent: 50px;
+}
 </style>
 
 </head>
@@ -61,7 +69,7 @@
 
 
 <!-- Sidebar/menu -->
-<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar">
+<nav class="w3-sidebar w3-collapse w3-dark-grey w3-animate-left" style="z-index:3;width:300px;" id="mySidebar">
 	<br>
 	<div class="w3-container w3-row">
 			<div class="w3-col s4">
@@ -74,10 +82,7 @@
 				<br>
 				<a href="/index.html" class="w3-bar-item w3-button w3-xlarge">
 					<i class="fa fa-dashboard"></i>
-				</a>
-				<a href="/Versus Page.html" class="w3-bar-item w3-button w3-xlarge">
-					<i class="fa fa-cloud-upload"></i>
-				</a>
+					<br>
 				<a href="/About.html" class="w3-bar-item w3-button w3-xlarge">
 					<i class="fa fa-info"></i>
 				</a>
@@ -92,16 +97,47 @@
 			<i class="fa fa-remove fa-fw"></i> Close Menu</a>
 		<a href="/index.html" class="w3-bar-item w3-button w3-padding w3-blue">
 			<i class="fa fa-dashboard fa-fw"></i> Overview</a>
-		<a href="/Graph.html" class="w3-bar-item w3-button w3-padding">
-			<i class="fa fa-line-chart"></i> Graphs</a>
-		<a href="/Versus Page.html" class="w3-bar-item w3-button w3-padding">
-			<i class="fa fa-users"></i> Versus</a>
-		<a href="/About.html" class="w3-bar-item w3-button w3-padding">
+			<a href="/About.html" class="w3-bar-item w3-button w3-padding">
 				<i class="fa fa-info fa-fw"></i> About</a>
-		<a href="/upload.html" class="w3-bar-item w3-button w3-padding">
-				<i class="fa fa-cloud-upload fa-fw"></i> Upload</a>
-	</div>
-		<hr>
+			</div>
+			<hr>
+			
+			<h4 align="center"><u> Please Upload files to Start</u>
+			</h4>
+			<!-- UPLOAD BUTTON -->
+			<label class="control-label">Select Files to Upload:</label>
+			<span class="btn btn-default btn-file">
+				<input type="file" name="File Upload" id="txtFileUpload" accept=".csv" multiple>
+			</span>
+		<br>
+<hr>
+				<p> To view tutorials on: 
+				</p>
+
+				<p>
+					- Uploading files
+				</p>
+
+
+				<p>
+					- Saving raw data as CSV 
+				</p>
+
+				<p>
+					- Boxing 101
+				</p>
+
+				<p>
+					- Reading the Graphs
+				</p>
+
+				<p>
+					- Etc
+				</p>
+
+				<a href="/About.html" class="w3-bar-item w3-button w3-padding">
+					<i class="fa-fw"></i> Go to the About page or Click Here</a>
+
 </nav>
 
 
@@ -111,6 +147,8 @@
 
 <!-- !PAGE CONTENT! -->
 <div class="w3-main" style="margin-left:300px;margin-top:43px;">
+
+	<br>
 
 	<!-- Header -->
 	<header class="w3-container" style="padding-top:22px">
@@ -183,12 +221,6 @@
 			</div>
 		</div>
 
-<!-- UPLOAD BUTTON -->
-<label class="control-label">Select Files to Upload:</label>
-<span class="btn btn-default btn-file">
-	<input type="file" name="File Upload" id="txtFileUpload" accept=".csv" multiple>
-</span>
-
 
 
 
@@ -211,7 +243,7 @@
 			<!-- Circular Progress Bar to represent Punches -->
 			<h2>Number of Punches</h2>
 			<div class="c100 p100 center">
-			   <span id="NumPunches"> Punches </span>
+			   <span id="NumPunches">No Data</span>
 					<div class="slice">
 						<div class="bar"></div>
 						<div class="fill"></div>
@@ -220,13 +252,11 @@
 		</td>
 
 					<td>
-						<!-- 1st Circular Progress Bar to Avg Acceleration -->
+						<!--Circular Progress Bar to Avg Acceleration -->
 						<h2>Average Punch Acceleration (g)</h2>
 						<div  class="c100 p100 center">
-							<span id="Avg Punches"> Avg Speed </span>
+							<span id="AvgPunches"> No Data </span>
 							<div class="slice">
-								<!-- <div class="bar"></div>
-								<div class="fill"></div> -->
 							</div>
 					</td>
 							<br>
@@ -276,23 +306,25 @@
 	<hr>
 
 	<!-- Graph Section!!! -->
-		<h3 align="center"> Training Session Graph</h3>
 		<div class="container">
 			<div class="card text-center">
 				<div class="card-header">
-					Results
+					 Training Session Graph
 				</div>
 				<br>
 				<div class="container">
-					<div id="chart"></div>
+					<div id="chart"> Please Upload a CSV FIle to view the Session Graph</div>
 					<div id="spikes"></div>
 					<br>
 					<h2></h2>
-					<div id="chart2"></div>
+					<div id="chart2"> Upload another file to compare the two session graphs</div>
 					<div id="spikes2"></div>
 					<br>
 					<div id="chart3"></div>
 					<div id="spikes3"></div>
+					<br>
+					<div id="chart4"></div>
+					<div id="spikes4"></div>
 				</div>
 		
 				<div class="card-footer text-muted">
@@ -301,13 +333,13 @@
 			</div>
 		</div>
 
-
+<br>
 		<!-- Versus!!! -->
 
 	<div class="container">
 		<div class="card text-center">
 			<div class="card-header">
-				Versus
+				Comapare Sessions
 			</div>
 	
 	
@@ -317,29 +349,7 @@
 			<!-- Date/Time of 2nd recorded session -->
 			<h3>Graph 2: Date/Time</h3>
 		
-						<div align="center" class="Date/Time"></div>
-						<th style="text-align: center;">Date </th>
-						<th style="text-align: center;"> Time </th>
-						<th style="text-align: center;">Duration</th>
-					</tr>
-					<tr>
-						<td>
-							<div id="Date"></div>
-						</td>
-						<td>
-							<div id="Time"></div>
-						</td>
-						<td>
-							<div id="Duration"></div>
-						</td>
-		
-						<table style="width:100%">
-							<tr>
-		
-						</table>
-	
 			<!-- Charts to display punches and average acceleration -->
-	
 			<table style="width:100%">
 				<tr>
 	
@@ -347,7 +357,7 @@
 								<!-- Circular Progress Bar to represent Punches -->
 								<h2>Session 1 Punches</h2>
 								<div class="c100 p100 center">
-									<span id="NumPunches"> Punches </span>
+									<span id="VersusNumPunches"> No Data </span>
 									<div class="slice">
 										<div class="bar"></div>
 										<div class="fill"></div>
@@ -358,28 +368,20 @@
 					<td>
 						<!-- 2nd Circular Progress Bar to represent Punches -->
 						<h2>Session 2 Punches</h2>
-						<div align="center" class="c100 p100">
-							<span id="NumPunches2">N/A</span>
+						<div class="c100 p100 center">
+							<span id="VersusNumPunches2">N/A</span>
 							<div class="slice">
 								<div class="bar"></div>
 								<div class="fill"></div>
-	
-								<br>
-								<br>
-	
 								<td>
-	
-	
 									<!-- 1st Circular Progress Bar to Avg Acceleration -->
 									<h2>Avg Punch Acceleration (g)</h2>
-									<div align="center" class="c100 p100">
-										<span id="Avg Punches"> Avg g </span>
+									<div class="c100 p100 center">
+										<span id="VersusAvgPunches"> No Data </span>
 										<div class="slice">
-											<div class="bar"></div>
-											<div class="fill"></div>
+											<!-- <div class="bar"></div>
+											<div class="fill"></div> -->
 										</div>
-								</td>
-	
 								<br>
 	
 				</tr>
@@ -390,14 +392,17 @@
 						<!-- Line/Timeline Graphs -->
 						<h2> Session 1</h2>
 						<div class="container">
-							<div id="chart"></div>
+							<div id="Versuschart"></div>
 							<div id="spikes"></div>
 							<br>
 							<h2>Session 2</h2>
-							<div id="chart2"></div>
+							<div id="Versuschart2"></div>
 							<div id="spikes2"></div>
 						</div>
 					</td>
+									<div class="card-footer text-muted">
+										Boxing Performance Tracker: Graphs
+									</div>
 	
 				</tr>
 			</table>

@@ -56,9 +56,7 @@ function upload(data) {
 		
 		createGraph(papaParseData, divNumber);
 		findPunchesInGraph(papaParseData, divNumber);
-
-		console.log("testing: ", divNumber)
-
+		getAvgSpeedOfPunches(papaParseData);
 
 	};
 	reader.onerror = function () {
@@ -105,8 +103,6 @@ function createGraph(data, chartDivName) {
 				legend: { position: 'right' }
 		});
 
-	console.log(chart);
-
 	var toAdd = document.createDocumentFragment();
 
 	div = document.createElement('chart');
@@ -114,6 +110,10 @@ function createGraph(data, chartDivName) {
 	document.getElementsByTagName('body')[0].appendChild(div);
 	document.getElementById("chart").innerHTML = chart;
 
+	div = document.createElement('chart');
+	div.className = divValue;
+	document.getElementsByTagName('body')[0].appendChild(div);
+	document.getElementById("chart").innerHTML = chart;
 
 
 
@@ -154,17 +154,21 @@ function findPunchesInGraph(data, chartDivName) {
 
 		
 		
-		
+		//Index Graph
 		var toAdd = document.createDocumentFragment();
-		
 		div = document.createElement('NumPunches');
 		div.className = divValue;
 		document.getElementsByTagName('body')[0].appendChild(div);
-		
 		document.getElementById("NumPunches" ).innerHTML = realPunches;
 
+		//Versus Graph
+		var toAdd = document.createDocumentFragment();
+		div = document.createElement('VersusNumPunches');
+		div.className = divValue;
+		document.getElementsByTagName('body')[0].appendChild(div);
+		document.getElementById("VersusNumPunches").innerHTML = realPunches;
+
 		//Calls the function
-		getAvgSpeedOfPunches(spikes, chartDivName);
 		circularGraph(realPunches);
 	});
 }
@@ -177,9 +181,7 @@ function findPunchesInGraph(data, chartDivName) {
 
 
 
-function getAvgSpeedOfPunches(data, chartDivName) {
-
-	console.log("testing getAvgSpeedOfPunches: " ) 
+function getAvgSpeedOfPunches(data) {
 
 	//Find Peaks in the Graph
 	var slayer = require('slayer');
@@ -198,14 +200,20 @@ function getAvgSpeedOfPunches(data, chartDivName) {
 			} 
 		} var avg = gAccelerationAmount/numberOfRealPunches;
 
-
+		//Index Avg
 		var toAdd = document.createDocumentFragment();
-
-		div = document.createElement('Avg Punches');
+		div = document.createElement('AvgPunches');
 		div.className = divValue;
 		document.getElementsByTagName('body')[0].appendChild(div);
+		document.getElementById("AvgPunches").innerHTML = avg.toFixed(2);
 
-		document.getElementById("Avg Punches").innerHTML = avg.toFixed(2);
+		//Versus Avg
+		var toAdd = document.createDocumentFragment();
+		div = document.createElement('VersusAvgPunches');
+		div.className = divValue;
+		document.getElementsByTagName('body')[0].appendChild(div);
+		document.getElementById("VersusAvgPunches").innerHTML = avg.toFixed(2);
+
 
 		
 	});
@@ -228,10 +236,6 @@ function getAvgSpeedOfPunches(data, chartDivName) {
 function circularGraph(punches) {
 	//Circular Progress Bar to Visually Show number of punches
 	var elements = document.getElementsByClassName("c100 p100");
-
-	console.log("testing circularGraph: ")
-
-	console.log("Work: ",punches);
 
 for (i = 0; i < elements.length; i++) {
 	
@@ -315,9 +319,7 @@ for (i = 0; i < elements.length; i++) {
 
 //FOR UPLOAD 
 function getFirstAndLastDateTime(date) {
-	
-	console.log("testing getFirstAndLastDateTime: ")
-	
+		
 	//Function to Get The First and Last Date/Time information from the data
 	var elements = document.getElementsByClassName("Date/Time");
 	
@@ -369,9 +371,6 @@ function getFirstAndLastDateTime(date) {
 		lengthOfSession[2] + " Sec " ;
 
 	 var durationLength = new Date(lengthOfSession).getTime();
-
-
-	// console.log("durationLength" + durationLength);
 
 
 	return dateTimeObj;
