@@ -34,7 +34,7 @@ function upload(data) {
 	var reader = new FileReader();
 
 	div = document.createElement('div');
-	div.className = divValue;
+	div.className = "chart" + divValue;
 	document.getElementsByTagName('body')[0].appendChild(div);
 
 	
@@ -43,21 +43,20 @@ function upload(data) {
 		
 		var csvData = event.target.result;
 	
-		var papaParseData = Papa.parse(csvData);
-
-		var lines = this.result.split('\n');
-		for (var line = 0; line < lines.length; line++) {
-		}		
+		var papaParseData = Papa.parse(csvData);	
 
 		
 		//parseData(createGraph, " ", divValue.toString(), findPunchesInGraph);
-		divValue++; 
 		
-		var divNumber = divValue.toString()
+		var divNumber = divValue.toString();
+		console.log("divValue: ", divValue, divNumber)
 		
 		createGraph(papaParseData, divNumber);
 		findPunchesInGraph(papaParseData, divNumber);
 		getAvgSpeedOfPunches(papaParseData);
+		
+		divValue++; 
+		
 
 	};
 	reader.onerror = function () {
@@ -104,17 +103,9 @@ function createGraph(data, chartDivName) {
 				legend: { position: 'right' }
 		});
 
-	var toAdd = document.createDocumentFragment();
+	console.log("chartDivName: ", chartDivName)
 
-	div = document.createElement('chart');
-	div.className = divValue;
-	document.getElementsByTagName('body')[0].appendChild(div);
-	document.getElementById("chart").innerHTML = chart;
-
-	div = document.createElement('chart');
-	div.className = divValue;
-	document.getElementsByTagName('body')[0].appendChild(div);
-	document.getElementById("chart").innerHTML = chart;
+	document.getElementsByClassName("chart" + chartDivName)[0].innerHTML = chart;
 
 
 
