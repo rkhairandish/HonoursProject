@@ -43,39 +43,39 @@
 
 <!-- Setting the font for the page -->
 <style>
-	html,	body,	h1,		h2,		h3,		h4,		h5 {
-		font-family: 'Montserrat';
-	}
+		html,
+		body,
+		h1, 		 {
+			font-family: 'Montserrat';
+		}
+
+h2, h3, h4, h5 {
+	font-family: 'Montserrat';
+	font-size: 5.0vw;
+}
+
 
 	p {
     text-indent: 50px;
 }
 
 label{
-	text-indent: 50px;
+	text-indent: 5vw;
 }
 </style>
 
 </head>
 
 <body>
-
-<nav align="right" class= "navbar-inverse navbar-fixed-top" >
-	<div class="container-fluid">
-		<div class="navbar-header ">
-			<a class="navbar-brand" href="/index.html" style="font-size:250%;" align="right" >Boxing Performance Tracker</a>
-</nav>
-
-
-
-<!-- Sidebar/menu -->
-<nav class="w3-sidebar w3-collapse w3-dark-grey w3-animate-left" style="z-index:3;width:300px;" id="mySidebar">
-	<br>
-	<div class="w3-container w3-row">
+		
+	<!-- Sidebar/menu -->
+	<nav class="w3-sidebar w3-collapse w3-dark-grey w3-animate-left" style="z-index:3;width:300px;" id="mySidebar">
+		<br>
+		<div class="w3-container w3-row">
 			<div class="w3-col s4">
-				<img src="/images/icon.png" class="w3-circle w3-margin-right" style="width:80%">
+				<img src="/images/icon.png" class="w3-circle w3-margin-left" style="width:80%">
 			</div>
-		<div class="w3-col s8 w3-bar">
+			<div class="w3-col s8 w3-bar">
 				<span>Welcome to 
 					<strong>BPT</strong>
 				</span>
@@ -83,12 +83,20 @@ label{
 				<a href="/index.html" class="w3-bar-item w3-button w3-xlarge">
 					<i class="fa fa-dashboard"></i>
 					<br>
-				<a href="/About.html" class="w3-bar-item w3-button w3-xlarge">
-					<i class="fa fa-info"></i>
-				</a>
-		</div>
-	</div>
+					<a href="/About.html" class="w3-bar-item w3-button w3-xlarge">
+						<i class="fa fa-info"></i>
+					</a>
+				</div>
+			</div>
 	<hr>
+
+		<nav align="right" class="navbar-inverse navbar-fixed-top">
+			<div class="container-fluid">
+				<div class="navbar-header ">
+					<a class="navbar-brand" href="/index.html" style="font-size:250%;" align="right">Boxing Performance Tracker</a>
+		</nav>
+
+
 	<div class="w3-container">
 		<h5 href="/index.html">MENU</h5>
 	</div>
@@ -142,7 +150,7 @@ label{
 
 
 <!-- Overlay effect when opening sidebar on small screens -->
-<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu"
+<div class=" col-xs-4 w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu"
  id="myOverlay"></div>
 
 <!-- !PAGE CONTENT! -->
@@ -225,7 +233,7 @@ label{
 
 
 	<!-- Dashboard Section!!! -->
-	<h3 align="center" >Punches Dashboard</h3>
+	<h3 align="center" > Dashboard</h3>
 
     	<div class="container">
 <div class="card text-center">
@@ -304,7 +312,7 @@ label{
 					<div id="chart4"></div>
 					<div id="spikes4"></div>
 				</div>
-		
+		<br>
 				<div class="card-footer text-muted">
 					Boxing Performance Tracker: Graphs 
 				</div>
@@ -313,12 +321,6 @@ label{
 
 <br>
 		<!-- Versus!!! -->
-
-	<div class="container">
-		<div class="card text-center">
-			<div class="card-header">
-				Comapare Sessions
-			</div>
 	
 	
 			<!-- Graph 2 Date/Time/Duration -->
@@ -361,22 +363,23 @@ label{
 											<div class="fill"></div> -->
 										</div>
 								<br>
-	
+			<br>
 				</tr>
 			</table>
 			<table style="width:100%">
 				<tr>
 					<td>
 						<!-- Line/Timeline Graphs -->
-						<h2> Session 1</h2>
+						<h2 align="center"> Session 1</h2>
 						<div class="container">
 							<div id="Versuschart"></div>
 							<div id="spikes"></div>
 							<br>
-							<h2>Session 2</h2>
+							<h2 align="center" >Session 2</h2>
 							<div id="Versuschart2"></div>
 							<div id="spikes2"></div>
 						</div>
+								<br>
 					</td>
 									<div class="card-footer text-muted">
 										Boxing Performance Tracker: Graphs
@@ -396,55 +399,49 @@ label{
 
 
 
-
 	<!-- Top container -->
-	<div class="w3-bar w3-top w3-black w3-large" style="z-index:4">
+	<div class=" w3-top w3-dark-grey w3-small " style="z-index:0">
 		<button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();">
 			<i class="fa fa-bars"></i> Menu</button>
 		<span class="w3-bar-item w3-right">Boxing Performance Tracker </span>
 	</div>
 	
-
-
-		<hr>
-		<div class="w3-container">
-			<h5>Link to Other Pages</h5>
-			<ul class="w3-ul w3-card-4 w3-white">
-				<li class="w3-padding-16">
-					<i class="fa fa-film w3-xxxlarge" ></i>   
-					<a class="w3-xlarge" href="https://youtu.be/LjeJmHg_S4A?t=146"> Recommended Boxing Tutorial</a>
-					<br>
-				</li>
-				<li class="w3-padding-16">
-					<i class="fa fa-external-link w3-xxxlarge"></i>
-					<a class="w3-xlarge" href="https://youtu.be/EQVuCtiuBUU?t=40"> GENEActiv Video Tutorial</a>
-					<br>
-				</li>
-				<li class="w3-padding-16">
-					<i href="/About.html" class="fa fa-info-circle w3-xxxlarge"></i>
-					<a class="w3-xlarge" href="/About.html"> About Page: Instructions for saving GENEActiv data as CSV</a>
-					<br>
-				</li>
-			</ul>
-		</div>
-		<hr>
-
-
-
-
-
-
-		<!-- Footer -->
-		<footer class="w3-container w3-padding-16 w3-light-grey">
-			<h4>Boxing Performance Tracker By Ramesh Khairandish</h4>
-			<p> Webpage modified from templates at 
-				<a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a>
-				and 
-				<a href="https://getbootstrap.com/docs/4.0/components/navbar/" target="_blank">Bootstrap</a>
-			</p>
-		</footer>
+	
+	<hr>
+	<div class="w3-container">
+		<h5>Link to Other Pages</h5>
+		<ul class="w3-ul w3-card-4 w3-white">
+			<li class="w3-padding-16">
+				<i class="fa fa-film w3-xxxlarge"></i>
+				<a class="w3-xlarge" href="https://youtu.be/LjeJmHg_S4A?t=146"> Recommended Boxing Tutorial</a>
+				<br>
+			</li>
+			<li class="w3-padding-16">
+				<i class="fa fa-external-link w3-xxxlarge"></i>
+				<a class="w3-xlarge" href="https://youtu.be/EQVuCtiuBUU?t=40"> GENEActiv Video Tutorial</a>
+				<br>
+			</li>
+		</ul>
+	</div>
+	<hr>
+	
+	
+	
+	
+	
+	
+	<!-- Footer -->
+	<footer class="w3-container w3-padding-16 w3-light-grey">
+		<h4>Boxing Performance Tracker By Ramesh Khairandish</h4>
+		<p> Webpage modified from templates at
+			<a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a>
+			and
+			<a href="https://getbootstrap.com/docs/4.0/components/navbar/" target="_blank">Bootstrap</a>
+		</p>
+	</footer>
 	
 	</div>
+
 	
 
 
