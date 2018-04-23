@@ -4,27 +4,7 @@ var yLabel = ["Acceleration"];
 var divValue = 0;
 
 
-
-
-
-
-
-
-
-//Parse the data to create a graph with the data
-function parseData(createGraph, filename, chartDivName, findPunchesInGraph) {
-	Papa.parse(filename, {
-		worker: true,
-		download: true,
-		complete: function (results) {
-			createGraph(results.data, chartDivName);
-			findPunchesInGraph(results.data, chartDivName);
-		}
-	});
-}
-
-
-	// //Upload 
+//Upload CSV files 
 document.getElementById('txtFileUpload').addEventListener('change', upload, false);
 
 function upload(data) {
