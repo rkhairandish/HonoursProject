@@ -114,7 +114,7 @@ function findPunchesInGraph(data, chartDivName) {
 	slayer({ minPeakDistance: 1, minPeakHeight: 7}).fromArray(arrayData).then(spikes => {
 		
 		
-		//for loop to detect punches ie acceleration above 6 
+		//for loop to detect punches ie acceleration above 5 
 		var realPunches = 0;
 		
 		for (var i = 0; i < spikes.length; i++) {
@@ -223,69 +223,6 @@ for (i = 0; i < elements.length; i++) {
 
 
 
-			//HARD CODED 
-// function getFirstAndLastDateTime(date) {
-
-// 	//Function to Get The First and Last Date/Time information from the data
-// 	var elements = document.getElementsByClassName("Date/Time");
-
-// 	var startSessionTimestamp = date[1];
-
-	
-// 	var endSessionTimestamp = date[date.length - 1];
-	
-	
-// 	var splitStartTime = startSessionTimestamp;
-// 	var splitEndTime = endSessionTimestamp;
-	
-// 	startSessionTimestamp = startSessionTimestamp.split(" ");
-// 	endSessionTimestamp = endSessionTimestamp.split(" ");
-	
-	
-	
-// 	splitStartTime = startSessionTimestamp[1].split(":");
-// 	splitEndTime = endSessionTimestamp[1].split(":");
-	
-// 	console.log(splitStartTime);
-	
-// 	var dateTimeObj = {
-// 		firstDateTime: startSessionTimestamp,
-// 		lastDateTime: endSessionTimestamp,
-// 	}
-
-// 	//Gets Duration of the Session by taking away the start of session time with the end of session time
-// 	var lengthOfSession = [];
-
-// 	for (var i = 0; i < splitStartTime.length; i++) {
-// 		lengthOfSession.push(Math.abs(splitStartTime[i] - splitEndTime[i]));
-// 	}
-
-
-// 	//Date
-// 	var splicedstartSessionTimestamp = startSessionTimestamp.slice(0, 1);
-// 	document.getElementById("DisplayDate").innerHTML = splicedstartSessionTimestamp;
-
-// 	//Time
-// 	document.getElementById("Time").innerHTML = "Start: " + startSessionTimestamp[1] + "<br>" + "End: " +
-// 		endSessionTimestamp[1] + "<br>";
-
-// 	// Duration 
-// 	document.getElementById("Duration").innerHTML =
-// 		lengthOfSession[0] + " Hr - " +
-// 		lengthOfSession[1] + " Min - " +
-// 		lengthOfSession[2] + " Sec ";
-
-// 	// var durationLength = new Date(lengthOfSession).getTime();
-
-
-// 	// console.log("durationLength" + durationLength);
-
-
-// 	return dateTimeObj;
-// }
-
-
-
 
 
 //FOR UPLOAD 
@@ -296,10 +233,6 @@ function getFirstAndLastDateTime(date) {
 	
 	
 	var startSessionTimestamp = date.data[1];
-	
-	
-	
-	
 	var endSessionTimestamp = date.data[date.data.length - 1][0];
 	
 	
@@ -346,9 +279,6 @@ function getFirstAndLastDateTime(date) {
 
 	return dateTimeObj;
 }
-
-
-
 
 
 
