@@ -122,15 +122,13 @@ function findPunchesInGraph(data, chartDivName) {
 				realPunches++;
 			}
 		}
-
-		
 		
 		//Index Graph
 		var toAdd = document.createDocumentFragment();
 		div = document.createElement('NumPunches');
 		div.className = divValue;
 		document.getElementsByTagName('body')[0].appendChild(div);
-		document.getElementById("NumPunches" ).innerHTML = realPunches;
+		document.getElementById("NumPunches").innerHTML = realPunches;
 
 		//Versus Graph
 		var toAdd = document.createDocumentFragment();
@@ -138,6 +136,8 @@ function findPunchesInGraph(data, chartDivName) {
 		div.className = divValue;
 		document.getElementsByTagName('body')[0].appendChild(div);
 		document.getElementById("VersusNumPunches").innerHTML = realPunches;
+
+
 
 		//Calls the function
 		circularGraph(realPunches);
