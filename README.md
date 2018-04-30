@@ -8,8 +8,9 @@ Instructions:
   - Punch away
   - Stop by Pressing Button on GeneActiv (long red flash)
   - Plug GeneActiv into your PC and Download CSV file from GeneActiv Software 
-  - Upload into given location
-  - go to website (http://localhost:8000/)
+  - Make sure CSV file has Date, X, and Y columns 
+  - go to website (https://zeno.computing.dundee.ac.uk/2017-projects/boxing/index.html)
+  - Upload into given website
   - View Timeline Graph, Count Punches ETC
  
 
