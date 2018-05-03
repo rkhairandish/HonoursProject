@@ -280,17 +280,6 @@ function getFirstAndLastDateTime(date) {
 
 	return dateTimeObj;
 }
-
-
-
-
-
-
-
-//Call the Functions
-//parseData(createGraph, "../data/BTT1.csv", "", findPunchesInGraph);
-//parseData(createGraph, "../data/BTT2.csv", "2", findPunchesInGraph);
-
 },{"slayer":18}],2:[function(require,module,exports){
 (function (Buffer){
 // Copyright Joyent, Inc. and other Node contributors.
